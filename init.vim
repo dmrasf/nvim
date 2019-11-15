@@ -132,8 +132,11 @@ Plug 'honza/vim-snippets'
 " Other useful utilities
 Plug 'junegunn/goyo.vim' " distraction free writing mode
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'`to change 'word' to `word`
+" 快速注释
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
 Plug 'AndrewRadev/switch.vim'
+
+Plug '/usr/local/opt/fzf'
  
 Plug 'ryanoasis/vim-devicons'
  
@@ -218,9 +221,21 @@ let g:NERDTreeIndicatorMapCustom = {
 			\ "Unknown"	 : "?"
 			\ }
 
+
+" 查找文件
+noremap <C-p> :FZF<CR>
+
+
+
+
+
+
+
+
+
+
 " end
 exec "nohlsearch"
-
 " Open the _machine_specific.vim file if it has just been created
 if has_machine_specific_file == 0
 	exec "e ~/.config/nvim/_machine_specific.vim"
