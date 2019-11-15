@@ -1,4 +1,5 @@
 let mapleader=" "
+
 " 代码高亮
 syntax on
 
@@ -70,8 +71,22 @@ func! CompileRunGcc()
     exec "w"
     if &filetype == 'html'
         exec "!chromium % &"
+    elseif &filetype == 'c'
+        exec "!g++ % -o %<"
+        exec "! ./%<"
+    elseif &filetype == 'cpp'
+        exec "g++ -std=c++11 % -Wall -o %<"
+        set splitbelow 
+        :sp
+        :term ./%<
+    elseif &filetype == 'python'
+        set splitbelow 
+        :sp
+        :term python3 %
     elseif &filetype == 'sh'
-        exec "!bash %"
+        set splitbelow
+        :sp
+        :term bash %
     elseif &filetype == 'markdown'
         exec "MarkdownPreview"
     endif
@@ -90,9 +105,16 @@ Plug 'connorholyday/vim-snazzy'
 "Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 
 " Error checking
-"Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 
 " Auto Complete
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-vim'
+Plug 'ncm2/ncm2-pyclang'
+Plug 'ncm2/ncm2-match-highlight'
+Plug 'ncm2/ncm2-bufword'
 "Plug 'Valloric/YouCompleteMe'
 
 " Undo Tree
@@ -144,12 +166,26 @@ Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'`to c
 "Plug 'MarcWeber/vim-addon-mw-utils'
 "Plug 'kana/vim-textobj-user'
 "Plug 'fadein/vim-FIGlet'
+
+Plug 'ryanoasis/vim-devicons'
  
 call plug#end()
 
 color snazzy
- 
-" 全shell屏显示
+
+let has_machine_specific_file = 1
+if empty(glob('~/.config/nvim/_machine_specific.vim'))
+	let has_machine_specific_file = 0
+	silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+endif
+source ~/.config/nvim/_machine_specific.vim
+
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+let g:python3_host_prog='/usr/bin/python3'
+
+" 全屏显示
 map <LEADER>gy :Goyo<CR>
 
 " MarkdownPreview
@@ -199,7 +235,7 @@ let g:UltiSnipsExpandTrigger="<c-b>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-n>"
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']
 
 
 
