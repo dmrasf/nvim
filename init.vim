@@ -98,31 +98,17 @@ Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
 
 " File navigation
-"Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-"Plug 'Xuyuanp/nerdtree-git-plugin'
-
-" Taglist
-"Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Error checking
 Plug 'w0rp/ale'
 
 " Auto Complete
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-vim'
-Plug 'ncm2/ncm2-pyclang'
-Plug 'ncm2/ncm2-match-highlight'
-Plug 'ncm2/ncm2-bufword'
-"Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim'
 
 " Undo Tree
-"Plug 'mbbill/undotree/'
-
-" Other visual enhancement
-"Plug 'nathanaelkane/vim-indent-guides'
-"Plug 'itchyny/vim-cursorword'
+Plug 'mbbill/undotree'
 
 " Git
 Plug 'rhysd/conflict-marker.vim'
@@ -130,24 +116,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
-" HTML, CSS, JavaScript, PHP, JSON, etc.
-"Plug 'elzr/vim-json'
-"Plug 'hail2u/vim-css3-syntax'
-"Plug 'spf13/PIV', { 'for' :['php', 'vim-plug'] }
-"Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html','javascript', 'css', 'less'] }
-"Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
-"Plug 'mattn/emmet-vim'
-
-" Python
-"Plug 'vim-scripts/indentpython.vim'
-
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'vimwiki/vimwiki'
 
 " Bookmarks
-"Plug 'kshenoy/vim-signature'
+Plug 'kshenoy/vim-signature'
 
 " Track the engine.
 Plug 'SirVer/ultisnips'
@@ -155,18 +130,11 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Other useful utilities
-"Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/goyo.vim' " distraction free writing mode
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'`to change 'word' to `word`
-"Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
-"Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '',or type i) i] i} ip
-"Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
+Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
+Plug 'AndrewRadev/switch.vim'
  
-" Dependencies
-"Plug 'MarcWeber/vim-addon-mw-utils'
-"Plug 'kana/vim-textobj-user'
-"Plug 'fadein/vim-FIGlet'
-
 Plug 'ryanoasis/vim-devicons'
  
 call plug#end()
@@ -179,11 +147,6 @@ if empty(glob('~/.config/nvim/_machine_specific.vim'))
 	silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
 endif
 source ~/.config/nvim/_machine_specific.vim
-
-" enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-let g:python3_host_prog='/usr/bin/python3'
 
 " 全屏显示
 map <LEADER>gy :Goyo<CR>
@@ -237,6 +200,28 @@ let g:UltiSnipsJumpBackwardTrigger="<c-n>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']
 
+" 历史记录
+map ud :UndotreeToggle<CR><LEADER>j
 
+" 文件树
+map ne :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeIndicatorMapCustom = {
+			\ "Modified"	: "✹",
+			\ "Staged"		: "✚",
+			\ "Untracked" : "✭",
+			\ "Renamed"	 : "➜",
+			\ "Unmerged"	: "═",
+			\ "Deleted"	 : "✖",
+			\ "Dirty"		 : "✗",
+			\ "Clean"		 : "✔︎",
+			\ "Unknown"	 : "?"
+			\ }
 
+" end
+exec "nohlsearch"
 
+" Open the _machine_specific.vim file if it has just been created
+if has_machine_specific_file == 0
+	exec "e ~/.config/nvim/_machine_specific.vim"
+endif
