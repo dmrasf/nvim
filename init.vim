@@ -1,3 +1,11 @@
+
+"  _   ___     _____ __  __ ____   ____
+"  | \ | \ \   / /_ _|  \/  |  _ \ / ___|
+"  |  \| |\ \ / / | || |\/| | |_) | |
+"  | |\  | \ V /  | || |  | |  _ <| |___
+"  |_| \_|  \_/  |___|_|  |_|_| \_\\____|
+"
+
 let mapleader=" "
 
 " 代码高亮
@@ -54,6 +62,10 @@ map sd :set splitright<CR>:vsplit<CR>
 map sa :set nosplitright<CR>:vsplit<CR>
 map sw :set nosplitbelow<CR>:split<CR>
 map ss :set splitbelow<CR>:split<CR>
+
+noremap sv <C-w>b<C-w>K
+
+
 
 " 切换分频焦点
 map <LEADER>i <C-w>k
