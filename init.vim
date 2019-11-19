@@ -1,5 +1,5 @@
 
-"  _   ___     _____ __  __ ____   ____
+"   _   ___     _____ __  __ ____   ____
 "  | \ | \ \   / /_ _|  \/  |  _ \ / ___|
 "  |  \| |\ \ / / | || |\/| | |_) | |
 "  | |\  | \ V /  | || |  | |  _ <| |___
@@ -64,7 +64,7 @@ map sw :set nosplitbelow<CR>:split<CR>
 map ss :set splitbelow<CR>:split<CR>
 
 noremap sv <C-w>b<C-w>K
-
+noremap sc <C-w>b<C-w>H
 
 
 " 切换分频焦点
@@ -117,7 +117,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'w0rp/ale'
 
 " Auto Complete
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Undo Tree
 Plug 'mbbill/undotree'
@@ -237,6 +237,8 @@ let g:NERDTreeIndicatorMapCustom = {
 " 查找文件
 noremap <C-p> :FZF<CR>
 
+" 表格
+noremap <LEADER>tm :TableModeToggle<CR>
 
 
 
