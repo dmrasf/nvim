@@ -51,7 +51,7 @@ noremap k j
 noremap K 5j
 noremap I 5k
 noremap H I
-noremap l q
+noremap z q
 
 map s <nop>
 map w :w<CR>
