@@ -25,7 +25,8 @@ set relativenumber
 " 一条线
 set cursorline
 " 自动换行
-set wrap
+" set wrap
+set nowrap
 set showcmd
 " 补全命令
 set wildmenu
@@ -41,6 +42,12 @@ set incsearch
 set ignorecase
 set smartcase
 
+" 基于缩进或语法进行代码折叠
+"set foldmethod=indent
+set foldmethod=syntax
+" 启动 vim 时关闭折叠代码
+set nofoldenable
+
 " 取消搜索结果高亮
 noremap <LEADER><CR> :nohlsearch<CR>
 
@@ -51,7 +58,12 @@ noremap k j
 noremap K 5j
 noremap I 5k
 noremap H I
-noremap z q
+noremap Q q
+
+nnoremap [b :bprevious<CR>
+nnoremap ]b :bnext<CR>
+nnoremap [B :bfirst<CR>
+noremap ]B :blast<CR> 
 
 map s <nop>
 map w :w<CR>
@@ -66,7 +78,6 @@ map ss :set splitbelow<CR>:split<CR>
 
 noremap sv <C-w>b<C-w>K
 noremap sc <C-w>b<C-w>H
-
 
 " 切换分频焦点
 map <LEADER>i <C-w>k
@@ -88,7 +99,7 @@ func! CompileRunGcc()
         exec "!g++ % -o %<"
         exec "! ./%<"
     elseif &filetype == 'cpp'
-        exec "g++ -std=c++11 % -Wall -o %<"
+        exec "!g++ -std=c++11 % -Wall -o %<"
         set splitbelow 
         :sp
         :term ./%<
@@ -106,6 +117,9 @@ func! CompileRunGcc()
 endfun
 
 call plug#begin('~/.config/nvim/plugged')
+
+" look 
+Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
@@ -167,6 +181,16 @@ source ~/.config/nvim/_machine_specific.vim
 " 全屏显示
 map <LEADER>gy :Goyo<CR>
 
+" vim-indent-guides
+" 随 vim 自启动
+let g:indent_guides_enable_on_vim_startup=1
+" 从第二层开始可视化显示缩进
+let g:indent_guides_start_level=2
+" 色块宽度
+let g:indent_guides_guide_size=1
+" 快捷键 i 开/关缩进可视化
+:nmap <silent> <Leader>i <Plug>IndentGuidesToggle
+
 " MarkdownPreview
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
@@ -221,8 +245,6 @@ map ud :UndotreeToggle<CR><LEADER>j
 
 " 文件树
 map ne :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeIndicatorMapCustom = {
 			\ "Modified"	: "✹",
 			\ "Staged"		: "✚",
 			\ "Untracked" : "✭",
@@ -242,7 +264,7 @@ noremap <C-p> :FZF<CR>
 noremap <LEADER>tm :TableModeToggle<CR>
 
 
-
+" coc
 
 
 
