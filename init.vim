@@ -17,7 +17,7 @@ set encoding=utf-8
 set expandtab
 set tabstop=4
 set shiftwidth=4
-set softtabstop=4
+ret softtabstop=4
 " 行号
 set number
 " 特殊的行号
@@ -25,8 +25,8 @@ set relativenumber
 " 一条线
 set cursorline
 " 自动换行
-" set wrap
-set nowrap
+set wrap
+"set nowrap
 set showcmd
 " 补全命令
 set wildmenu
@@ -43,8 +43,8 @@ set ignorecase
 set smartcase
 
 " 基于缩进或语法进行代码折叠
-"set foldmethod=indent
-set foldmethod=syntax
+set foldmethod=indent
+"set foldmethod=syntax
 " 启动 vim 时关闭折叠代码
 set nofoldenable
 
@@ -159,11 +159,18 @@ Plug 'honza/vim-snippets'
 " Other useful utilities
 Plug 'junegunn/goyo.vim' " distraction free writing mode
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'`to change 'word' to `word`
-" 快速注释
-Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
+"" 快速注释
+Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line <space>
 Plug 'AndrewRadev/switch.vim'
 
 Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
+" 函数"
+Plug 'majutsushi/tagbar'
+
+" 变量高亮
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
  
 Plug 'ryanoasis/vim-devicons'
  
@@ -173,13 +180,17 @@ color snazzy
 
 let has_machine_specific_file = 1
 if empty(glob('~/.config/nvim/_machine_specific.vim'))
-	let has_machine_specific_file = 0
-	silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+    let has_machine_specific_file = 0
+    silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
 endif
 source ~/.config/nvim/_machine_specific.vim
 
+" airline
+
+
 " 全屏显示
 map <LEADER>gy :Goyo<CR>
+
 
 " vim-indent-guides
 " 随 vim 自启动
@@ -215,7 +226,6 @@ let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
-
 "autocmd Filetype markdown map <leader>w yiWi[<esc>Ea](<esc>pa)
 autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
 autocmd Filetype markdown inoremap ,n ---<Enter><Enter>
@@ -234,37 +244,47 @@ autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,l --------<Enter>
 
 " 代码片段
+inoremap <c-n> <nop>
 let g:UltiSnipsExpandTrigger="<c-b>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-n>"
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']
+let g:UltiSnipsSnippetDirectories = [$HOME.'/.config/nvim/Ultisnips/', 'UltiSnips']
+
 
 " 历史记录
 map ud :UndotreeToggle<CR><LEADER>j
 
 " 文件树
 map ne :NERDTreeToggle<CR>
-			\ "Modified"	: "✹",
-			\ "Staged"		: "✚",
-			\ "Untracked" : "✭",
-			\ "Renamed"	 : "➜",
-			\ "Unmerged"	: "═",
-			\ "Deleted"	 : "✖",
-			\ "Dirty"		 : "✗",
-			\ "Clean"		 : "✔︎",
-			\ "Unknown"	 : "?"
-			\ }
+            \ "Modified"    : "✹",
+            \ "Staged"      : "✚",
+            \ "Untracked" : "✭",
+            \ "Renamed"  : "➜",
+            \ "Unmerged"    : "═",
+            \ "Deleted"  : "✖",
+            \ "Dirty"        : "✗",
+            \ "Clean"        : "✔︎",
+            \ "Unknown"  : "?"
+            \ }
 
 
 " 查找文件
 noremap <C-p> :FZF<CR>
+noremap <C-h> :History<CR>
 
 " 表格
 noremap <LEADER>tm :TableModeToggle<CR>
 
+" 函数
+map <silent> T :TagbarOpenAutoClose<CR>
 
 " coc
+nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
 
 
 
@@ -275,5 +295,5 @@ noremap <LEADER>tm :TableModeToggle<CR>
 exec "nohlsearch"
 " Open the _machine_specific.vim file if it has just been created
 if has_machine_specific_file == 0
-	exec "e ~/.config/nvim/_machine_specific.vim"
+    exec "e ~/.config/nvim/_machine_specific.vim"
 endif
