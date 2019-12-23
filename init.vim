@@ -17,7 +17,7 @@ set encoding=utf-8
 set expandtab
 set tabstop=4
 set shiftwidth=4
-ret softtabstop=4
+set softtabstop=4
 " 行号
 set number
 " 特殊的行号
@@ -48,6 +48,27 @@ set foldmethod=indent
 " 启动 vim 时关闭折叠代码
 set nofoldenable
 
+" Terminal Behaviors
+"let g:neoterm_autoscroll = 1
+"autocmd TermOpen term://* startinsert
+"tnoremap <C-N> <C-\><C-N>
+"tnoremap <C-O> <C-\><C-N><C-O>
+"let g:terminal_color_0  = '#000000'
+"let g:terminal_color_1  = '#FF5555'
+"let g:terminal_color_2  = '#50FA7B'
+"let g:terminal_color_3  = '#F1FA8C'
+"let g:terminal_color_4  = '#BD93F9'
+"let g:terminal_color_5  = '#FF79C6'
+"let g:terminal_color_6  = '#8BE9FD'
+"let g:terminal_color_7  = '#BFBFBF'
+"let g:terminal_color_8  = '#4D4D4D'
+"let g:terminal_color_9  = '#FF6E67'
+"let g:terminal_color_10 = '#5AF78E'
+"let g:terminal_color_11 = '#F4F99D'
+"let g:terminal_color_12 = '#CAA9FA'
+"let g:terminal_color_13 = '#FF92D0'
+"let g:terminal_color_14 = '#9AEDFE'
+
 " 取消搜索结果高亮
 noremap <LEADER><CR> :nohlsearch<CR>
 
@@ -60,6 +81,7 @@ noremap I 5k
 noremap H I
 noremap Q q
 
+" 跳转文件
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 nnoremap [B :bfirst<CR>
@@ -159,9 +181,10 @@ Plug 'honza/vim-snippets'
 " Other useful utilities
 Plug 'junegunn/goyo.vim' " distraction free writing mode
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'`to change 'word' to `word`
+
 "" 快速注释
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line <space>
-Plug 'AndrewRadev/switch.vim'
+Plug 'AndrewRadev/switch.vim' " gs 
 
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -170,7 +193,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 
 " 变量高亮
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+"Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+
+" 
+Plug 'terryma/vim-multiple-cursors'
+
+" css html
+Plug 'mattn/emmet-vim'
  
 Plug 'ryanoasis/vim-devicons'
  
@@ -270,6 +299,7 @@ map ne :NERDTreeToggle<CR>
 
 " 查找文件
 noremap <C-p> :FZF<CR>
+noremap <C-f> :Ag<CR>
 noremap <C-h> :History<CR>
 
 " 表格
@@ -286,8 +316,30 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 
-
-
+" signature
+let g:SignatureMap = {
+            \ 'Leader':"m",
+            \ 'PlaceNextMark':"m,",
+            \ 'ToggleMarkAtLine':"m.",
+            \ 'PurgeMarksAtLine':"dm",
+            \ 'DeleteMark':"",
+            \ 'PurgeMarks':"",
+            \ 'PurgeMarkers':"",
+            \ 'GotoNextLineAlpha':"m<LEADER>",
+            \ 'GotoPrevLineAlpha':"",
+            \ 'GotoNextSpotAlpha':"m<LEADER>",
+            \ 'GotoPrevSpotAlpha':"",
+            \ 'GotoNextLineByPos':"",
+            \ 'GotoPrevLineByPos':"",
+            \ 'GotoNextSpotByPos':"",
+            \ 'GotoPrevSpotByPos':"",
+            \ 'GotoNextMarker':"",
+            \ 'GotoPrevMarker':"",
+            \ 'GotoNextMarkerAny':"",
+            \ 'GotoPrevMarkerAny':"",
+            \ 'ListLocalMarks':"m/",
+            \ 'ListLocalMarkers':"m?"
+            \ }
 
 
 
