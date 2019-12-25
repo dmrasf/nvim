@@ -25,7 +25,6 @@ set relativenumber
 " 一条线
 set cursorline
 " 自动换行
-let g:python3_host_prog='/usr/bin/python3'
 set wrap
 "set nowrap
 set showcmd
@@ -125,7 +124,6 @@ noremap tk :+tabnext<CR>
 noremap tmi :-tabmove<CR>
 noremap tmk :+tabmove<CR>
 
-
 map <LEADER>r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
@@ -151,9 +149,6 @@ func! CompileRunGcc()
 		silent! exec "!chromium % &"
 	elseif &filetype == 'markdown'
 		exec "MarkdownPreview"
-	elseif &filetype == 'tex'
-		silent! exec "VimtexStop"
-		silent! exec "VimtexCompile"
 	endif
 endfunc
 
@@ -212,10 +207,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 
 " 变量高亮
-"Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+"Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 
 " latex
-Plug 'lervag/vimtex'
+"Plug 'lervag/vimtex'
+
+" 剪切板 预览
+Plug 'junegunn/vim-peekaboo'
 
 " 
 Plug 'terryma/vim-multiple-cursors'
@@ -229,12 +227,8 @@ call plug#end()
 
 color snazzy
 
-let has_machine_specific_file = 1
-if empty(glob('~/.config/nvim/_machine_specific.vim'))
-    let has_machine_specific_file = 0
-    silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
-endif
-source ~/.config/nvim/_machine_specific.vim
+let g:python_host_prog='/usr/bin/python2'
+let g:python3_host_prog='/usr/bin/python3'
 
 " airline
 
@@ -242,6 +236,8 @@ source ~/.config/nvim/_machine_specific.vim
 " 全屏显示
 map <LEADER>gy :Goyo<CR>
 
+" 系统剪切板
+vnoremap Y "+y
 
 " vim-indent-guides
 " 随 vim 自启动
@@ -341,6 +337,7 @@ map <silent> T :TagbarOpenAutoClose<CR>
 
 " coc
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+let g:coc_global_extention = ['coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-vimtex']
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -376,7 +373,4 @@ let g:SignatureMap = {
 
 " end
 exec "nohlsearch"
-" Open the _machine_specific.vim file if it has just been created
-if has_machine_specific_file == 0
-    exec "e ~/.config/nvim/_machine_specific.vim"
-endif
+
