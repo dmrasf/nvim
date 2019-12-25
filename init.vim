@@ -46,7 +46,7 @@ set smartcase
 " 基于缩进或语法进行代码折叠
 set foldmethod=indent
 "set foldmethod=syntax
-set foldenable
+"set foldenable
 
 " Terminal Behaviors
 "let g:neoterm_autoscroll = 1
@@ -114,6 +114,17 @@ map <up> :res -5<CR>
 map <down> :res +5<CR>
 map <left> :vertical resize+5<CR>
 map <right> :vertical resize-5<CR>
+
+"  Tab management
+" Create a new tab with tu
+noremap tn :tabe<CR>
+" Move around tabs with tn and ti
+noremap ti :-tabnext<CR>
+noremap tk :+tabnext<CR>
+" Move the tabs with tmn and tmi
+noremap tmi :-tabmove<CR>
+noremap tmk :+tabmove<CR>
+
 
 map <LEADER>r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
