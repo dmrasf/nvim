@@ -25,6 +25,7 @@ set relativenumber
 " 一条线
 set cursorline
 " 自动换行
+let g:python3_host_prog='/usr/bin/python3'
 set wrap
 "set nowrap
 set showcmd
@@ -87,9 +88,12 @@ nnoremap [B :bfirst<CR>
 noremap ]B :blast<CR> 
 
 map s <nop>
-map w :w<CR>
 map q :q<CR>
-map r :source $MYVIMRC<CR>
+map r :w<CR>
+
+" Indentation
+nnoremap < <<
+nnoremap > >>
 
 " 分频
 map sd :set splitright<CR>:vsplit<CR>
@@ -113,29 +117,34 @@ map <right> :vertical resize-5<CR>
 
 map <LEADER>r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
-    exec "w"
-    if &filetype == 'html'
-        exec "!chromium % &"
-    elseif &filetype == 'c'
-        exec "!g++ % -o %<"
-        exec "! ./%<"
-    elseif &filetype == 'cpp'
-        exec "!g++ -std=c++11 % -Wall -o %<"
-        set splitbelow 
-        :sp
-        :term ./%<
-    elseif &filetype == 'python'
-        set splitbelow 
-        :sp
-        :term python3 %
-    elseif &filetype == 'sh'
-        set splitbelow
-        :sp
-        :term bash %
-    elseif &filetype == 'markdown'
-        exec "MarkdownPreview"
-    endif
-endfun
+	exec "w"
+	if &filetype == 'c'
+		exec "!g++ % -o %<"
+		exec "!time ./%<"
+	elseif &filetype == 'cpp'
+		set splitbelow
+		exec "!g++ -std=c++11 % -Wall -o %<"
+		:sp
+		:res -15
+		:term ./%<
+	elseif &filetype == 'java'
+		exec "!javac %"
+		exec "!time java %<"
+	elseif &filetype == 'sh'
+		:!time bash %
+	elseif &filetype == 'python'
+		set splitbelow
+		:sp
+		:term python3 %
+	elseif &filetype == 'html'
+		silent! exec "!chromium % &"
+	elseif &filetype == 'markdown'
+		exec "MarkdownPreview"
+	elseif &filetype == 'tex'
+		silent! exec "VimtexStop"
+		silent! exec "VimtexCompile"
+	endif
+endfunc
 
 call plug#begin('~/.config/nvim/plugged')
 
@@ -193,6 +202,9 @@ Plug 'majutsushi/tagbar'
 
 " 变量高亮
 "Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+
+" latex
+Plug 'lervag/vimtex'
 
 " 
 Plug 'terryma/vim-multiple-cursors'
@@ -272,11 +284,20 @@ autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,l --------<Enter>
 
 " 代码片段
-inoremap <c-n> <nop>
-let g:UltiSnipsExpandTrigger="<c-b>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-n>"
-let g:UltiSnipsSnippetDirectories = [$HOME.'/.config/nvim/Ultisnips/', 'UltiSnips']
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 
 " 历史记录
