@@ -47,27 +47,6 @@ set foldmethod=indent
 "set foldmethod=syntax
 "set foldenable
 
-" Terminal Behaviors
-"let g:neoterm_autoscroll = 1
-"autocmd TermOpen term://* startinsert
-"tnoremap <C-N> <C-\><C-N>
-"tnoremap <C-O> <C-\><C-N><C-O>
-"let g:terminal_color_0  = '#000000'
-"let g:terminal_color_1  = '#FF5555'
-"let g:terminal_color_2  = '#50FA7B'
-"let g:terminal_color_3  = '#F1FA8C'
-"let g:terminal_color_4  = '#BD93F9'
-"let g:terminal_color_5  = '#FF79C6'
-"let g:terminal_color_6  = '#8BE9FD'
-"let g:terminal_color_7  = '#BFBFBF'
-"let g:terminal_color_8  = '#4D4D4D'
-"let g:terminal_color_9  = '#FF6E67'
-"let g:terminal_color_10 = '#5AF78E'
-"let g:terminal_color_11 = '#F4F99D'
-"let g:terminal_color_12 = '#CAA9FA'
-"let g:terminal_color_13 = '#FF92D0'
-"let g:terminal_color_14 = '#9AEDFE'
-
 " 取消搜索结果高亮
 noremap <LEADER><CR> :nohlsearch<CR>
 
@@ -124,6 +103,21 @@ noremap tk :+tabnext<CR>
 noremap tmi :-tabmove<CR>
 noremap tmk :+tabmove<CR>
 
+" 打开终端后进入插入模式
+let g:neoterm_autoscroll = 1
+autocmd TermOpen term://* startinsert
+
+
+" 保存修改历史
+silent !mkdir -p backupdir=~/.config/nvim/tmp/backup
+silent !mkdir -p directory=~/.config/nvim/tmp/undo
+set backupdir=~/.config/nvim/tmp/backup
+set directory=~/.config/nvim/tmp/backup
+if has('persistent_undo')
+    set undofile
+    set undodir=~/.config/nvim/tmp/undo
+endif
+
 map <LEADER>r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
@@ -140,7 +134,9 @@ func! CompileRunGcc()
 		exec "!javac %"
 		exec "!time java %<"
 	elseif &filetype == 'sh'
-		:!time bash %
+        set splitbelow
+        :sp
+        :term bash %
 	elseif &filetype == 'python'
 		set splitbelow
 		:sp
@@ -293,19 +289,13 @@ autocmd Filetype markdown inoremap ,l --------<Enter>
 " 代码片段
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
-
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
-
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
-
+imap <C-i> <Plug>(coc-snippets-select)
+" Use <C-i> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-i>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-
+" Use <C-i> for both expand and jump (make expand higher priority.)
+imap <C-i> <Plug>(coc-snippets-expand-jump)
 
 " 历史记录
 map ud :UndotreeToggle<CR><LEADER>j
@@ -325,8 +315,8 @@ map ne :NERDTreeToggle<CR>
 
 
 " 查找文件
-noremap <C-p> :FZF<CR>
-noremap <C-f> :Ag<CR>
+noremap <C-f> :FZF<CR>
+noremap <C-p> :Ag<CR>
 noremap <C-h> :History<CR>
 
 " 表格
@@ -377,8 +367,8 @@ let g:SignatureMap = {
 "\   'c': ['eslint'],
 "\   'c++': ['eslint'],
 "\}
-let g:ale_sign_error = 'E'
-let g:ale_sign_warning = 'W'
+let g:ale_sign_error = 'e'
+let g:ale_sign_warning = 'w'
 nmap <silent> <C-i> <Plug>(ale_previous_wrap)
 nmap <silent> <C-k> <Plug>(ale_next_wrap)
 
