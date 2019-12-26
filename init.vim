@@ -165,7 +165,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Error checking
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -187,8 +187,8 @@ Plug 'vimwiki/vimwiki'
 " Bookmarks
 Plug 'kshenoy/vim-signature'
 
-" Track the engine.
-Plug 'SirVer/ultisnips'
+" Track the engine.  现在可以用coc-snipprts
+"Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
 
@@ -207,7 +207,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 
 " 变量高亮
-"Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
+Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 
 " latex
 "Plug 'lervag/vimtex'
@@ -342,6 +342,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+" 给所有变量重命名
 nmap <leader>rn <Plug>(coc-rename)
 
 " signature
@@ -369,6 +370,17 @@ let g:SignatureMap = {
             \ 'ListLocalMarkers':"m?"
             \ }
 
+" ale 错误提示
+"let g:ale_linters = {
+"\   'javascript': ['eslint'],
+"\   'python': ['eslint'],
+"\   'c': ['eslint'],
+"\   'c++': ['eslint'],
+"\}
+let g:ale_sign_error = 'E'
+let g:ale_sign_warning = 'W'
+nmap <silent> <C-i> <Plug>(ale_previous_wrap)
+nmap <silent> <C-k> <Plug>(ale_next_wrap)
 
 
 " end
