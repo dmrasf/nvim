@@ -109,13 +109,13 @@ autocmd TermOpen term://* startinsert
 
 
 " 保存修改历史
-silent !mkdir -p backupdir=~/.config/nvim/tmp/backup
-silent !mkdir -p directory=~/.config/nvim/tmp/undo
-set backupdir=~/.config/nvim/tmp/backup
-set directory=~/.config/nvim/tmp/backup
+silent !mkdir -p ~/.config/nvim/tmp/backup
+silent !mkdir -p ~/.config/nvim/tmp/undo
+set backupdir=~/.config/nvim/tmp/backup,.
+set directory=~/.config/nvim/tmp/backup,.
 if has('persistent_undo')
-    set undofile
-    set undodir=~/.config/nvim/tmp/undo
+	set undofile
+	set undodir=~/.config/nvim/tmp/undo,.
 endif
 
 map <LEADER>r :call CompileRunGcc()<CR>
@@ -170,9 +170,12 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mbbill/undotree'
 
 " Git
-Plug 'rhysd/conflict-marker.vim'
+"Plug 'rhysd/conflict-marker.vim'
+" git 管理
 Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
+" 显示 修改信息
+Plug 'airblade/vim-gitgutter'
+"
 Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
 " Markdown
