@@ -45,7 +45,7 @@ set smartcase
 " 基于缩进或语法进行代码折叠
 set foldmethod=indent
 "set foldmethod=syntax
-"set foldenable
+set foldenable
 
 " 取消搜索结果高亮
 noremap <LEADER><CR> :nohlsearch<CR>
@@ -107,7 +107,6 @@ noremap tmk :+tabmove<CR>
 let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert
 
-
 " 保存修改历史
 silent !mkdir -p ~/.config/nvim/tmp/backup
 silent !mkdir -p ~/.config/nvim/tmp/undo
@@ -145,6 +144,9 @@ func! CompileRunGcc()
 		silent! exec "!chromium % &"
 	elseif &filetype == 'markdown'
 		exec "MarkdownPreview"
+	elseif &filetype == 'tex'
+		silent! exec "VimtexStop"
+		silent! exec "VimtexCompile"
 	endif
 endfunc
 
@@ -208,8 +210,8 @@ Plug 'majutsushi/tagbar'
 " 变量高亮
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 
-" latex
-"Plug 'lervag/vimtex'
+" latex文件
+Plug 'lervag/vimtex'
 
 " 剪切板 预览
 Plug 'junegunn/vim-peekaboo'
@@ -319,7 +321,7 @@ map ne :NERDTreeToggle<CR>
 
 " 查找文件
 noremap <C-f> :FZF<CR>
-noremap <C-p> :Ag<CR>
+"noremap <C-p> :Ag<CR>
 noremap <C-h> :History<CR>
 
 " 表格
@@ -363,17 +365,29 @@ let g:SignatureMap = {
             \ 'ListLocalMarkers':"m?"
             \ }
 
-" ale 错误提示
-"let g:ale_linters = {
-"\   'javascript': ['eslint'],
-"\   'python': ['eslint'],
-"\   'c': ['eslint'],
-"\   'c++': ['eslint'],
-"\}
-let g:ale_sign_error = 'e'
-let g:ale_sign_warning = 'w'
+" ale 禁止错误提示
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'python': ['eslint'],
+\   'c': ['eslint'],
+\   'c++': ['eslint'],
+\}
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
 nmap <silent> <C-i> <Plug>(ale_previous_wrap)
 nmap <silent> <C-k> <Plug>(ale_next_wrap)
+
+" multi_cursor
+let g:multi_cursor_use_default_mapping=0
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
 
 
 " end

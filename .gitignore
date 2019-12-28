@@ -1,8 +1,6 @@
 *.[oa]
 *.swp
-
-
-
+tmp/
 view/
 .DS_Store
 plugged/
