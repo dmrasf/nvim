@@ -43,9 +43,9 @@ set ignorecase
 set smartcase
 
 " 基于缩进或语法进行代码折叠
-set foldmethod=indent
+"set foldmethod=indent
 "set foldmethod=syntax
-set foldenable
+"set foldenable
 
 " 取消搜索结果高亮
 noremap <LEADER><CR> :nohlsearch<CR>
@@ -63,7 +63,7 @@ noremap Q q
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 nnoremap [B :bfirst<CR>
-noremap ]B :blast<CR> 
+nnoremap ]B :blast<CR> 
 
 map s <nop>
 map q :q<CR>
@@ -321,7 +321,7 @@ map ne :NERDTreeToggle<CR>
 
 " 查找文件
 noremap <C-f> :FZF<CR>
-"noremap <C-p> :Ag<CR>
+noremap <C-q> :Ag<CR>
 noremap <C-h> :History<CR>
 
 " 表格
