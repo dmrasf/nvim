@@ -6,6 +6,8 @@ view/
 plugged/
 sessions/
 autoload/
+backupdir=~/
+directory=~/
 .netrwhist
 _machine_specific.vim
 

@@ -68,6 +68,7 @@ nnoremap ]B :blast<CR>
 map s <nop>
 map q :q<CR>
 map r :w<CR>
+map ; :
 
 " Indentation
 nnoremap < <<
@@ -371,6 +372,7 @@ let g:ale_linters = {
 \   'python': ['eslint'],
 \   'c': ['eslint'],
 \   'c++': ['eslint'],
+\   'asm': ['eslint'],
 \}
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
