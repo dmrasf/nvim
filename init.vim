@@ -321,13 +321,13 @@ map ud :UndotreeToggle<CR><LEADER>j
 map ne :NERDTreeToggle<CR>
             \ "Modified"    : "✹",
             \ "Staged"      : "✚",
-            \ "Untracked" : "✭",
-            \ "Renamed"  : "➜",
+            \ "Untracked"   : "✭",
+            \ "Renamed"     : "➜",
             \ "Unmerged"    : "═",
-            \ "Deleted"  : "✖",
-            \ "Dirty"        : "✗",
-            \ "Clean"        : "✔︎",
-            \ "Unknown"  : "?"
+            \ "Deleted"     : "✖",
+            \ "Dirty"       : "✗",
+            \ "Clean"       : "✔︎",
+            \ "Unknown"     : "?"
             \ }
 
 
