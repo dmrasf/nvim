@@ -35,7 +35,6 @@ set scrolloff=5
 
 " 搜索高亮
 set hlsearch
-exec "nohlsearch"
 " 边输入边高亮
 set incsearch
 " 忽略大小写
@@ -241,7 +240,7 @@ call plug#end()
 
 color snazzy
 
-let g:python_host_prog='/usr/bin/python2'
+let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/bin/python3'
 
 " airline
