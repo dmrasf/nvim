@@ -30,9 +30,7 @@ set wrap
 set showcmd
 " 补全命令
 set wildmenu
-
 set scrolloff=5
-
 " 搜索高亮
 set hlsearch
 " 边输入边高亮
@@ -156,6 +154,10 @@ func! CompileRunGcc()
 		silent! exec "!chromium % &"
 	elseif &filetype == 'markdown'
 		exec "MarkdownPreview"
+    elseif &filetype == 'go'
+        set splitbelow
+        :sp
+        :term go run %
 	elseif &filetype == 'tex'
 		silent! exec "VimtexStop"
 		silent! exec "VimtexCompile"
@@ -168,6 +170,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'connorholyday/vim-snazzy'
 
 " File navigation
@@ -228,6 +231,9 @@ Plug 'lervag/vimtex'
 " 剪切板 预览
 Plug 'junegunn/vim-peekaboo'
 
+" go
+Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
+
 " 
 Plug 'terryma/vim-multiple-cursors'
 
@@ -244,7 +250,8 @@ let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/bin/python3'
 
 " airline
-
+let g:airline_theme='base16_shell'
+let g:airline#extensions#whitespace#enabled = 0
 
 " 全屏显示
 map <LEADER>gy :Goyo<CR>
@@ -254,12 +261,13 @@ vnoremap Y "+y
 
 " vim-indent-guides
 " 随 vim 自启动
-let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_enable_on_vim_startup=0
 " 从第二层开始可视化显示缩进
+let g:indent_guides_auto_colors = 1
 let g:indent_guides_start_level=2
 " 色块宽度
 let g:indent_guides_guide_size=1
-" 快捷键 i 开/关缩进可视化
+" 快捷键 t 开/关缩进可视化
 :nmap <silent> <Leader>t <Plug>IndentGuidesToggle
 
 " MarkdownPreview
@@ -307,7 +315,7 @@ autocmd Filetype markdown inoremap ,l --------<Enter>
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
 imap <C-i> <Plug>(coc-snippets-select)
-" Use <C-i> for jump to next placeholder, it's default of coc.nvim
+" Use <C-s> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_next = '<c-i>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
@@ -344,7 +352,7 @@ map <silent> T :TagbarOpenAutoClose<CR>
 
 " coc
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-vimtex']
+let g:coc_global_extention = ['coc-python', 'coc-go', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-vimtex']
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -379,15 +387,15 @@ let g:SignatureMap = {
 
 " ale 禁止错误提示
 let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'python': ['eslint'],
-\   'c': ['eslint'],
-\   'c++': ['eslint'],
-\   'asm': ['eslint'],
 \}
+"\   'javascript': ['eslint'],
+"\   'python': ['eslint'],
+"\   'c': ['eslint'],
+"\   'c++': ['eslint'],
+"\   'asm': ['eslint'],
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
-nmap <silent> <C-i> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_previous_wrap)
 nmap <silent> <C-k> <Plug>(ale_next_wrap)
 
 " multi_cursor
@@ -402,7 +410,5 @@ let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
 
-
 " end
 exec "nohlsearch"
-
