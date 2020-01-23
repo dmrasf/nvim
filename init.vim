@@ -131,13 +131,14 @@ map <LEADER>r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
-		exec "!g++ % -o %<"
-		exec "!time ./%<"
+		set splitbelow
+		silent! exec "!gcc -o %< % -Wall"
+        :sp
+        :term ./%<
 	elseif &filetype == 'cpp'
 		set splitbelow
-		exec "!g++ -std=c++11 % -Wall -o %<"
+		silent! exec "!g++ -std=c++11 % -Wall -o %<"
 		:sp
-		:res -15
 		:term ./%<
 	elseif &filetype == 'java'
 		exec "!javac %"
@@ -314,13 +315,13 @@ autocmd Filetype markdown inoremap ,l --------<Enter>
 " 代码片段
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
-imap <C-i> <Plug>(coc-snippets-select)
+"imap <C-i> <Plug>(coc-snippets-select)
 " Use <C-s> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_next = '<c-i>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
 " Use <C-i> for both expand and jump (make expand higher priority.)
-imap <C-i> <Plug>(coc-snippets-expand-jump)
+imap <C-s> <Plug>(coc-snippets-expand-jump)
 
 " 历史记录
 map ud :UndotreeToggle<CR><LEADER>j
@@ -352,7 +353,7 @@ map <silent> T :TagbarOpenAutoClose<CR>
 
 " coc
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-python', 'coc-go', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-vimtex']
+let g:coc_global_extention = ['coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-vimtex']
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
