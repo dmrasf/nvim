@@ -166,7 +166,8 @@ endfunc
 call plug#begin('~/.config/nvim/plugged')
 
 " look 
-Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -243,7 +244,13 @@ Plug 'ryanoasis/vim-devicons'
 
 " 中文文档
 Plug 'yianwillis/vimcdoc'
- 
+
+" 
+Plug 'mhinz/vim-startify'
+
+" find
+Plug 'brooth/far.vim'
+
 call plug#end()
 
 color snazzy
@@ -261,16 +268,14 @@ map <LEADER>gy :Goyo<CR>
 " 系统剪切板
 vnoremap Y "+y
 
-" vim-indent-guides
-" 随 vim 自启动
-let g:indent_guides_enable_on_vim_startup=0
-" 从第二层开始可视化显示缩进
-let g:indent_guides_auto_colors = 1
-let g:indent_guides_start_level=2
-" 色块宽度
-let g:indent_guides_guide_size=1
-" 快捷键 t 开/关缩进可视化
-:nmap <silent> <Leader>t <Plug>IndentGuidesToggle
+" indentLine
+let g:indentLine_char = '|'
+let g:indentLine_enabled = 0
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = '#A4E57E'
+nmap <Leader>t :IndentLinesToggle<CR>
+
+" far
 
 " MarkdownPreview
 let g:mkdp_auto_start = 0
@@ -329,17 +334,18 @@ map ud :UndotreeToggle<CR><LEADER>j
 
 " 文件树
 map ne :NERDTreeToggle<CR>
-            \ "Modified"    : "✹",
-            \ "Staged"      : "✚",
-            \ "Untracked"   : "✭",
-            \ "Renamed"     : "➜",
-            \ "Unmerged"    : "═",
-            \ "Deleted"     : "✖",
-            \ "Dirty"       : "✗",
-            \ "Clean"       : "✔︎",
-            \ "Unknown"     : "?"
-            \ }
-
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
 
 " 查找文件
 noremap <C-f> :FZF<CR>
@@ -362,30 +368,6 @@ nmap <silent> gr <Plug>(coc-references)
 " 给所有变量重命名
 nmap <leader>rn <Plug>(coc-rename)
 
-" signature
-let g:SignatureMap = {
-            \ 'Leader':"m",
-            \ 'PlaceNextMark':"m,",
-            \ 'ToggleMarkAtLine':"m.",
-            \ 'PurgeMarksAtLine':"dm",
-            \ 'DeleteMark':"",
-            \ 'PurgeMarks':"",
-            \ 'PurgeMarkers':"",
-            \ 'GotoNextLineAlpha':"m<LEADER>",
-            \ 'GotoPrevLineAlpha':"",
-            \ 'GotoNextSpotAlpha':"m<LEADER>",
-            \ 'GotoPrevSpotAlpha':"",
-            \ 'GotoNextLineByPos':"",
-            \ 'GotoPrevLineByPos':"",
-            \ 'GotoNextSpotByPos':"",
-            \ 'GotoPrevSpotByPos':"",
-            \ 'GotoNextMarker':"",
-            \ 'GotoPrevMarker':"",
-            \ 'GotoNextMarkerAny':"",
-            \ 'GotoPrevMarkerAny':"",
-            \ 'ListLocalMarks':"m/",
-            \ 'ListLocalMarkers':"m?"
-            \ }
 
 " ale 禁止错误提示
 let g:ale_linters = {
