@@ -96,10 +96,13 @@ map <LEADER>k <C-w>j
 map <LEADER>l <C-w>l
 map <LEADER>j <C-w>h
 
-map <up> :res -5<CR>
-map <down> :res +5<CR>
-map <left> :vertical resize+5<CR>
-map <right> :vertical resize-5<CR>
+map <C-up> :res -5<CR>
+map <C-down> :res +5<CR>
+map <C-left> :vertical resize+5<CR>
+map <C-right> :vertical resize-5<CR>
+
+" 找到 <++>
+noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 "  Tab management
 " Create a new tab with tu
@@ -152,7 +155,7 @@ func! CompileRunGcc()
 	elseif &filetype == 'html'
 		silent! exec "!chromium % &"
 	elseif &filetype == 'markdown'
-		exec "MarkdownPreview"
+	    exec "MarkdownPreview"
     elseif &filetype == 'go'
         set splitbelow
         :sp
@@ -196,7 +199,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
 " Markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'vimwiki/vimwiki'
 
@@ -237,7 +240,7 @@ Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
 " 
 Plug 'terryma/vim-multiple-cursors'
 
-" css html
+" css html   <C-y>, 
 Plug 'mattn/emmet-vim'
  
 Plug 'ryanoasis/vim-devicons'
@@ -253,31 +256,55 @@ Plug 'brooth/far.vim'
 
 call plug#end()
 
+
 color snazzy
+
 
 let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/bin/python3'
 
-" airline
+
+" ===========================
+" ======== airline ==========
+" ===========================
 let g:airline_theme='base16_shell'
 let g:airline#extensions#whitespace#enabled = 0
 
+
 " 全屏显示
+" ===========================
+" ======== <++> ==========
+" ===========================
 map <LEADER>gy :Goyo<CR>
 
+
 " 系统剪切板
+" ===========================
+" ======== <++> ==========
+" ===========================
 vnoremap Y "+y
 
+
 " indentLine
+" ===========================
+" ======== <++> ==========
+" ===========================
 let g:indentLine_char = '|'
 let g:indentLine_enabled = 0
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#A4E57E'
 nmap <Leader>t :IndentLinesToggle<CR>
 
-" far
 
-" MarkdownPreview
+" =======================
+" ======== far ==========
+" =======================
+set lazyredraw
+set regexpengine=1
+
+" ===================================
+" ======== MarkdownPreview ==========
+" ===================================
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
@@ -285,7 +312,7 @@ let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
 let g:mkdp_brower = 'chromium'
-let g:mkdp_echo_preview_url = 0
+let g:mkdp_echo_preview_url = 1
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
     \ 'mkit': {},
@@ -301,7 +328,10 @@ let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
+
+" ===========================
 "autocmd Filetype markdown map <leader>w yiWi[<esc>Ea](<esc>pa)
+" ===========================
 autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
 autocmd Filetype markdown inoremap ,n ---<Enter><Enter>
 autocmd Filetype markdown inoremap ,b **** <++><Esc>F*hi
@@ -318,21 +348,23 @@ autocmd Filetype markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,l --------<Enter>
 
-" 代码片段
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
-"imap <C-i> <Plug>(coc-snippets-select)
-" Use <C-s> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-i>'
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
-" Use <C-i> for both expand and jump (make expand higher priority.)
-imap <C-s> <Plug>(coc-snippets-expand-jump)
 
-" 历史记录
+" ===========================
+" ======== vimwiki ==========
+" ===========================
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
+
+" ===========================
+" ======== undotree =========
+" ===========================
 map ud :UndotreeToggle<CR><LEADER>j
 
-" 文件树
+
+" ===========================
+" ======== nerdtree =========
+" ===========================
 map ne :NERDTreeToggle<CR>
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
@@ -347,18 +379,30 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-" 查找文件
+
+" ===========================
+" ========= fzf =============
+" ===========================
 noremap <C-f> :FZF<CR>
 noremap <C-q> :Ag<CR>
 noremap <C-h> :History<CR>
 
-" 表格
+
+" ==================================
+" ======== vim-table-mode ==========
+" ==================================
 noremap <LEADER>tm :TableModeToggle<CR>
 
-" 函数
+
+" ===========================
+" ======== tagbar ==========
+" ===========================
 map <silent> T :TagbarOpenAutoClose<CR>
 
-" coc
+
+" ===========================
+" ========== coc ============
+" ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 let g:coc_global_extention = ['coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-vimtex']
 nmap <silent> gd <Plug>(coc-definition)
@@ -369,7 +413,9 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 
 
-" ale 禁止错误提示
+" ===========================
+" ========== ale ============
+" ===========================
 let g:ale_linters = {
 \}
 "\   'javascript': ['eslint'],
@@ -382,7 +428,10 @@ let g:ale_sign_warning = '--'
 nmap <silent> <C-j> <Plug>(ale_previous_wrap)
 nmap <silent> <C-k> <Plug>(ale_next_wrap)
 
-" multi_cursor
+
+" ===========================
+" ======== multiple ==========
+" ===========================
 let g:multi_cursor_use_default_mapping=0
 " Default mapping
 let g:multi_cursor_start_word_key      = '<C-n>'
@@ -394,5 +443,15 @@ let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
 
+
+" ===========================
+" ======== emmit ==========
+" ===========================
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+let g:user_emmet_leader_key='<C-m>'
+
+
 " end
 exec "nohlsearch"
+
