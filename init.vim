@@ -301,6 +301,8 @@ nmap <Leader>t :IndentLinesToggle<CR>
 " =======================
 set lazyredraw
 set regexpengine=1
+noremap <LEADER>f :F  %<left><left>
+
 
 " ===================================
 " ======== MarkdownPreview ==========
@@ -347,7 +349,7 @@ autocmd Filetype markdown inoremap ,2 ##<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,l --------<Enter>
-
+"source ~/.config/nvim/md.vim
 
 " ===========================
 " ======== vimwiki ==========
