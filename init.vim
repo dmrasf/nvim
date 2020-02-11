@@ -229,7 +229,7 @@ Plug 'majutsushi/tagbar'
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 
 " latex文件
-Plug 'lervag/vimtex'
+"Plug 'lervag/vimtex'
 
 " 剪切板 预览
 Plug 'junegunn/vim-peekaboo'
@@ -248,11 +248,14 @@ Plug 'ryanoasis/vim-devicons'
 " 中文文档
 Plug 'yianwillis/vimcdoc'
 
-" 
+" 开始是显示历史记录 
 Plug 'mhinz/vim-startify'
 
-" find
+" 查找和替换
 Plug 'brooth/far.vim'
+
+" 
+Plug 'dkarter/bullets.vim'
 
 call plug#end()
 
@@ -260,7 +263,7 @@ call plug#end()
 color snazzy
 
 
-let g:python_host_prog='/usr/bin/python'
+let g:python_host_prog='/usr/bin/python2'
 let g:python3_host_prog='/usr/bin/python3'
 
 
@@ -301,7 +304,7 @@ nmap <Leader>t :IndentLinesToggle<CR>
 " =======================
 set lazyredraw
 set regexpengine=1
-noremap <LEADER>f :F  %<left><left>
+noremap <LEADER>f :F 
 
 
 " ===================================
@@ -354,7 +357,7 @@ autocmd Filetype markdown inoremap ,l --------<Enter>
 " ===========================
 " ======== vimwiki ==========
 " ===========================
-let g:vimwiki_list = [{'path': '~/vimwiki/',
+let g:vimwiki_list = [{'path': '~/Documents/Notes/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 
@@ -368,6 +371,9 @@ map ud :UndotreeToggle<CR><LEADER>j
 " ======== nerdtree =========
 " ===========================
 map ne :NERDTreeToggle<CR>
+let NERDTreeMapChangeRoot =  "l"
+let NERDTreeMapToggleHidden =  "zh"
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -414,6 +420,11 @@ nmap <silent> gr <Plug>(coc-references)
 " 给所有变量重命名
 nmap <leader>rn <Plug>(coc-rename)
 
+imap <C-l> <Plug>(coc-snippets-expand)
+let g:coc_snippet_next = '<c-k>'
+let g:coc_snippet_prev = '<c-i>'
+imap <C-k> <Plug>(coc-snippets-expand-jump)
+
 
 " ===========================
 " ========== ale ============
@@ -452,6 +463,17 @@ let g:multi_cursor_quit_key            = '<Esc>'
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 let g:user_emmet_leader_key='<C-m>'
+
+
+" ==================================
+" =========== bullets  =============
+" ==================================
+let g:bullets_enabled_file_types = [
+    \ 'markdown',
+    \ 'text',
+    \ 'gitcommit',
+    \ 'scratch'
+    \]
 
 
 " end
