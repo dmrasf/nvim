@@ -87,6 +87,9 @@ map sa :set nosplitright<CR>:vsplit<CR>
 map sw :set nosplitbelow<CR>:split<CR>
 map ss :set splitbelow<CR>:split<CR>
 
+" 插入模式下换行
+inoremap <C-o> <Esc>o
+
 noremap sv <C-w>b<C-w>K
 noremap sc <C-w>b<C-w>H
 
@@ -152,6 +155,10 @@ func! CompileRunGcc()
 		set splitbelow
 		:sp
 		:term python3 %
+	elseif &filetype == 'javascript'
+		set splitbelow
+		:sp
+		:term node %
 	elseif &filetype == 'html'
 		silent! exec "!chromium % &"
 	elseif &filetype == 'markdown'
@@ -175,6 +182,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'connorholyday/vim-snazzy'
+Plug 'ajmwagar/vim-deus'
 
 " File navigation
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -259,11 +267,13 @@ Plug 'dkarter/bullets.vim'
 
 call plug#end()
 
+"color snazzy
+set termguicolors	" enable true colors support
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"set background=dark
+color deus
 
-color snazzy
-
-
-let g:python_host_prog='/usr/bin/python2'
+let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/bin/python3'
 
 
@@ -274,9 +284,8 @@ let g:airline_theme='base16_shell'
 let g:airline#extensions#whitespace#enabled = 0
 
 
-" 全屏显示
 " ===========================
-" ======== <++> ==========
+" ======== 全屏显示 ==========
 " ===========================
 map <LEADER>gy :Goyo<CR>
 
