@@ -136,7 +136,7 @@ func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
 		set splitbelow
-		silent! exec "!gcc -o %< % -Wall"
+		silent! exec "!gcc -g -o %< % -Wall"
         :sp
         :term ./%<
 	elseif &filetype == 'cpp'
@@ -178,6 +178,7 @@ call plug#begin('~/.config/nvim/plugged')
 " look 
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Yggdroot/indentLine'
+Plug 'mg979/vim-xtabline'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -185,8 +186,8 @@ Plug 'connorholyday/vim-snazzy'
 Plug 'ajmwagar/vim-deus'
 
 " File navigation
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 
 " Error checking
 Plug 'dense-analysis/ale'
@@ -227,11 +228,18 @@ Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'`to c
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line <space>
 Plug 'AndrewRadev/switch.vim' " gs 
 
+" 查找文件
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
+" calendar
+Plug 'itchyny/calendar.vim'
+
+" debugger
+Plug 'puremourning/vimspector'
+
 " 函数"
-Plug 'majutsushi/tagbar'
+Plug 'liuchengxu/vista.vim'
 
 " 变量高亮
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
@@ -250,6 +258,10 @@ Plug 'terryma/vim-multiple-cursors'
 
 " css html   <C-y>, 
 Plug 'mattn/emmet-vim'
+"Plug 'hail2u/vim-css3-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+"Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
  
 Plug 'ryanoasis/vim-devicons'
 
@@ -284,6 +296,37 @@ let g:airline_theme='base16_shell'
 let g:airline#extensions#whitespace#enabled = 0
 
 
+" ======================================
+" =========== vim-calendar =============
+" ======================================
+"noremap \c :Calendar -position=here<CR>
+noremap \\ :Calendar -view=clock -position=here<CR>
+"let g:calendar_google_calendar = 1
+"let g:calendar_google_task = 1
+augroup calendar-mappings
+	autocmd!
+	" diamond cursor
+	autocmd FileType calendar nmap <buffer> i <Plug>(calendar_up)
+	autocmd FileType calendar nmap <buffer> j <Plug>(calendar_left)
+	autocmd FileType calendar nmap <buffer> k <Plug>(calendar_down)
+	autocmd FileType calendar nmap <buffer> l <Plug>(calendar_right)
+	autocmd FileType calendar nmap <buffer> <c-i> <Plug>(calendar_move_up)
+	autocmd FileType calendar nmap <buffer> <c-j> <Plug>(calendar_move_left)
+	autocmd FileType calendar nmap <buffer> <c-k> <Plug>(calendar_move_down)
+	autocmd FileType calendar nmap <buffer> <c-l> <Plug>(calendar_move_right)
+    autocmd FileType calendar nmap <buffer> h <Plug>(calendar_start_insert)
+    autocmd FileType calendar nmap <buffer> H <Plug>(calendar_start_insert_head)
+	"autocmd FileType calendar nunmap <buffer> <C-n>
+	"autocmd FileType calendar nunmap <buffer> <C-p>
+augroup END
+
+
+" ====================================
+" =========== vimspector =============
+" ====================================
+let g:vimspector_enable_mappings = 'HUMAN'
+
+
 " ===========================
 " ======== 全屏显示 ==========
 " ===========================
@@ -297,10 +340,21 @@ map <LEADER>gy :Goyo<CR>
 vnoremap Y "+y
 
 
-" indentLine
-" ===========================
-" ======== <++> ==========
-" ===========================
+" ==================================
+" =========== xtabline =============
+" ==================================
+let g:xtabline_settings = {}
+let g:xtabline_settings.enable_mappings = 0
+let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
+let g:xtabline_settings.enable_persistance = 0
+let g:xtabline_settings.last_open_first = 1
+noremap ts :XTabCycleMode<CR>
+noremap \p :XTabInfo<CR>
+
+
+" ==============================
+" ======== indentLine ==========
+" =============================
 let g:indentLine_char = '|'
 let g:indentLine_enabled = 0
 let g:indentLine_color_term = 239
@@ -376,25 +430,11 @@ let g:vimwiki_list = [{'path': '~/Documents/Notes/',
 map ud :UndotreeToggle<CR><LEADER>j
 
 
-" ===========================
-" ======== nerdtree =========
-" ===========================
-map ne :NERDTreeToggle<CR>
-let NERDTreeMapChangeRoot =  "l"
-let NERDTreeMapToggleHidden =  "zh"
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
+" ====================================
+" =========== ranger.vim =============
+" ====================================
+let g:ranger_map_keys = 0
+nnoremap R :Ranger<CR>
 
 
 " ===========================
@@ -412,23 +452,29 @@ noremap <LEADER>tm :TableModeToggle<CR>
 
 
 " ===========================
-" ======== tagbar ==========
+" ======== vista ==========
 " ===========================
-map <silent> T :TagbarOpenAutoClose<CR>
+map <silent> T :Vista!!<CR>
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+set statusline+=%{NearestMethodOrFunction()}
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 
 " ===========================
 " ========== coc ============
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-vimtex']
+let g:coc_global_extention = ['coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-vimtex']
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 " 给所有变量重命名
 nmap <leader>rn <Plug>(coc-rename)
-
+nmap ne :CocCommand explorer<CR>
+nmap tr <Plug>(coc-translator-p)
 imap <C-l> <Plug>(coc-snippets-expand)
 let g:coc_snippet_next = '<c-k>'
 let g:coc_snippet_prev = '<c-i>'

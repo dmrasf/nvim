@@ -1,0 +1,62 @@
+{
+    "explorer.file.column.git.showIgnored": true,
+    "explorer.width": 30,
+    "explorer.icon.enableNerdfont": true,
+    "explorer.keyMappings": {
+        "i": "nodePrev",
+        "k": "nodeNext",
+
+        "*": "toggleSelection",
+        "<tab>": "actionMenu",
+
+        "j": "collapse",
+        "l": "expand",
+        "J": ["toggleSelection", "normal:j"],
+        "K": ["toggleSelection", "normal:k"],
+        "gl": "expandRecursive",
+        "gh": "collapseRecursive",
+        "o": "expandOrCollapse",
+        "<cr>": "open",
+        "e": "open",
+        "E": "openInVsplit",
+        "t": "openInTab",
+        "<bs>": "gotoParent",
+
+        "y": "copyFilepath",
+        "Y": "copyFilename",
+        "c": "copyFile",
+        "x": "cutFile",
+        "p": "pasteFile",
+        "d": "delete",
+        "D": "deleteForever",
+
+        "a": "addFile",
+        "A": "addDirectory",
+        "r": "rename",
+
+        "zh": "toggleHidden",
+        "R": "refresh",
+
+        "?": "help",
+        "q": "quit",
+        "X": "systemExecute",
+        "gd": "listDrive",
+
+        "f": "search",
+        "F": "searchRecursive",
+
+        "gf": "gotoSource:file",
+        "gb": "gotoSource:buffer",
+
+        "[[": "sourcePrev",
+        "]]": "sourceNext",
+
+        "[d": "diagnosticPrev",
+        "]d": "diagnosticNext",
+
+        "[c": "gitPrev",
+        "]c": "gitNext",
+        "<<": "gitStage",
+        ">>": "gitUnstage"
+    }
+}
