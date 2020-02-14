@@ -236,7 +236,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/calendar.vim'
 
 " debugger
-Plug 'puremourning/vimspector'
+Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-bash'}
 
 " 函数"
 Plug 'liuchengxu/vista.vim'
@@ -259,7 +259,7 @@ Plug 'terryma/vim-multiple-cursors'
 " css html   <C-y>, 
 Plug 'mattn/emmet-vim'
 "Plug 'hail2u/vim-css3-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+"Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 "Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
  
@@ -443,6 +443,7 @@ nnoremap R :Ranger<CR>
 noremap <C-f> :FZF<CR>
 noremap <C-q> :Ag<CR>
 noremap <C-h> :History<CR>
+noremap <C-w> :Buffers<CR>
 
 
 " ==================================
@@ -455,11 +456,6 @@ noremap <LEADER>tm :TableModeToggle<CR>
 " ======== vista ==========
 " ===========================
 map <silent> T :Vista!!<CR>
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-set statusline+=%{NearestMethodOrFunction()}
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 
 " ===========================
