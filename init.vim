@@ -36,6 +36,7 @@ set incsearch
 " 忽略大小写
 set ignorecase
 set smartcase
+set autoindent
 
 " 基于缩进或语法进行代码折叠
 "set foldmethod=indent
@@ -443,7 +444,7 @@ nnoremap R :Ranger<CR>
 noremap <C-f> :FZF<CR>
 noremap <C-q> :Ag<CR>
 noremap <C-h> :History<CR>
-noremap <C-w> :Buffers<CR>
+noremap <C-y> :Buffers<CR>
 
 
 " ==================================
