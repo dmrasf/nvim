@@ -40,8 +40,8 @@ set autoindent
 
 " 基于缩进或语法进行代码折叠
 "set foldmethod=indent
-"set foldmethod=syntax
-"set foldenable
+set foldmethod=manual
+set foldenable
 
 " 取消搜索结果高亮
 noremap <LEADER><CR> :nohlsearch<CR>
@@ -54,6 +54,7 @@ noremap K 5j
 noremap I 5k
 noremap H I
 noremap Q q
+noremap Z Q
 
 " 跳转文件
 nnoremap [b :bprevious<CR>
@@ -81,6 +82,8 @@ map ; :
 " Indentation
 nnoremap < <<
 nnoremap > >>
+
+vnoremap Y "+y
 
 " 分频
 map sd :set splitright<CR>:vsplit<CR>
@@ -137,7 +140,7 @@ func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
 		set splitbelow
-		silent! exec "!gcc -g -o %< % -Wall"
+		silent! exec "!gcc -g -o %< % -Wall -lm"
         :sp
         :term ./%<
 	elseif &filetype == 'cpp'
@@ -146,8 +149,10 @@ func! CompileRunGcc()
 		:sp
 		:term ./%<
 	elseif &filetype == 'java'
-		exec "!javac %"
-		exec "!time java %<"
+		silent! exec "!javac %"
+		set splitbelow
+        :sp
+		:term java %<
 	elseif &filetype == 'sh'
         set splitbelow
         :sp
@@ -179,16 +184,19 @@ call plug#begin('~/.config/nvim/plugged')
 " look 
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Yggdroot/indentLine'
-Plug 'mg979/vim-xtabline'
+"Plug 'mg979/vim-xtabline'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+"Plug 'rbong/vim-crystalline'
 Plug 'connorholyday/vim-snazzy'
 Plug 'ajmwagar/vim-deus'
+Plug 'morhetz/gruvbox'
 
 " File navigation
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
+"Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 
 " Error checking
 Plug 'dense-analysis/ale'
@@ -287,14 +295,30 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 color deus
 
 let g:python_host_prog='/usr/bin/python'
+let g:python2_host_prog='/usr/bin/python2'
 let g:python3_host_prog='/usr/bin/python3'
 
 
 " ===========================
 " ======== airline ==========
 " ===========================
-let g:airline_theme='base16_shell'
+let g:airline_theme='base16_gruvbox_dark_hard'
 let g:airline#extensions#whitespace#enabled = 0
+
+
+" =====================================
+" =========== crystalline =============
+" =====================================
+"function! TabLine()
+    "let l:vimlabel = 'dmr-arch '
+    "return crystalline#bufferline(0, 0, 1) . '%=%#CrystallineTab# ' . l:vimlabel
+"endfunction
+"let g:crystalline_enable_sep = 1
+"let g:crystalline_tabline_fn = 'TabLine'
+"let g:crystalline_theme = 'gruvbox'
+
+"set showtabline=2
+
 
 
 " ======================================
@@ -326,19 +350,26 @@ augroup END
 " =========== vimspector =============
 " ====================================
 let g:vimspector_enable_mappings = 'HUMAN'
+"function! s:read_template_into_buffer(template)
+	"" has to be a function to avoid the extra space fzf#run insers otherwise
+	"execute '0r ~/.config/nvim/sample_vimspector_json/'.a:template
+"endfunction
+"command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
+			"\   'source': 'ls -1 ~/.config/nvim/sample_vimspector_json',
+			"\   'down': 20,
+			"\   'sink': function('<sid>read_template_into_buffer')
+			"\ })
+"noremap <leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
+"sign define vimspectorBP text=☛ texthl=Normal
+"sign define vimspectorBPDisabled text=☞ texthl=Normal
+"sign define vimspectorPC text=🔶 texthl=SpellBad
+
 
 
 " ===========================
 " ======== 全屏显示 ==========
 " ===========================
 map <LEADER>gy :Goyo<CR>
-
-
-" 系统剪切板
-" ===========================
-" ======== <++> ==========
-" ===========================
-vnoremap Y "+y
 
 
 " ==================================
@@ -348,6 +379,7 @@ let g:xtabline_settings = {}
 let g:xtabline_settings.enable_mappings = 0
 let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
 let g:xtabline_settings.enable_persistance = 0
+let g:xtabline_settings.show_right_corner = 0
 let g:xtabline_settings.last_open_first = 1
 noremap ts :XTabCycleMode<CR>
 noremap \p :XTabInfo<CR>
@@ -463,7 +495,7 @@ map <silent> T :Vista!!<CR>
 " ========== coc ============
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-vimtex']
+let g:coc_global_extention = ['coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-vimtex']
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -530,4 +562,3 @@ let g:bullets_enabled_file_types = [
 
 " end
 exec "nohlsearch"
-

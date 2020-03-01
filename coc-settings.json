@@ -58,5 +58,6 @@
         "]c": "gitNext",
         "<<": "gitStage",
         ">>": "gitUnstage"
-    }
+    },
+    "java.home": "/usr/lib/jvm/java-11-openjdk"
 }
