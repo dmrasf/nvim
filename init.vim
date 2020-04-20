@@ -129,12 +129,6 @@ autocmd TermOpen term://* startinsert
 tnoremap <esc> <C-\><C-N>
 
 
-"color snazzy
-set termguicolors	" enable true colors support
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-"set background=dark
-color deus
-
 let g:python_host_prog='/usr/bin/python'
 let g:python2_host_prog='/usr/bin/python2'
 let g:python3_host_prog='/usr/bin/python3'
@@ -325,8 +319,17 @@ Plug 'brooth/far.vim'
 " 
 Plug 'dkarter/bullets.vim'
 
+" fsffff
+Plug 'rhysd/clever-f.vim'
+
 call plug#end()
 
+
+"color snazzy
+set termguicolors	" enable true colors support
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"set background=dark
+color deus
 
 " ===========================
 " ======== airline ==========
