@@ -39,6 +39,7 @@ set smartcase
 set autoindent
 
 " 基于缩进或语法进行代码折叠
+" zf 创建  zc 折叠  zo 打开  [z  ]z   zj  zk 在折叠间移动
 "set foldmethod=indent
 set foldmethod=manual
 set foldenable
@@ -103,10 +104,10 @@ map <LEADER>k <C-w>j
 map <LEADER>l <C-w>l
 map <LEADER>j <C-w>h
 
-map <C-up> :res -5<CR>
-map <C-down> :res +5<CR>
-map <C-left> :vertical resize+5<CR>
-map <C-right> :vertical resize-5<CR>
+map <C-up> :res -1<CR>
+map <C-down> :res +1<CR>
+map <C-left> :vertical resize+1<CR>
+map <C-right> :vertical resize-1<CR>
 
 " 找到 <++>
 noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
@@ -124,6 +125,40 @@ noremap tmk :+tabmove<CR>
 " 打开终端后进入插入模式
 let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert
+" 切换到普通模式
+tnoremap <esc> <C-\><C-N>
+
+
+"color snazzy
+set termguicolors	" enable true colors support
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"set background=dark
+color deus
+
+let g:python_host_prog='/usr/bin/python'
+let g:python2_host_prog='/usr/bin/python2'
+let g:python3_host_prog='/usr/bin/python3'
+
+" ===========================
+"autocmd Filetype markdown map <leader>w yiWi[<esc>Ea](<esc>pa)
+" ===========================
+autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
+autocmd Filetype markdown inoremap ,n ---<Enter><Enter>
+autocmd Filetype markdown inoremap ,b **** <++><Esc>F*hi
+autocmd Filetype markdown inoremap ,s ~~~~ <++><Esc>F~hi
+autocmd Filetype markdown inoremap ,i ** <++><Esc>F*i
+autocmd Filetype markdown inoremap ,d `` <++><Esc>F`i
+autocmd Filetype markdown inoremap ,c ```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA
+autocmd Filetype markdown inoremap ,h ====<Space><++><Esc>F=hi
+autocmd Filetype markdown inoremap ,p ![](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap ,a [](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap ,1 #<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,2 ##<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,l --------<Enter>
+"source ~/.config/nvim/md.vim
+
 
 " 保存修改历史
 silent !mkdir -p ~/.config/nvim/tmp/backup
@@ -161,6 +196,10 @@ func! CompileRunGcc()
 		set splitbelow
 		:sp
 		:term python3 %
+	elseif &filetype == 'perl'
+		set splitbelow
+		:sp
+		:term perl %
 	elseif &filetype == 'javascript'
 		set splitbelow
 		:sp
@@ -214,7 +253,7 @@ Plug 'tpope/vim-fugitive'
 " 显示 修改信息
 Plug 'airblade/vim-gitgutter'
 "
-Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
+"Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
@@ -260,7 +299,7 @@ Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-p
 Plug 'junegunn/vim-peekaboo'
 
 " go
-Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
+"Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
 
 " 
 Plug 'terryma/vim-multiple-cursors'
@@ -275,7 +314,7 @@ Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javas
 Plug 'ryanoasis/vim-devicons'
 
 " 中文文档
-Plug 'yianwillis/vimcdoc'
+"Plug 'yianwillis/vimcdoc'
 
 " 开始是显示历史记录 
 Plug 'mhinz/vim-startify'
@@ -287,16 +326,6 @@ Plug 'brooth/far.vim'
 Plug 'dkarter/bullets.vim'
 
 call plug#end()
-
-"color snazzy
-set termguicolors	" enable true colors support
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-"set background=dark
-color deus
-
-let g:python_host_prog='/usr/bin/python'
-let g:python2_host_prog='/usr/bin/python2'
-let g:python3_host_prog='/usr/bin/python3'
 
 
 " ===========================
@@ -431,26 +460,6 @@ let g:mkdp_page_title = '「${name}」'
 
 
 " ===========================
-"autocmd Filetype markdown map <leader>w yiWi[<esc>Ea](<esc>pa)
-" ===========================
-autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
-autocmd Filetype markdown inoremap ,n ---<Enter><Enter>
-autocmd Filetype markdown inoremap ,b **** <++><Esc>F*hi
-autocmd Filetype markdown inoremap ,s ~~~~ <++><Esc>F~hi
-autocmd Filetype markdown inoremap ,i ** <++><Esc>F*i
-autocmd Filetype markdown inoremap ,d `` <++><Esc>F`i
-autocmd Filetype markdown inoremap ,c ```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA
-autocmd Filetype markdown inoremap ,h ====<Space><++><Esc>F=hi
-autocmd Filetype markdown inoremap ,p ![](<++>) <++><Esc>F[a
-autocmd Filetype markdown inoremap ,a [](<++>) <++><Esc>F[a
-autocmd Filetype markdown inoremap ,1 #<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap ,2 ##<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap ,l --------<Enter>
-"source ~/.config/nvim/md.vim
-
-" ===========================
 " ======== vimwiki ==========
 " ===========================
 let g:vimwiki_list = [{'path': '~/Documents/Notes/',
@@ -495,7 +504,7 @@ map <silent> T :Vista!!<CR>
 " ========== coc ============
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-vimtex']
+let g:coc_global_extention = ['coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-vimtex']
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
