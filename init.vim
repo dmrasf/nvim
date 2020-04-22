@@ -218,6 +218,10 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Yggdroot/indentLine'
 "Plug 'mg979/vim-xtabline'
+" 光标形状
+Plug 'wincent/terminus'
+" 彩色括号
+Plug 'luochen1990/rainbow'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -325,6 +329,16 @@ Plug 'rhysd/clever-f.vim'
 " 临时大写锁定 <C-l>
 Plug 'tpope/vim-capslock'
 
+" 快速移动
+"Plug 'easymotion/vim-easymotion'
+
+" 替换
+"Plug 'svermeulen/vim-subversive'
+
+" 错误单词句子
+Plug 'reedes/vim-wordy'
+" 同义词查询
+Plug 'ron89/thesaurus_query.vim'
 
 call plug#end()
 
@@ -586,6 +600,27 @@ let g:bullets_enabled_file_types = [
     \ 'gitcommit',
     \ 'scratch'
     \]
+
+
+" ========================================
+" =========== vim-subversive =============
+" ========================================
+
+
+" ==================================
+" =========== rainbow =============
+" ==================================
+let g:rainbow_active = 1
+
+
+" =========================================
+" =========== thesaurus_query =============
+" =========================================
+let g:tq_map_keys = 1
+nnoremap <unique> <Leader>st :ThesaurusQueryReplaceCurrentWord<CR>
+vnoremap <unique> <Leader>st "ky:ThesaurusQueryReplace <C-r>k<CR>
+nnoremap <LocalLeader>st :ThesaurusQueryReplaceCurrentWord<CR>
+vnoremap <LocalLeader>st "ky:ThesaurusQueryReplace <C-r>k<CR>
 
 
 " end
