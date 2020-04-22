@@ -228,7 +228,7 @@ Plug 'morhetz/gruvbox'
 
 " File navigation
 Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'
+Plug 'rbgrouleff/bclose.vim'  " <leader>bd 
 "Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 
 " Error checking
@@ -246,7 +246,7 @@ Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
 " 显示 修改信息
 Plug 'airblade/vim-gitgutter'
-"
+" gitignore snippets
 "Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
 " Markdown
@@ -254,7 +254,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'vimwiki/vimwiki'
 
-" Bookmarks
+" Bookmarks  mx   dmx    m<Space> m,
 Plug 'kshenoy/vim-signature'
 
 " Track the engine.  现在可以用coc-snipprts
@@ -268,6 +268,8 @@ Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'`to c
 
 "" 快速注释
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line <space>
+
+" true/false
 Plug 'AndrewRadev/switch.vim' " gs 
 
 " 查找文件
@@ -277,7 +279,7 @@ Plug 'junegunn/fzf.vim'
 " calendar
 Plug 'itchyny/calendar.vim'
 
-" debugger
+" debugger  不会用
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-bash'}
 
 " 函数"
@@ -295,32 +297,34 @@ Plug 'junegunn/vim-peekaboo'
 " go
 "Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
 
-" 
+" 多行光标 
 Plug 'terryma/vim-multiple-cursors'
 
 " css html   <C-y>, 
 Plug 'mattn/emmet-vim'
-"Plug 'hail2u/vim-css3-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-"Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-"Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
  
+" 图标  需要 nerd-fonts
 Plug 'ryanoasis/vim-devicons'
 
 " 中文文档
 "Plug 'yianwillis/vimcdoc'
 
-" 开始是显示历史记录 
+" 开始时显示历史记录 
 Plug 'mhinz/vim-startify'
 
 " 查找和替换
 Plug 'brooth/far.vim'
 
-" 
+" 自动给markdown列表  <C-t> <C-d> 前后移动 
 Plug 'dkarter/bullets.vim'
 
 " fsffff
 Plug 'rhysd/clever-f.vim'
+
+" 临时大写锁定 <C-l>
+Plug 'tpope/vim-capslock'
+
 
 call plug#end()
 
@@ -503,6 +507,19 @@ noremap <LEADER>tm :TableModeToggle<CR>
 map <silent> T :Vista!!<CR>
 
 
+" ==================================
+" =========== clever-f =============
+" ==================================
+let g:clever_f_not_overwrites_standard_mappings = 1
+" 去掉 t T 快捷键
+nmap f <Plug>(clever-f-f)
+xmap f <Plug>(clever-f-f)
+omap f <Plug>(clever-f-f)
+nmap F <Plug>(clever-f-F)
+xmap F <Plug>(clever-f-F)
+omap F <Plug>(clever-f-F)
+
+
 " ===========================
 " ========== coc ============
 " ===========================
@@ -516,9 +533,8 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nmap ne :CocCommand explorer<CR>
 nmap tr <Plug>(coc-translator-p)
-imap <C-l> <Plug>(coc-snippets-expand)
-let g:coc_snippet_next = '<c-k>'
-let g:coc_snippet_prev = '<c-i>'
+let g:coc_snippet_next = '<C-k>'
+let g:coc_snippet_prev = '<C-i>'
 imap <C-k> <Plug>(coc-snippets-expand-jump)
 
 
