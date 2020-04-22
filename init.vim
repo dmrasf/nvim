@@ -16,27 +16,19 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-" 行号
 set number
-" 特殊的行号
 set relativenumber
-" 一条线
 set cursorline
-" 自动换行
 set wrap
-"set nowrap
 set showcmd
-" 补全命令
 set wildmenu
 set scrolloff=5
-" 搜索高亮
 set hlsearch
-" 边输入边高亮
 set incsearch
-" 忽略大小写
 set ignorecase
 set smartcase
 set autoindent
+set vb t_vb=
 
 " 基于缩进或语法进行代码折叠
 " zf 创建  zc 折叠  zo 打开  [z  ]z   zj  zk 在折叠间移动
@@ -44,7 +36,6 @@ set autoindent
 set foldmethod=manual
 set foldenable
 
-" 取消搜索结果高亮
 noremap <LEADER><CR> :nohlsearch<CR>
 
 noremap i k
@@ -62,9 +53,7 @@ nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 nnoremap [B :bfirst<CR>
 nnoremap ]B :blast<CR> 
-" 关闭当前 buffer
 noremap <C-b> :w<CR>:bd<CR>
-" <leader>1~9 切到 buffer1~9
 map <leader>1 :b 1<CR>
 map <leader>2 :b 2<CR>
 map <leader>3 :b 3<CR>
@@ -80,54 +69,41 @@ map q :q<CR>
 map r :w<CR>
 map ; :
 
-" Indentation
 nnoremap < <<
 nnoremap > >>
 
 vnoremap Y "+y
 
-" 分频
 map sd :set splitright<CR>:vsplit<CR>
 map sa :set nosplitright<CR>:vsplit<CR>
 map sw :set nosplitbelow<CR>:split<CR>
 map ss :set splitbelow<CR>:split<CR>
-
-" 插入模式下换行
-inoremap <C-o> <Esc>o
-
-noremap sv <C-w>b<C-w>K
-noremap sc <C-w>b<C-w>H
-
-" 切换分频焦点
 map <LEADER>i <C-w>k
 map <LEADER>k <C-w>j
 map <LEADER>l <C-w>l
 map <LEADER>j <C-w>h
+noremap sv <C-w>b<C-w>K
+noremap sc <C-w>b<C-w>H
+
+inoremap <C-o> <Esc>o
 
 map <C-up> :res -1<CR>
 map <C-down> :res +1<CR>
 map <C-left> :vertical resize+1<CR>
 map <C-right> :vertical resize-1<CR>
 
-" 找到 <++>
-noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
-
-"  Tab management
-" Create a new tab with tu
+" Tab management
 noremap tn :tabe<CR>
-" Move around tabs with tn and ti
 noremap ti :-tabnext<CR>
 noremap tk :+tabnext<CR>
-" Move the tabs with tmn and tmi
 noremap tmi :-tabmove<CR>
 noremap tmk :+tabmove<CR>
 
 " 打开终端后进入插入模式
 let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert
-" 切换到普通模式
-tnoremap <esc> <C-\><C-N>
-
+tnoremap <C-N> <C-\><C-N>
+tnoremap <C-O> <C-\><C-N><C-O>
 
 let g:python_host_prog='/usr/bin/python'
 let g:python2_host_prog='/usr/bin/python2'
@@ -136,6 +112,7 @@ let g:python3_host_prog='/usr/bin/python3'
 " ===========================
 "autocmd Filetype markdown map <leader>w yiWi[<esc>Ea](<esc>pa)
 " ===========================
+noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
 autocmd Filetype markdown inoremap ,n ---<Enter><Enter>
 autocmd Filetype markdown inoremap ,b **** <++><Esc>F*hi
@@ -151,8 +128,6 @@ autocmd Filetype markdown inoremap ,2 ##<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,l --------<Enter>
-"source ~/.config/nvim/md.vim
-
 
 " 保存修改历史
 silent !mkdir -p ~/.config/nvim/tmp/backup
@@ -214,146 +189,72 @@ endfunc
 
 call plug#begin('~/.config/nvim/plugged')
 
-" look 
-" Plug 'nathanaelkane/vim-indent-guides'
-Plug 'Yggdroot/indentLine'
-"Plug 'mg979/vim-xtabline'
-" 光标形状
-Plug 'wincent/terminus'
-" 彩色括号
-Plug 'luochen1990/rainbow'
+    " look 
+    "Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'mg979/vim-xtabline'
+    "Plug 'rbong/vim-crystalline'
+    "Plug 'liuchengxu/eleline.vim'
+    Plug 'bling/vim-bufferline'
+    Plug 'vim-airline/vim-airline'
+    " ????
+    Plug 'Yggdroot/indentLine'
+    Plug 'wincent/terminus'
+    Plug 'luochen1990/rainbow'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'connorholyday/vim-snazzy'
+    Plug 'ajmwagar/vim-deus'
+    Plug 'morhetz/gruvbox'
+    Plug 'ryanoasis/vim-devicons'
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-"Plug 'rbong/vim-crystalline'
-Plug 'connorholyday/vim-snazzy'
-Plug 'ajmwagar/vim-deus'
-Plug 'morhetz/gruvbox'
+    "Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-bash'}
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'honza/vim-snippets'
+    Plug 'mattn/emmet-vim'     "<C-y>,
+    Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+    Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
+    Plug 'mbbill/undotree'
 
-" File navigation
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'  " <leader>bd 
-"Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+    " 查找文件
+    Plug '/usr/local/opt/fzf'
+    Plug 'junegunn/fzf.vim'
+    Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 
-" Error checking
-Plug 'dense-analysis/ale'
+    " git
+    Plug 'tpope/vim-fugitive'
+    Plug 'airblade/vim-gitgutter'
 
-" Auto Complete
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " Markdown
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
+    Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
-" Undo Tree
-Plug 'mbbill/undotree'
-
-" Git
-"Plug 'rhysd/conflict-marker.vim'
-" git 管理
-Plug 'tpope/vim-fugitive'
-" 显示 修改信息
-Plug 'airblade/vim-gitgutter'
-" gitignore snippets
-"Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
-
-" Markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
-Plug 'vimwiki/vimwiki'
-
-" Bookmarks  mx   dmx    m<Space> m,
-Plug 'kshenoy/vim-signature'
-
-" Track the engine.  现在可以用coc-snipprts
-"Plug 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
-
-" Other useful utilities
-Plug 'junegunn/goyo.vim' " distraction free writing mode
-Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'`to change 'word' to `word`
-
-"" 快速注释
-Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line <space>
-
-" true/false
-Plug 'AndrewRadev/switch.vim' " gs 
-
-" 查找文件
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-
-" calendar
-Plug 'itchyny/calendar.vim'
-
-" debugger  不会用
-Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-bash'}
-
-" 函数"
-Plug 'liuchengxu/vista.vim'
-
-" 变量高亮
-Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
-
-" latex文件
-"Plug 'lervag/vimtex'
-
-" 剪切板 预览
-Plug 'junegunn/vim-peekaboo'
-
-" go
-"Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
-
-" 多行光标 
-Plug 'terryma/vim-multiple-cursors'
-
-" css html   <C-y>, 
-Plug 'mattn/emmet-vim'
-Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
- 
-" 图标  需要 nerd-fonts
-Plug 'ryanoasis/vim-devicons'
-
-" 中文文档
-"Plug 'yianwillis/vimcdoc'
-
-" 开始时显示历史记录 
-Plug 'mhinz/vim-startify'
-
-" 查找和替换
-Plug 'brooth/far.vim'
-
-" 自动给markdown列表  <C-t> <C-d> 前后移动 
-Plug 'dkarter/bullets.vim'
-
-" fsffff
-Plug 'rhysd/clever-f.vim'
-
-" 临时大写锁定 <C-l>
-Plug 'tpope/vim-capslock'
-
-" 快速移动
-"Plug 'easymotion/vim-easymotion'
-
-" 替换
-"Plug 'svermeulen/vim-subversive'
-
-" 错误单词句子
-Plug 'reedes/vim-wordy'
-" 同义词查询
-Plug 'ron89/thesaurus_query.vim'
+    " 中文文档
+    "Plug 'yianwillis/vimcdoc'
+    Plug 'junegunn/goyo.vim' " distraction free writing mode
+    Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'`to change 'word' to `word`
+    Plug 'AndrewRadev/switch.vim' " gs 
+    Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line <space>
+    Plug 'itchyny/calendar.vim'
+    Plug 'liuchengxu/vista.vim'
+    Plug 'junegunn/vim-peekaboo'
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'mhinz/vim-startify'               
+    Plug 'brooth/far.vim'                   " :Far
+    Plug 'dkarter/bullets.vim'              "<C-t> <C-d>
+    Plug 'tpope/vim-capslock'               "<C-l> capslock
+    Plug 'rhysd/clever-f.vim'               "fsfff
+    Plug 'reedes/vim-wordy'
+    Plug 'ron89/thesaurus_query.vim'
+    Plug 'kshenoy/vim-signature'            "Bookmarks  mx   dmx    m<Space> m,
+    Plug 'vimwiki/vimwiki'
+    Plug 'dense-analysis/ale'
+    "Plug 'svermeulen/vim-subversive'
 
 call plug#end()
 
-
-"color snazzy
-set termguicolors	" enable true colors support
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-"set background=dark
+" enable true colors support
+set termguicolors	
+let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 color deus
-
-" ===========================
-" ======== airline ==========
-" ===========================
-let g:airline_theme='base16_gruvbox_dark_hard'
-let g:airline#extensions#whitespace#enabled = 0
 
 
 " =====================================
@@ -366,9 +267,38 @@ let g:airline#extensions#whitespace#enabled = 0
 "let g:crystalline_enable_sep = 1
 "let g:crystalline_tabline_fn = 'TabLine'
 "let g:crystalline_theme = 'gruvbox'
+"set showtabline = 2
 
-"set showtabline=2
 
+" ==================================
+" =========== xtabline =============
+" ==================================
+let g:xtabline_settings = {}
+let g:xtabline_settings.enable_mappings = 0
+let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
+let g:xtabline_settings.enable_persistance = 0
+let g:xtabline_settings.show_right_corner = 0
+let g:xtabline_settings.last_open_first = 1
+noremap ts :XTabCycleMode<CR>
+noremap \p :XTabInfo<CR>
+
+
+" ===========================
+" ======== airline ==========
+" ===========================
+let g:airline_theme='base16_gruvbox_dark_hard'
+let g:airline#extensions#whitespace#enabled = 0
+
+
+" ==============================
+" ======== indentLine ==========
+" =============================
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_enabled = 0
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = '#A4E57E'
+let g:indentLine_bgcolor_term = 202
+nmap <Leader>t :IndentLinesToggle<CR>
 
 
 " ======================================
@@ -415,34 +345,10 @@ let g:vimspector_enable_mappings = 'HUMAN'
 "sign define vimspectorPC text=🔶 texthl=SpellBad
 
 
-
-" ===========================
+" ============================
 " ======== 全屏显示 ==========
-" ===========================
+" ============================
 map <LEADER>gy :Goyo<CR>
-
-
-" ==================================
-" =========== xtabline =============
-" ==================================
-let g:xtabline_settings = {}
-let g:xtabline_settings.enable_mappings = 0
-let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
-let g:xtabline_settings.enable_persistance = 0
-let g:xtabline_settings.show_right_corner = 0
-let g:xtabline_settings.last_open_first = 1
-noremap ts :XTabCycleMode<CR>
-noremap \p :XTabInfo<CR>
-
-
-" ==============================
-" ======== indentLine ==========
-" =============================
-let g:indentLine_char = '|'
-let g:indentLine_enabled = 0
-let g:indentLine_color_term = 239
-let g:indentLine_color_gui = '#A4E57E'
-nmap <Leader>t :IndentLinesToggle<CR>
 
 
 " =======================
@@ -490,14 +396,15 @@ let g:vimwiki_list = [{'path': '~/Documents/Notes/',
 " ===========================
 " ======== undotree =========
 " ===========================
-map ud :UndotreeToggle<CR><LEADER>j
+map ud :UndotreeToggle<CR><LEADER>j<LEADER>i
 
 
-" ====================================
-" =========== ranger.vim =============
-" ====================================
-let g:ranger_map_keys = 0
-nnoremap R :Ranger<CR>
+" ================================
+" =========== rnvimr =============
+" ================================
+let g:rnvimr_ex_enable = 1
+let g:rnvimr_pick_enable = 1
+nnoremap <silent> R :RnvimrSync<CR>:RnvimrToggle<CR>
 
 
 " ===========================
@@ -515,9 +422,9 @@ noremap <C-y> :Buffers<CR>
 noremap <LEADER>tm :TableModeToggle<CR>
 
 
-" ===========================
-" ======== vista ==========
-" ===========================
+" ============================
+" ========== vista ===========
+" ============================
 map <silent> T :Vista!!<CR>
 
 
@@ -525,7 +432,6 @@ map <silent> T :Vista!!<CR>
 " =========== clever-f =============
 " ==================================
 let g:clever_f_not_overwrites_standard_mappings = 1
-" 去掉 t T 快捷键
 nmap f <Plug>(clever-f-f)
 xmap f <Plug>(clever-f-f)
 omap f <Plug>(clever-f-f)
@@ -538,18 +444,34 @@ omap F <Plug>(clever-f-F)
 " ========== coc ============
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-vimtex']
+let g:coc_global_extention = ['coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-" 给所有变量重命名
+nnoremap <C-c> :CocCommand<CR>
+nnoremap <C-l> :CocList<CR>
+" coc-python
 nmap <leader>rn <Plug>(coc-rename)
+" coc-explorer
 nmap ne :CocCommand explorer<CR>
+" coc-translator
 nmap tr <Plug>(coc-translator-p)
+" coc-snippets
 let g:coc_snippet_next = '<C-k>'
 let g:coc_snippet_prev = '<C-i>'
 imap <C-k> <Plug>(coc-snippets-expand-jump)
+" coc-actions
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+    execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+" coctodolist
+nnoremap <leader>tn :CocCommand todolist.create<CR>
+nnoremap <leader>tl :CocList todolist<CR>
+nnoremap <leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload<CR>
 
 
 " ===========================
@@ -568,11 +490,10 @@ nmap <silent> <C-j> <Plug>(ale_previous_wrap)
 nmap <silent> <C-k> <Plug>(ale_next_wrap)
 
 
-" ===========================
+" ============================
 " ======== multiple ==========
-" ===========================
+" ============================
 let g:multi_cursor_use_default_mapping=0
-" Default mapping
 let g:multi_cursor_start_word_key      = '<C-n>'
 let g:multi_cursor_select_all_word_key = '<A-n>'
 let g:multi_cursor_start_key           = 'g<C-n>'
@@ -607,20 +528,18 @@ let g:bullets_enabled_file_types = [
 " ========================================
 
 
-" ==================================
+" =================================
 " =========== rainbow =============
-" ==================================
+" =================================
 let g:rainbow_active = 1
 
 
 " =========================================
 " =========== thesaurus_query =============
 " =========================================
-let g:tq_map_keys = 1
-nnoremap <unique> <Leader>st :ThesaurusQueryReplaceCurrentWord<CR>
-vnoremap <unique> <Leader>st "ky:ThesaurusQueryReplace <C-r>k<CR>
-nnoremap <LocalLeader>st :ThesaurusQueryReplaceCurrentWord<CR>
-vnoremap <LocalLeader>st "ky:ThesaurusQueryReplace <C-r>k<CR>
+let g:tq_map_keys = 0
+nnoremap <unique> <C-s> :ThesaurusQueryReplaceCurrentWord<CR>
+vnoremap <unique> <C-s> "ky:ThesaurusQueryReplace <C-r>k<CR>
 
 
 " end
