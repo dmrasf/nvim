@@ -87,10 +87,10 @@ noremap sc <C-w>b<C-w>H
 
 inoremap <C-o> <Esc>o
 
-map <C-up> :res -1<CR>
-map <C-down> :res +1<CR>
-map <C-left> :vertical resize+1<CR>
-map <C-right> :vertical resize-1<CR>
+map <up> :res -1<CR>
+map <down> :res +1<CR>
+map <left> :vertical resize+1<CR>
+map <right> :vertical resize-1<CR>
 
 " Tab management
 noremap tn :tabe<CR>
@@ -138,6 +138,8 @@ if has('persistent_undo')
 	set undofile
 	set undodir=~/.config/nvim/tmp/undo,.
 endif
+
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 map <LEADER>r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
@@ -231,6 +233,8 @@ call plug#begin('~/.config/nvim/plugged')
     "Plug 'yianwillis/vimcdoc'
     Plug 'junegunn/goyo.vim' " distraction free writing mode
     Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'`to change 'word' to `word`
+    Plug 'tpope/vim-capslock'               "<C-l> capslock
+    Plug 'tpope/vim-speeddating'
     Plug 'AndrewRadev/switch.vim' " gs 
     Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line <space>
     Plug 'itchyny/calendar.vim'
@@ -241,7 +245,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'mhinz/vim-startify'               
     Plug 'brooth/far.vim'                   " :Far
     Plug 'dkarter/bullets.vim'              "<C-t> <C-d>
-    Plug 'tpope/vim-capslock'               "<C-l> capslock
     Plug 'rhysd/clever-f.vim'               "fsfff
     Plug 'reedes/vim-wordy'
     Plug 'ron89/thesaurus_query.vim'        "<C-s>
@@ -296,7 +299,7 @@ let g:airline#extensions#whitespace#enabled = 0
 " =========== vim-indent-guides =============
 " ===========================================
 let g:indent_guides_default_mapping = 0
-let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_start_level = 2
 nmap <silent> <Leader>t <Plug>IndentGuidesToggle
 
@@ -499,24 +502,22 @@ nnoremap [g :GitGutterPrevHunk<CR>
 nnoremap ]g :GitGutterNextHunk<CR>
 
 
-" ============================
-" ======== multiple ==========
-" ============================
-"let g:multi_cursor_use_default_mapping=0
-"let g:multi_cursor_start_word_key      = '<C-n>'
-"let g:multi_cursor_select_all_word_key = '<A-n>'
-"let g:multi_cursor_start_key           = 'g<C-n>'
-"let g:multi_cursor_select_all_key      = 'g<A-n>'
-"let g:multi_cursor_next_key            = '<C-n>'
-"let g:multi_cursor_prev_key            = '<C-p>'
-"let g:multi_cursor_skip_key            = '<C-x>'
-"let g:multi_cursor_quit_key            = '<Esc>'
- 
-
 " ==========================================
 " =========== vim-visual-multi =============
 " ==========================================
-
+let g:VM_maps = {}
+let g:VM_leader = {'default': ',', 'visual': ',', 'buffer': ','}
+let g:VM_maps['Select All']  = '<M-n>'
+let g:VM_maps['Visual All']  = '<M-n>'
+let g:VM_maps['Skip Region'] = '<C-x>'
+let g:VM_maps['Remove Region'] = '<C-p>'
+let g:VM_maps['Increase']    = '+'
+let g:VM_maps['Decrease']    = '-'
+let g:VM_maps["Undo"] = 'u'
+let g:VM_maps["Redo"] = '<C-r>'
+let g:VM_custom_motions  = {'j': 'h', 'l': 'l', 'i': 'k', 'k': 'j'}
+let g:VM_maps['i'] = 'h'
+let g:VM_maps['I'] = 'H'
 
 
 " ===========================
