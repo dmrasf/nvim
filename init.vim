@@ -105,6 +105,8 @@ autocmd TermOpen term://* startinsert
 tnoremap <C-N> <C-\><C-N>
 tnoremap <C-O> <C-\><C-N><C-O>
 
+noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
+
 let g:python_host_prog='/usr/bin/python'
 let g:python2_host_prog='/usr/bin/python2'
 let g:python3_host_prog='/usr/bin/python3'
@@ -500,6 +502,12 @@ nnoremap gf :GitGutterFold<CR>
 nnoremap gh :GitGutterPreviewHunk<CR>
 nnoremap [g :GitGutterPrevHunk<CR>
 nnoremap ]g :GitGutterNextHunk<CR>
+
+
+" ==================================
+" =========== fugitive =============
+" ==================================
+noremap \g :Git 
 
 
 " ==========================================
