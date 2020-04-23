@@ -196,8 +196,6 @@ call plug#begin('~/.config/nvim/plugged')
     "Plug 'liuchengxu/eleline.vim'
     Plug 'bling/vim-bufferline'
     Plug 'vim-airline/vim-airline'
-    " ????
-    Plug 'Yggdroot/indentLine'
     Plug 'wincent/terminus'
     Plug 'luochen1990/rainbow'
     Plug 'vim-airline/vim-airline-themes'
@@ -205,11 +203,13 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'ajmwagar/vim-deus'
     Plug 'morhetz/gruvbox'
     Plug 'ryanoasis/vim-devicons'
+    Plug 'nathanaelkane/vim-indent-guides'
 
     "Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-bash'}
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'honza/vim-snippets'
     Plug 'mattn/emmet-vim'     "<C-y>,
+    Plug 'OmniSharp/omnisharp-vim'
     Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
     Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
     Plug 'mbbill/undotree'
@@ -236,17 +236,19 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'itchyny/calendar.vim'
     Plug 'liuchengxu/vista.vim'
     Plug 'junegunn/vim-peekaboo'
-    Plug 'terryma/vim-multiple-cursors'
+    "Plug 'terryma/vim-multiple-cursors'
+    Plug 'mg979/vim-visual-multi', {'branch': 'master'}
     Plug 'mhinz/vim-startify'               
     Plug 'brooth/far.vim'                   " :Far
     Plug 'dkarter/bullets.vim'              "<C-t> <C-d>
     Plug 'tpope/vim-capslock'               "<C-l> capslock
     Plug 'rhysd/clever-f.vim'               "fsfff
     Plug 'reedes/vim-wordy'
-    Plug 'ron89/thesaurus_query.vim'
+    Plug 'ron89/thesaurus_query.vim'        "<C-s>
     Plug 'kshenoy/vim-signature'            "Bookmarks  mx   dmx    m<Space> m,
     Plug 'vimwiki/vimwiki'
     Plug 'dense-analysis/ale'
+    Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
     "Plug 'svermeulen/vim-subversive'
 
 call plug#end()
@@ -290,15 +292,13 @@ let g:airline_theme='base16_gruvbox_dark_hard'
 let g:airline#extensions#whitespace#enabled = 0
 
 
-" ==============================
-" ======== indentLine ==========
-" =============================
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_enabled = 0
-let g:indentLine_color_term = 239
-let g:indentLine_color_gui = '#A4E57E'
-let g:indentLine_bgcolor_term = 202
-nmap <Leader>t :IndentLinesToggle<CR>
+" ===========================================
+" =========== vim-indent-guides =============
+" ===========================================
+let g:indent_guides_default_mapping = 0
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+nmap <silent> <Leader>t <Plug>IndentGuidesToggle
 
 
 " ======================================
@@ -312,7 +312,7 @@ augroup calendar-mappings
 	autocmd!
 	" diamond cursor
 	autocmd FileType calendar nmap <buffer> i <Plug>(calendar_up)
-	autocmd FileType calendar nmap <buffer> j <Plug>(calendar_left)
+    autocmd FileType calendar nmap <buffer> j <Plug>(calendar_left)
 	autocmd FileType calendar nmap <buffer> k <Plug>(calendar_down)
 	autocmd FileType calendar nmap <buffer> l <Plug>(calendar_right)
 	autocmd FileType calendar nmap <buffer> <c-i> <Plug>(calendar_move_up)
@@ -490,18 +490,33 @@ nmap <silent> <C-j> <Plug>(ale_previous_wrap)
 nmap <silent> <C-k> <Plug>(ale_next_wrap)
 
 
+" ===================================
+" =========== gitgutter =============
+" ===================================
+nnoremap gf :GitGutterFold<CR>
+nnoremap gh :GitGutterPreviewHunk<CR>
+nnoremap [g :GitGutterPrevHunk<CR>
+nnoremap ]g :GitGutterNextHunk<CR>
+
+
 " ============================
 " ======== multiple ==========
 " ============================
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
+"let g:multi_cursor_use_default_mapping=0
+"let g:multi_cursor_start_word_key      = '<C-n>'
+"let g:multi_cursor_select_all_word_key = '<A-n>'
+"let g:multi_cursor_start_key           = 'g<C-n>'
+"let g:multi_cursor_select_all_key      = 'g<A-n>'
+"let g:multi_cursor_next_key            = '<C-n>'
+"let g:multi_cursor_prev_key            = '<C-p>'
+"let g:multi_cursor_skip_key            = '<C-x>'
+"let g:multi_cursor_quit_key            = '<Esc>'
+ 
+
+" ==========================================
+" =========== vim-visual-multi =============
+" ==========================================
+
 
 
 " ===========================
@@ -538,8 +553,8 @@ let g:rainbow_active = 1
 " =========== thesaurus_query =============
 " =========================================
 let g:tq_map_keys = 0
-nnoremap <unique> <C-s> :ThesaurusQueryReplaceCurrentWord<CR>
-vnoremap <unique> <C-s> "ky:ThesaurusQueryReplace <C-r>k<CR>
+nnoremap <C-s> :ThesaurusQueryReplaceCurrentWord<CR>
+vnoremap <C-s> "ky:ThesaurusQueryReplace <C-r>k<CR>
 
 
 " end
