@@ -53,7 +53,7 @@ nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 nnoremap [B :bfirst<CR>
 nnoremap ]B :blast<CR> 
-noremap <C-b> :w<CR>:bd<CR>
+noremap <C-b> :bd<CR>
 map <leader>1 :b 1<CR>
 map <leader>2 :b 2<CR>
 map <leader>3 :b 3<CR>
@@ -242,7 +242,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'itchyny/calendar.vim'
     Plug 'liuchengxu/vista.vim'
     Plug 'junegunn/vim-peekaboo'
-    "Plug 'terryma/vim-multiple-cursors'
     Plug 'mg979/vim-visual-multi', {'branch': 'master'}
     Plug 'mhinz/vim-startify'               
     Plug 'brooth/far.vim'                   " :Far
@@ -254,7 +253,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vimwiki/vimwiki'
     Plug 'dense-analysis/ale'
     Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-    "Plug 'svermeulen/vim-subversive'
 
 call plug#end()
 
@@ -545,11 +543,6 @@ let g:bullets_enabled_file_types = [
     \ 'gitcommit',
     \ 'scratch'
     \]
-
-
-" ========================================
-" =========== vim-subversive =============
-" ========================================
 
 
 " =================================

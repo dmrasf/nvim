@@ -60,6 +60,7 @@
         ">>": "gitUnstage"
     },
     "java.home": "/usr/lib/jvm/java-11-openjdk",
-    "coc-actions.hideCursor": false,
-	"coc-actions.showActionKind": true,
+    "coc-actions.hideCursor": true,
+    "coc-actions.showActionKind": true,
+    "coc-actions.useCursorLine": false
 }
