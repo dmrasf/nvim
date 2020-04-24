@@ -104,6 +104,22 @@ let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert
 tnoremap <C-N> <C-\><C-N>
 tnoremap <C-O> <C-\><C-N><C-O>
+let g:terminal_color_0  = '#282828'     "black
+let g:terminal_color_1  = '#cc241d'     "red
+let g:terminal_color_2  = '#98971a'     "green
+let g:terminal_color_3  = '#d79921'     "yellow
+let g:terminal_color_4  = '#458588'     "blue
+let g:terminal_color_5  = '#b16286'     "magenta
+let g:terminal_color_6  = '#689d6a'     "cyan
+let g:terminal_color_7  = '#a89984'     "white
+let g:terminal_color_8  = '#928374'     "black
+let g:terminal_color_9  = '#fb4934'     "red
+let g:terminal_color_10 = '#b8bb26'     "green
+let g:terminal_color_11 = '#fabd2f'     "yellow
+let g:terminal_color_12 = '#83a598'     "blue
+let g:terminal_color_13 = '#d3869b'     "magenta
+let g:terminal_color_14 = '#8ec07c'     "cyan
+let g:terminal_color_15 = '#ebdbb2'     "white
 
 noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
 
@@ -447,7 +463,7 @@ omap F <Plug>(clever-f-F)
 " ========== coc ============
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
+let g:coc_global_extention = ['coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
