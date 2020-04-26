@@ -269,6 +269,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vimwiki/vimwiki'
     Plug 'dense-analysis/ale'
     Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+    Plug 'romainl/vim-cool'
 
 call plug#end()
 
