@@ -265,7 +265,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'rhysd/clever-f.vim'               "fsfff
     Plug 'reedes/vim-wordy'
     Plug 'ron89/thesaurus_query.vim'        "<C-s>
-    Plug 'kshenoy/vim-signature'            "Bookmarks  mx   dmx    m<Space> m,
+    "Plug 'kshenoy/vim-signature'            "Bookmarks  mx   dmx    m<Space> m,
     Plug 'vimwiki/vimwiki'
     Plug 'dense-analysis/ale'
     Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
@@ -464,7 +464,7 @@ omap F <Plug>(clever-f-F)
 " ========== coc ============
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
+let g:coc_global_extention = ['coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -492,6 +492,9 @@ nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<C
 nnoremap <leader>tn :CocCommand todolist.create<CR>
 nnoremap <leader>tl :CocList todolist<CR>
 nnoremap <leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload<CR>
+" coc-calc
+nmap <Leader>ca <Plug>(coc-calc-result-append)
+nmap <Leader>cr <Plug>(coc-calc-result-replace)
 
 
 " ===========================
