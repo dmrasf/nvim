@@ -6,7 +6,6 @@
 "
 let mapleader=" "
 
-" 代码高亮
 syntax on
 
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
@@ -204,6 +203,8 @@ func! CompileRunGcc()
 	elseif &filetype == 'tex'
 		silent! exec "VimtexStop"
 		silent! exec "VimtexCompile"
+    elseif &filetype == 'vim'
+        :so %
 	endif
 endfunc
 
@@ -230,6 +231,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'honza/vim-snippets'
     Plug 'mattn/emmet-vim'     "<C-y>,
     Plug 'OmniSharp/omnisharp-vim'
+    "Plug 'xavierd/clang_complete'
     Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
     Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
     Plug 'mbbill/undotree'
@@ -238,6 +240,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug '/usr/local/opt/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+    "Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 
     " git
     Plug 'tpope/vim-fugitive'
@@ -247,8 +250,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
     Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
-    " 中文文档
-    "Plug 'yianwillis/vimcdoc'
+    Plug 'yianwillis/vimcdoc' " 中文文档
     Plug 'junegunn/goyo.vim' " distraction free writing mode
     Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'`to change 'word' to `word`
     Plug 'tpope/vim-capslock'               "<C-l> capslock
@@ -460,11 +462,20 @@ xmap F <Plug>(clever-f-F)
 omap F <Plug>(clever-f-F)
 
 
+" ==================================
+" =========== aerojump =============
+" ==================================
+"nmap <Leader>as <Plug>(AerojumpSpace)
+"nmap <Leader>ab <Plug>(AerojumpBolt)
+"nmap <Leader>aa <Plug>(AerojumpFromCursorBolt)
+"nmap <Leader>ad <Plug>(AerojumpDefault)
+
+
 " ===========================
 " ========== coc ============
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
+let g:coc_global_extention = ['coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -526,6 +537,24 @@ nnoremap ]g :GitGutterNextHunk<CR>
 " =========== fugitive =============
 " ==================================
 noremap \g :Git 
+
+
+" ===================================
+" =========== omnisharp =============
+" ===================================
+let g:OmniSharp_server_use_mono = 1
+let g:OmniSharp_server_stdio = 0
+autocmd Filetype cs nnoremap <buffer> gd :OmniSharpPreviewDefinition<CR>
+autocmd Filetype cs nnoremap <buffer> gr :OmniSharpFindUsages<CR>
+autocmd Filetype cs nnoremap <buffer> gy :OmniSharpTypeLookup<CR>
+autocmd Filetype cs nnoremap <buffer> ga :OmniSharpGetCodeActions<CR>
+autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +5<CR>
+
+
+" ========================================
+" =========== clang_complete =============
+" ========================================
+"let g:clang_library_path='/usr/lib64/libclang.so.10'
 
 
 " ==========================================
