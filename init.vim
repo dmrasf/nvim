@@ -171,6 +171,12 @@ func! CompileRunGcc()
 		silent! exec "!g++ -std=c++11 % -Wall -o %<"
 		:sp
 		:term ./%<
+    elseif &filetype == "cs"
+        set splitbelow
+        silent! exec "!mcs *.cs"
+        :sp
+        let l:cs = "term mono " . "*.exe"
+        exec l:cs
 	elseif &filetype == 'java'
 		silent! exec "!javac %"
 		set splitbelow
