@@ -48,20 +48,20 @@ noremap Q q
 noremap Z Q
 
 " 跳转文件
-nnoremap [b :bprevious<CR>
-nnoremap ]b :bnext<CR>
-nnoremap [B :bfirst<CR>
-nnoremap ]B :blast<CR> 
-noremap <C-b> :bd<CR>
-map <leader>1 :b 1<CR>
-map <leader>2 :b 2<CR>
-map <leader>3 :b 3<CR>
-map <leader>4 :b 4<CR>
-map <leader>5 :b 5<CR>
-map <leader>6 :b 6<CR>
-map <leader>7 :b 7<CR>
-map <leader>8 :b 8<CR>
-map <leader>9 :b 9<CR>
+nnoremap [b :w<CR>:bprevious<CR>
+nnoremap ]b :w<CR>:bnext<CR>
+nnoremap [B :w<CR>:bfirst<CR>
+nnoremap ]B :w<CR>:blast<CR>
+noremap <C-b> :w<CR>:bd<CR>
+map <leader>1 :w<CR>:b 1<CR>
+map <leader>2 :w<CR>:b 2<CR>
+map <leader>3 :w<CR>:b 3<CR>
+map <leader>4 :w<CR>:b 4<CR>
+map <leader>5 :w<CR>:b 5<CR>
+map <leader>6 :w<CR>:b 6<CR>
+map <leader>7 :w<CR>:b 7<CR>
+map <leader>8 :w<CR>:b 8<CR>
+map <leader>9 :w<CR>:b 9<CR>
 
 map s <nop>
 map q :q<CR>
@@ -272,6 +272,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'dense-analysis/ale'
     Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
     Plug 'romainl/vim-cool'
+    Plug 'itchyny/vim-cursorword'
 
 call plug#end()
 
@@ -475,11 +476,11 @@ omap F <Plug>(clever-f-F)
 " ========== coc ============
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+let g:coc_global_extention = ['coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
+autocmd FileType python nmap <silent> gd <Plug>(coc-definition)
+autocmd FileType python nmap <silent> gy <Plug>(coc-type-definition)
+autocmd FileType python nmap <silent> gi <Plug>(coc-implementation)
+autocmd FileType python nmap <silent> gr <Plug>(coc-references)
 nnoremap <C-c> :CocCommand<CR>
 nnoremap <C-l> :CocList<CR>
 " coc-python
@@ -506,6 +507,9 @@ nnoremap <leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload
 " coc-calc
 nmap <Leader>ca <Plug>(coc-calc-result-append)
 nmap <Leader>cr <Plug>(coc-calc-result-replace)
+" coc-ci
+nmap <silent> w <Plug>(coc-ci-w)
+nmap <silent> b <Plug>(coc-ci-b)
 
 
 " ===========================
