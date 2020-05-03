@@ -27,6 +27,12 @@ set incsearch
 set ignorecase
 set smartcase
 set autoindent
+"set list
+"set listchars=tab:\|\ ,trail:▫
+set colorcolumn=80
+set splitright
+set splitbelow
+set updatetime=1000
 set vb t_vb=
 
 " 基于缩进或语法进行代码折叠
@@ -223,20 +229,21 @@ call plug#begin('~/.config/nvim/plugged')
     "Plug 'liuchengxu/eleline.vim'
     Plug 'bling/vim-bufferline'
     Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     "Plug 'hardcoreplayers/spaceline.vim'
     Plug 'wincent/terminus'
     Plug 'luochen1990/rainbow'
-    Plug 'vim-airline/vim-airline-themes'
     Plug 'connorholyday/vim-snazzy'
     Plug 'ajmwagar/vim-deus'
     Plug 'morhetz/gruvbox'
     Plug 'ryanoasis/vim-devicons'
     Plug 'nathanaelkane/vim-indent-guides'
 
-    "Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-bash'}
+    Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python'}
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'honza/vim-snippets'
     Plug 'mattn/emmet-vim'     "<C-y>,
+    Plug 'dense-analysis/ale'
     Plug 'OmniSharp/omnisharp-vim'
     Plug 'xavierd/clang_complete'
     Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
@@ -247,6 +254,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug '/usr/local/opt/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+    Plug 'brooth/far.vim'                   " :Far
+    Plug 'rhysd/clever-f.vim'               "fsfff
     "Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 
     " git
@@ -261,25 +270,22 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'junegunn/goyo.vim' " distraction free writing mode
     Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'`to change 'word' to `word`
     Plug 'tpope/vim-capslock'               "<C-l> capslock
-    Plug 'tpope/vim-speeddating'
+    Plug 'tpope/vim-speeddating' "<c-a> <c-x>
     Plug 'AndrewRadev/switch.vim' " gs 
     Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line <space>
     Plug 'itchyny/calendar.vim'
     Plug 'liuchengxu/vista.vim'
-    Plug 'junegunn/vim-peekaboo'
     Plug 'mg979/vim-visual-multi', {'branch': 'master'}
     Plug 'mhinz/vim-startify'               
-    Plug 'brooth/far.vim'                   " :Far
     Plug 'dkarter/bullets.vim'              "<C-t> <C-d>
-    Plug 'rhysd/clever-f.vim'               "fsfff
     Plug 'reedes/vim-wordy'
     "Plug 'ron89/thesaurus_query.vim'        "<C-s>
     "Plug 'kshenoy/vim-signature'            "Bookmarks  mx   dmx    m<Space> m,
     Plug 'vimwiki/vimwiki'
-    Plug 'dense-analysis/ale'
     Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-    Plug 'romainl/vim-cool'
-    Plug 'itchyny/vim-cursorword'
+    Plug 'junegunn/vim-peekaboo'
+    Plug 'romainl/vim-cool' "自动取消高亮
+    Plug 'itchyny/vim-cursorword' "下划线
 
 call plug#end()
 
@@ -360,19 +366,19 @@ augroup END
 " =========== vimspector =============
 " ====================================
 let g:vimspector_enable_mappings = 'HUMAN'
-"function! s:read_template_into_buffer(template)
-	"" has to be a function to avoid the extra space fzf#run insers otherwise
-	"execute '0r ~/.config/nvim/sample_vimspector_json/'.a:template
-"endfunction
-"command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
-			"\   'source': 'ls -1 ~/.config/nvim/sample_vimspector_json',
-			"\   'down': 20,
-			"\   'sink': function('<sid>read_template_into_buffer')
-			"\ })
-"noremap <leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
-"sign define vimspectorBP text=☛ texthl=Normal
-"sign define vimspectorBPDisabled text=☞ texthl=Normal
-"sign define vimspectorPC text=🔶 texthl=SpellBad
+function! s:read_template_into_buffer(template)
+    " has to be a function to avoid the extra space fzf#run insers otherwise
+    execute '0r ~/.config/nvim/sample_vimspector_json/'.a:template
+endfunction
+command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
+            \   'source': 'ls -1 ~/.config/nvim/sample_vimspector_json',
+            \   'down': 20,
+            \   'sink': function('<sid>read_template_into_buffer')
+            \ })
+noremap <leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
+sign define vimspectorBP text=☛ texthl=Normal
+sign define vimspectorBPDisabled text=☞ texthl=Normal
+sign define vimspectorPC text=🔶 texthl=SpellBad
 
 
 " ============================
