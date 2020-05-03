@@ -223,6 +223,7 @@ call plug#begin('~/.config/nvim/plugged')
     "Plug 'liuchengxu/eleline.vim'
     Plug 'bling/vim-bufferline'
     Plug 'vim-airline/vim-airline'
+    "Plug 'hardcoreplayers/spaceline.vim'
     Plug 'wincent/terminus'
     Plug 'luochen1990/rainbow'
     Plug 'vim-airline/vim-airline-themes'
@@ -237,7 +238,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'honza/vim-snippets'
     Plug 'mattn/emmet-vim'     "<C-y>,
     Plug 'OmniSharp/omnisharp-vim'
-    "Plug 'xavierd/clang_complete'
+    Plug 'xavierd/clang_complete'
     Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
     Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
     Plug 'mbbill/undotree'
@@ -272,7 +273,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'dkarter/bullets.vim'              "<C-t> <C-d>
     Plug 'rhysd/clever-f.vim'               "fsfff
     Plug 'reedes/vim-wordy'
-    Plug 'ron89/thesaurus_query.vim'        "<C-s>
+    "Plug 'ron89/thesaurus_query.vim'        "<C-s>
     "Plug 'kshenoy/vim-signature'            "Bookmarks  mx   dmx    m<Space> m,
     Plug 'vimwiki/vimwiki'
     Plug 'dense-analysis/ale'
@@ -285,7 +286,7 @@ call plug#end()
 " enable true colors support
 set termguicolors	
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
-color deus
+color gruvbox
 
 
 " =====================================
@@ -323,7 +324,7 @@ let g:airline#extensions#whitespace#enabled = 0
 
 " ===========================================
 " =========== vim-indent-guides =============
-" ===========================================
+" == =========================================
 let g:indent_guides_default_mapping = 0
 let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_start_level = 2
@@ -564,7 +565,8 @@ autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +
 " ========================================
 " =========== clang_complete =============
 " ========================================
-"let g:clang_library_path='/usr/lib64/libclang.so.10'
+let g:clang_library_path='/usr/lib64/libclang.so.10'
+let g:clang_close_preview = 1
 
 
 " ==========================================
@@ -613,9 +615,9 @@ let g:rainbow_active = 1
 " =========================================
 " =========== thesaurus_query =============
 " =========================================
-let g:tq_map_keys = 0
-nnoremap <C-s> :ThesaurusQueryReplaceCurrentWord<CR>
-vnoremap <C-s> "ky:ThesaurusQueryReplace <C-r>k<CR>
+"let g:tq_map_keys = 0
+"nnoremap <C-s> :ThesaurusQueryReplaceCurrentWord<CR>
+"vnoremap <C-s> "ky:ThesaurusQueryReplace <C-r>k<CR>
 
 
 " end
