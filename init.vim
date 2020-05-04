@@ -223,7 +223,6 @@ endfunc
 call plug#begin('~/.config/nvim/plugged')
 
     " look 
-    "Plug 'nathanaelkane/vim-indent-guides'
     Plug 'mg979/vim-xtabline'
     "Plug 'rbong/vim-crystalline'
     "Plug 'liuchengxu/eleline.vim'
@@ -280,7 +279,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'dkarter/bullets.vim'              "<C-t> <C-d>
     Plug 'reedes/vim-wordy'
     "Plug 'ron89/thesaurus_query.vim'        "<C-s>
-    "Plug 'kshenoy/vim-signature'            "Bookmarks  mx   dmx    m<Space> m,
+    Plug 'MattesGroeger/vim-bookmarks'
     Plug 'vimwiki/vimwiki'
     Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
     Plug 'junegunn/vim-peekaboo'
@@ -332,8 +331,9 @@ let g:airline#extensions#whitespace#enabled = 0
 " =========== vim-indent-guides =============
 " == =========================================
 let g:indent_guides_default_mapping = 0
-let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
 nmap <silent> <Leader>t <Plug>IndentGuidesToggle
 
 
@@ -435,6 +435,13 @@ let g:vimwiki_list = [{'path': '~/Documents/Notes/',
 map ud :UndotreeToggle<CR><LEADER>j<LEADER>i
 
 
+" =======================================
+" =========== vim-bookmarks =============
+" =======================================
+let g:bookmark_sign = ''
+let g:bookmark_annotation_sign = ''
+
+
 " ================================
 " =========== rnvimr =============
 " ================================
@@ -489,7 +496,7 @@ omap F <Plug>(clever-f-F)
 " ========== coc ============
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
+let g:coc_global_extention = ['coc-spell-checker', 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
 autocmd FileType python nmap <silent> gd <Plug>(coc-definition)
 autocmd FileType python nmap <silent> gy <Plug>(coc-type-definition)
 autocmd FileType python nmap <silent> gi <Plug>(coc-implementation)
@@ -594,7 +601,7 @@ let g:VM_maps['I'] = 'H'
 
 
 " ===========================
-" ======== emmit ==========
+" ======== emmet ==========
 " ===========================
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
