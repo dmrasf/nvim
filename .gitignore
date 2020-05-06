@@ -3,6 +3,7 @@
 tmp/
 view/
 .DS_Store
+.tasks
 plugged/
 sessions/
 autoload/

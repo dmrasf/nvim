@@ -1,8 +1,8 @@
-"  __  __  __   __ __     __  ___   __  __   ____     ____
-" |  \/  | \ \ / / \ \   / / |_ _| |  \/  | |  _ \   / ___|
-" | |\/| |  \ V /   \ \ / /   | |  | |\/| | | |_) | | |
-" | |  | |   | |     \ V /    | |  | |  | | |  _ <  | |___
-" |_|  |_|   |_|      \_/    |___| |_|  |_| |_| \_\  \____|
+"  __  ____   __  _   ___     _____ __  __ ____   ____
+" |  \/  \ \ / / | \ | \ \   / /_ _|  \/  |  _ \ / ___|
+" | |\/| |\ V /  |  \| |\ \ / / | || |\/| | |_) | |
+" | |  | | | |   | |\  | \ V /  | || |  | |  _ <| |___
+" |_|  |_| |_|   |_| \_|  \_/  |___|_|  |_|_| \_\\____|
 "
 let mapleader=" "
 
@@ -27,14 +27,14 @@ set incsearch
 set ignorecase
 set smartcase
 set autoindent
-"set list
-"set listchars=tab:\|\ ,trail:▫
 set colorcolumn=80
 set splitright
 set splitbelow
 set updatetime=1000
 set vb t_vb=
 set ttyfast
+set list
+set listchars=trail:▫
 
 " zf 创建  zc 折叠  zo 打开  [z  ]z   zj  zk 在折叠间移动
 set foldlevel=99
@@ -54,22 +54,24 @@ noremap Q q
 noremap Z Q
 noremap n nzz
 noremap N Nzz
+noremap W 5w
+noremap B 5b
 
 " 跳转文件
-nnoremap [b :w<CR>:bprevious<CR>
-nnoremap ]b :w<CR>:bnext<CR>
-nnoremap [B :w<CR>:bfirst<CR>
-nnoremap ]B :w<CR>:blast<CR>
-noremap <C-b> :w<CR>:bd
-map <leader>1 :w<CR>:b 1<CR>
-map <leader>2 :w<CR>:b 2<CR>
-map <leader>3 :w<CR>:b 3<CR>
-map <leader>4 :w<CR>:b 4<CR>
-map <leader>5 :w<CR>:b 5<CR>
-map <leader>6 :w<CR>:b 6<CR>
-map <leader>7 :w<CR>:b 7<CR>
-map <leader>8 :w<CR>:b 8<CR>
-map <leader>9 :w<CR>:b 9<CR>
+nnoremap [b :bprevious<CR>
+nnoremap ]b :bnext<CR>
+nnoremap [B :bfirst<CR>
+nnoremap ]B :blast<CR>
+noremap <C-b> :bd 
+map <leader>1 :b 1<CR>
+map <leader>2 :b 2<CR>
+map <leader>3 :b 3<CR>
+map <leader>4 :b 4<CR>
+map <leader>5 :b 5<CR>
+map <leader>6 :b 6<CR>
+map <leader>7 :b 7<CR>
+map <leader>8 :b 8<CR>
+map <leader>9 :b 9<CR>
 
 map s <nop>
 map q :q<CR>
@@ -93,6 +95,8 @@ noremap sv <C-w>b<C-w>K
 noremap sc <C-w>b<C-w>H
 
 inoremap <C-o> <Esc>o
+inoremap <C-a> <Esc>A
+inoremap <C-h> <Esc>I
 
 map <up> :res -1<CR>
 map <down> :res +1<CR>
@@ -243,6 +247,8 @@ Plug 'Konfekt/FastFold'
 Plug 'Chiel92/vim-autoformat'
 
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python'}
+Plug 'skywind3000/asynctasks.vim'
+Plug 'skywind3000/asyncrun.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim'     "<C-y>,
@@ -260,6 +266,7 @@ Plug 'brooth/far.vim'                   " :Far
 Plug 'rhysd/clever-f.vim'               "fsfff
 "Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'pechorin/any-jump.vim'  " <leader>j
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -287,9 +294,11 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'junegunn/vim-peekaboo'
 Plug 'romainl/vim-cool' "自动取消高亮
 Plug 'itchyny/vim-cursorword' "下划线
-Plug 'vim/killersheep'
+Plug 'AndrewRadev/splitjoin.vim'   " gS  gJ 单行 多行
+Plug 'KabbAmine/vCoolor.vim'  " 颜色选择
 
 call plug#end()
+
 
 " enable true colors support
 set termguicolors
@@ -593,6 +602,12 @@ autocmd Filetype cs nnoremap <buffer> gr :OmniSharpFindUsages<CR>
 autocmd Filetype cs nnoremap <buffer> gy :OmniSharpTypeLookup<CR>
 autocmd Filetype cs nnoremap <buffer> ga :OmniSharpGetCodeActions<CR>
 autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +5<CR>
+
+
+" ====================================
+" =========== asynctasks =============
+" ====================================
+let g:asyncrun_open = 6
 
 
 " ===============================

@@ -65,5 +65,12 @@
     "coc-actions.showActionKind": true,
     "coc-actions.useCursorLine": false,
     "cSpell.showStatus": false,
-    "cSpell.allowCompoundWords": false
+    "cSpell.allowCompoundWords": false,
+    "cSpell.userWords": [
+      "Crossfit",
+      "Grindr",
+      "Instagrams",
+      "Snapchats",
+      "dmenu"
+    ]
 }
