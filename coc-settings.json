@@ -66,11 +66,20 @@
     "coc-actions.useCursorLine": false,
     "cSpell.showStatus": false,
     "cSpell.allowCompoundWords": false,
+    "cSpell.enabledLanguageIds": [
+        "csharp",
+        "markdown",
+        "c",
+        "txt",
+        "python",
+        "yml"
+    ],
     "cSpell.userWords": [
-      "Crossfit",
-      "Grindr",
-      "Instagrams",
-      "Snapchats",
-      "dmenu"
-    ]
+        "Crossfit",
+        "Grindr",
+        "Instagrams",
+        "Snapchats",
+        "dmenu"
+    ],
+    "clangd.semanticHighlighting": true
 }

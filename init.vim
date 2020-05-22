@@ -4,6 +4,7 @@
 " | |  | | | |   | |\  | \ V /  | || |  | |  _ <| |___
 " |_|  |_| |_|   |_| \_|  \_/  |___|_|  |_|_| \_\\____|
 "
+set rtp+=~/Desktop/vim-recite
 let mapleader=" "
 
 syntax on
@@ -28,18 +29,19 @@ set ignorecase
 set smartcase
 set autoindent
 set colorcolumn=80
-set splitright
-set splitbelow
 set updatetime=1000
 set vb t_vb=
 set ttyfast
 set list
 set listchars=trail:▫
+set fillchars=vert:\║
 
 " zf 创建  zc 折叠  zo 打开  [z  ]z   zj  zk 在折叠间移动
-set foldlevel=99
-set foldmethod=indent
+"set foldlevel=99
+set foldmethod=manual
 set foldenable
+"au BufWinLeave * silent mkview
+"au BufWinEnter * silent loadview
 
 noremap <LEADER><CR> :nohlsearch<CR>
 
@@ -62,7 +64,7 @@ nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 nnoremap [B :bfirst<CR>
 nnoremap ]B :blast<CR>
-noremap <C-b> :bd 
+noremap <C-b> :bd
 map <leader>1 :b 1<CR>
 map <leader>2 :b 2<CR>
 map <leader>3 :b 3<CR>
@@ -97,6 +99,9 @@ noremap sc <C-w>b<C-w>H
 inoremap <C-o> <Esc>o
 inoremap <C-a> <Esc>A
 inoremap <C-h> <Esc>I
+
+noremap <esc> :ccl<CR>
+noremap tx :r !figlet
 
 map <up> :res -1<CR>
 map <down> :res +1<CR>
@@ -138,6 +143,7 @@ let g:python_host_prog='/usr/bin/python'
 let g:python2_host_prog='/usr/bin/python2'
 let g:python3_host_prog='/usr/bin/python3'
 
+
 " ===========================
 "autocmd Filetype markdown map <leader>w yiWi[<esc>Ea](<esc>pa)
 " ===========================
@@ -169,6 +175,8 @@ if has('persistent_undo')
 endif
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+noremap <LEADER>v :edit ~/.config/nvim/init.vim<CR>
 
 map <LEADER>r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
@@ -230,7 +238,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 " look
 Plug 'mg979/vim-xtabline'
-"Plug 'rbong/vim-crystalline'
 "Plug 'liuchengxu/eleline.vim'
 Plug 'bling/vim-bufferline'
 Plug 'vim-airline/vim-airline'
@@ -241,12 +248,16 @@ Plug 'luochen1990/rainbow'
 Plug 'connorholyday/vim-snazzy'
 Plug 'ajmwagar/vim-deus'
 Plug 'morhetz/gruvbox'
+Plug 'junegunn/seoul256.vim'
+Plug 'jpo/vim-railscasts-theme'
 Plug 'ryanoasis/vim-devicons'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'Konfekt/FastFold'
+"Plug 'Konfekt/FastFold'
 Plug 'Chiel92/vim-autoformat'
 
-Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python'}
+"for coc-clangd
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+"Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python'}
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -254,7 +265,7 @@ Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim'     "<C-y>,
 Plug 'dense-analysis/ale'
 Plug 'OmniSharp/omnisharp-vim'
-Plug 'xavierd/clang_complete'
+"Plug 'xavierd/clang_complete'
 Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 Plug 'mbbill/undotree'
@@ -266,7 +277,7 @@ Plug 'brooth/far.vim'                   " :Far
 Plug 'rhysd/clever-f.vim'               "fsfff
 "Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'pechorin/any-jump.vim'  " <leader>j
+Plug 'pechorin/any-jump.vim'  " <M-j>
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -281,6 +292,7 @@ Plug 'junegunn/goyo.vim' " distraction free writing mode
 Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'`to change 'word' to `word`
 Plug 'tpope/vim-capslock'               "<C-l> capslock
 Plug 'tpope/vim-speeddating' "<c-a> <c-x>
+Plug 'tpope/vim-repeat'
 Plug 'AndrewRadev/switch.vim' " gs
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line <space>
 Plug 'itchyny/calendar.vim'
@@ -296,6 +308,8 @@ Plug 'romainl/vim-cool' "自动取消高亮
 Plug 'itchyny/vim-cursorword' "下划线
 Plug 'AndrewRadev/splitjoin.vim'   " gS  gJ 单行 多行
 Plug 'KabbAmine/vCoolor.vim'  " 颜色选择
+Plug 'godlygeek/tabular'  " 对齐文本
+"Plug 'dmrasf/vim-recite'
 
 call plug#end()
 
@@ -304,19 +318,8 @@ call plug#end()
 set termguicolors
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 color gruvbox
-
-
-" =====================================
-" =========== crystalline =============
-" =====================================
-"function! TabLine()
-"let l:vimlabel = 'dmr-arch '
-"return crystalline#bufferline(0, 0, 1) . '%=%#CrystallineTab# ' . l:vimlabel
-"endfunction
-"let g:crystalline_enable_sep = 1
-"let g:crystalline_tabline_fn = 'TabLine'
-"let g:crystalline_theme = 'gruvbox'
-"set showtabline = 2
+"let g:seoul256_background = 233
+"colo seoul256
 
 
 " ==================================
@@ -392,20 +395,20 @@ augroup END
 " ====================================
 " =========== vimspector =============
 " ====================================
-let g:vimspector_enable_mappings = 'HUMAN'
-function! s:read_template_into_buffer(template)
-    " has to be a function to avoid the extra space fzf#run insers otherwise
-    execute '0r ~/.config/nvim/sample_vimspector_json/'.a:template
-endfunction
-command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
-            \   'source': 'ls -1 ~/.config/nvim/sample_vimspector_json',
-            \   'down': 20,
-            \   'sink': function('<sid>read_template_into_buffer')
-            \ })
-noremap <leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
-sign define vimspectorBP text=☛ texthl=Normal
-sign define vimspectorBPDisabled text=☞ texthl=Normal
-sign define vimspectorPC text=🔶 texthl=SpellBad
+"let g:vimspector_enable_mappings = 'HUMAN'
+"function! s:read_template_into_buffer(template)
+"" has to be a function to avoid the extra space fzf#run insers otherwise
+"execute '0r ~/.config/nvim/sample_vimspector_json/'.a:template
+"endfunction
+"command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
+            "\   'source': 'ls -1 ~/.config/nvim/sample_vimspector_json',
+            "\   'down': 20,
+            "\   'sink': function('<sid>read_template_into_buffer')
+            "\ })
+"noremap <leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
+"sign define vimspectorBP text=☛ texthl=Normal
+"sign define vimspectorBPDisabled text=☞ texthl=Normal
+"sign define vimspectorPC text=🔶 texthl=SpellBad
 
 
 " ============================
@@ -422,6 +425,13 @@ set regexpengine=1
 noremap <LEADER>f :F
 
 
+" ==================================
+" =========== any-jump =============
+" ==================================
+let g:any_jump_disable_default_keybindings = 1
+nnoremap <M-j> :AnyJump<CR>
+
+
 " ===================================
 " ======== MarkdownPreview ==========
 " ===================================
@@ -429,7 +439,7 @@ let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
-let g:mkdp_open_to_the_world = 0
+let g:mkdp_open_to_the_world = 1
 let g:mkdp_open_ip = ''
 let g:mkdp_brower = 'chromium'
 let g:mkdp_echo_preview_url = 1
@@ -497,6 +507,14 @@ noremap <LEADER>tm :TableModeToggle<CR>
 " ========== vista ===========
 " ============================
 map <silent> T :Vista!!<CR>
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_default_executive = 'ctags'
+let g:vista_fzf_preview = ['right:50%']
+let g:vista#renderer#enable_icon = 1
+let g:vista#renderer#icons = {
+            \   "function": "\uf794",
+            \   "variable": "\uf71b",
+            \  }
 
 
 " ==================================
@@ -524,7 +542,7 @@ omap F <Plug>(clever-f-F)
 " ========== coc ============
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-spell-checker', 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
+let g:coc_global_extention = ['coc-clangd', 'coc-spell-checker', 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
 autocmd FileType python nmap <silent> gd <Plug>(coc-definition)
 autocmd FileType python nmap <silent> gy <Plug>(coc-type-definition)
 autocmd FileType python nmap <silent> gi <Plug>(coc-implementation)
@@ -608,6 +626,9 @@ autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +
 " =========== asynctasks =============
 " ====================================
 let g:asyncrun_open = 6
+let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
+noremap <silent><f1> :AsyncTask file-run<cr>
+noremap <silent><f2> :AsyncTask file-build<cr>
 
 
 " ===============================
@@ -620,8 +641,8 @@ let g:ctrlp_cmd = 'CtrlP'
 " ========================================
 " =========== clang_complete =============
 " ========================================
-let g:clang_library_path='/usr/lib64/libclang.so.10'
-let g:clang_close_preview = 1
+"let g:clang_library_path='/usr/lib64/libclang.so.10'
+"let g:clang_close_preview = 1
 
 
 " ==========================================
@@ -647,7 +668,7 @@ let g:VM_maps['I'] = 'H'
 " ===========================
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
-let g:user_emmet_leader_key='<C-m>'
+let g:user_emmet_leader_key='<C-y>'
 
 
 " ==================================
@@ -665,6 +686,15 @@ let g:bullets_enabled_file_types = [
 " =========== rainbow =============
 " =================================
 let g:rainbow_active = 1
+
+
+" ================================
+" =========== recite =============
+" ================================
+let g:recite_default_storage = "/home/dmr/Documents/Notes/recite"
+let g:recite_disable_default_keybindings = 1
+nnoremap <m-e> :RecitePre<CR>
+nnoremap <c-p> :ReciteOpen<CR>
 
 
 " end
