@@ -5,10 +5,16 @@
 " |_|  |_| |_|   |_| \_|  \_/  |___|_|  |_|_| \_\\____|
 "
 set rtp+=~/Desktop/vim-recite
+
+
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+    silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 let mapleader=" "
 
 syntax on
-
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
@@ -176,7 +182,8 @@ endif
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-noremap <LEADER>v :edit ~/.config/nvim/init.vim<CR>
+noremap <LEADER>v :tabe ~/.config/nvim/init.vim<CR>
+inoremap <C-z> <ESC>u
 
 map <LEADER>r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
@@ -265,7 +272,6 @@ Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim'     "<C-y>,
 Plug 'dense-analysis/ale'
 Plug 'OmniSharp/omnisharp-vim'
-"Plug 'xavierd/clang_complete'
 Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 Plug 'mbbill/undotree'
@@ -275,9 +281,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'brooth/far.vim'                   " :Far
 Plug 'rhysd/clever-f.vim'               "fsfff
-"Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'pechorin/any-jump.vim'  " <M-j>
+Plug 'easymotion/vim-easymotion'
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -529,20 +535,21 @@ xmap F <Plug>(clever-f-F)
 omap F <Plug>(clever-f-F)
 
 
-" ==================================
-" =========== aerojump =============
-" ==================================
-"nmap <Leader>as <Plug>(AerojumpSpace)
-"nmap <Leader>ab <Plug>(AerojumpBolt)
-"nmap <Leader>aa <Plug>(AerojumpFromCursorBolt)
-"nmap <Leader>ad <Plug>(AerojumpDefault)
+" ====================================
+" =========== easymotion =============
+" ====================================
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_do_shade = 0
+let g:EasyMotion_smartcase = 1
+map '' <Plug>(easymotion-bd-c)
+nmap '' <Plug>(easymotion-bd-c)
 
 
 " ===========================
 " ========== coc ============
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-clangd', 'coc-spell-checker', 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
+let g:coc_global_extention = ['coc-marketplace', 'coc-clangd', 'coc-spell-checker', 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
 autocmd FileType python nmap <silent> gd <Plug>(coc-definition)
 autocmd FileType python nmap <silent> gy <Plug>(coc-type-definition)
 autocmd FileType python nmap <silent> gi <Plug>(coc-implementation)
@@ -636,13 +643,6 @@ noremap <silent><f2> :AsyncTask file-build<cr>
 " ===============================
 let g:ctrlp_map = ''
 let g:ctrlp_cmd = 'CtrlP'
-
-
-" ========================================
-" =========== clang_complete =============
-" ========================================
-"let g:clang_library_path='/usr/lib64/libclang.so.10'
-"let g:clang_close_preview = 1
 
 
 " ==========================================
