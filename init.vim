@@ -6,7 +6,6 @@
 "
 set rtp+=~/Desktop/vim-recite
 
-
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -43,11 +42,11 @@ set listchars=trail:▫
 set fillchars=vert:\║
 
 " zf 创建  zc 折叠  zo 打开  [z  ]z   zj  zk 在折叠间移动
-"set foldlevel=99
-set foldmethod=manual
+set foldmethod=indent
+set foldlevel=99
 set foldenable
-"au BufWinLeave * silent mkview
-"au BufWinEnter * silent loadview
+au BufWinLeave * silent! mkview
+au BufWinEnter * silent! loadview
 
 noremap <LEADER><CR> :nohlsearch<CR>
 
@@ -106,7 +105,7 @@ inoremap <C-o> <Esc>o
 inoremap <C-a> <Esc>A
 inoremap <C-h> <Esc>I
 
-noremap <esc> :ccl<CR>
+"noremap <esc> :ccl<CR>
 noremap tx :r !figlet
 
 map <up> :res -1<CR>
@@ -226,7 +225,7 @@ func! CompileRunGcc()
         :sp
         :term node %
     elseif &filetype == 'html'
-        silent! exec "!chromium % &"
+        silent! exec "!firefox-developer-edition % &"
     elseif &filetype == 'markdown'
         exec "MarkdownPreview"
     elseif &filetype == 'go'
@@ -273,6 +272,8 @@ Plug 'mattn/emmet-vim'     "<C-y>,
 Plug 'dense-analysis/ale'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 Plug 'mbbill/undotree'
 
@@ -315,6 +316,7 @@ Plug 'itchyny/vim-cursorword' "下划线
 Plug 'AndrewRadev/splitjoin.vim'   " gS  gJ 单行 多行
 Plug 'KabbAmine/vCoolor.vim'  " 颜色选择
 Plug 'godlygeek/tabular'  " 对齐文本
+Plug 'skywind3000/vim-terminal-help'
 "Plug 'dmrasf/vim-recite'
 
 call plug#end()
@@ -616,6 +618,13 @@ nnoremap ]g :GitGutterNextHunk<CR>
 noremap \g :Git
 
 
+" ===========================================
+" =========== vim-terminal-help =============
+" ===========================================
+let g:terminal_key = '=='
+
+
+
 " ===================================
 " =========== omnisharp =============
 " ===================================
@@ -668,7 +677,7 @@ let g:VM_maps['I'] = 'H'
 " ===========================
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
-let g:user_emmet_leader_key='<C-y>'
+let g:user_emmet_leader_key='<M-m>'
 
 
 " ==================================
