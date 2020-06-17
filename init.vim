@@ -38,7 +38,7 @@ set updatetime=1000
 set vb t_vb=
 set ttyfast
 set list
-set listchars=trail:▫
+set listchars=tab:\ \ ,trail:▫
 set fillchars=vert:\║
 
 " zf 创建  zc 折叠  zo 打开  [z  ]z   zj  zk 在折叠间移动
@@ -276,6 +276,7 @@ Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 Plug 'mbbill/undotree'
+"Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
 
 " 查找文件
 Plug 'junegunn/fzf.vim'
@@ -317,6 +318,7 @@ Plug 'AndrewRadev/splitjoin.vim'   " gS  gJ 单行 多行
 Plug 'KabbAmine/vCoolor.vim'  " 颜色选择
 Plug 'godlygeek/tabular'  " 对齐文本
 Plug 'skywind3000/vim-terminal-help'
+Plug 'chrisbra/NrrwRgn'
 "Plug 'dmrasf/vim-recite'
 
 call plug#end()
@@ -398,6 +400,38 @@ augroup calendar-mappings
     "autocmd FileType calendar nunmap <buffer> <C-n>
     "autocmd FileType calendar nunmap <buffer> <C-p>
 augroup END
+
+
+" ================================
+" =========== vim-go =============
+" ================================
+"let g:go_echo_go_info = 0
+"let g:go_doc_popup_window = 1
+"let g:go_def_mapping_enabled = 0
+"let g:go_template_autocreate = 0
+"let g:go_textobj_enabled = 0
+"let g:go_auto_type_info = 1
+"let g:go_def_mapping_enabled = 0
+"let g:go_highlight_array_whitespace_error = 1
+"let g:go_highlight_build_constraints = 1
+"let g:go_highlight_chan_whitespace_error = 1
+"let g:go_highlight_extra_types = 1
+"let g:go_highlight_fields = 1
+"let g:go_highlight_format_strings = 1
+"let g:go_highlight_function_calls = 1
+"let g:go_highlight_function_parameters = 1
+"let g:go_highlight_functions = 1
+"let g:go_highlight_generate_tags = 1
+"let g:go_highlight_methods = 1
+"let g:go_highlight_operators = 1
+"let g:go_highlight_space_tab_error = 1
+"let g:go_highlight_string_spellcheck = 1
+"let g:go_highlight_structs = 1
+"let g:go_highlight_trailing_whitespace_error = 1
+"let g:go_highlight_types = 1
+"let g:go_highlight_variable_assignments = 0
+"let g:go_highlight_variable_declarations = 0
+"let g:go_doc_keywordprg_enabled = 0
 
 
 " ====================================
@@ -485,6 +519,7 @@ map ud :UndotreeToggle<CR><LEADER>j<LEADER>i
 " =======================================
 let g:bookmark_sign = ''
 let g:bookmark_annotation_sign = ''
+let g:bookmark_auto_save_file = $HOME . '/.local/share/nvim/.vim-bookmarks'
 
 
 " ================================
@@ -551,7 +586,7 @@ nmap '' <Plug>(easymotion-bd-c)
 " ========== coc ============
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-marketplace', 'coc-clangd', 'coc-spell-checker', 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
+let g:coc_global_extention = ['coc-svg', 'coc-marketplace', 'coc-clangd', 'coc-spell-checker', 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
 autocmd FileType python nmap <silent> gd <Plug>(coc-definition)
 autocmd FileType python nmap <silent> gy <Plug>(coc-type-definition)
 autocmd FileType python nmap <silent> gi <Plug>(coc-implementation)
@@ -676,7 +711,7 @@ let g:VM_maps['I'] = 'H'
 " ======== emmet ==========
 " ===========================
 let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+autocmd FileType html,css,js EmmetInstall
 let g:user_emmet_leader_key='<M-m>'
 
 
