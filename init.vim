@@ -38,7 +38,7 @@ set updatetime=1000
 set vb t_vb=
 set ttyfast
 set list
-set listchars=tab:\ \ ,trail:▫
+set listchars=tab:\|\ ,trail:▫
 set fillchars=vert:\║
 
 " zf 创建  zc 折叠  zo 打开  [z  ]z   zj  zk 在折叠间移动
@@ -49,6 +49,7 @@ au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 
 noremap <LEADER><CR> :nohlsearch<CR>
+noremap <ESC> :ccl<CR>
 
 noremap i k
 noremap j h
@@ -231,7 +232,7 @@ func! CompileRunGcc()
     elseif &filetype == 'go'
         set splitbelow
         :sp
-        :term go run %
+        :term go run .
     elseif &filetype == 'tex'
         silent! exec "VimtexStop"
         silent! exec "VimtexCompile"
@@ -257,7 +258,7 @@ Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
 Plug 'jpo/vim-railscasts-theme'
 Plug 'ryanoasis/vim-devicons'
-Plug 'nathanaelkane/vim-indent-guides'
+"Plug 'nathanaelkane/vim-indent-guides'
 "Plug 'Konfekt/FastFold'
 Plug 'Chiel92/vim-autoformat'
 
@@ -276,7 +277,7 @@ Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 Plug 'mbbill/undotree'
-"Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
+Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
 
 " 查找文件
 Plug 'junegunn/fzf.vim'
@@ -295,11 +296,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
-Plug 'yianwillis/vimcdoc' " 中文文档
-Plug 'junegunn/goyo.vim' " distraction free writing mode
-Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'`to change 'word' to `word`
-Plug 'tpope/vim-capslock'               "<C-l> capslock
-Plug 'tpope/vim-speeddating' "<c-a> <c-x>
+Plug 'yianwillis/vimcdoc'    " 中文文档
+Plug 'junegunn/goyo.vim'     " distraction free writing mode
+Plug 'tpope/vim-surround'    " type cs'`to change 'word' to `word`
+Plug 'tpope/vim-capslock'    " <C-l> capslock
+Plug 'tpope/vim-speeddating' " <c-a> <c-x>
 Plug 'tpope/vim-repeat'
 Plug 'AndrewRadev/switch.vim' " gs
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line <space>
@@ -312,13 +313,13 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'vimwiki/vimwiki'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'junegunn/vim-peekaboo'
-Plug 'romainl/vim-cool' "自动取消高亮
-Plug 'itchyny/vim-cursorword' "下划线
-Plug 'AndrewRadev/splitjoin.vim'   " gS  gJ 单行 多行
-Plug 'KabbAmine/vCoolor.vim'  " 颜色选择
-Plug 'godlygeek/tabular'  " 对齐文本
-Plug 'skywind3000/vim-terminal-help'
-Plug 'chrisbra/NrrwRgn'
+Plug 'romainl/vim-cool'              " 自动取消高亮
+Plug 'itchyny/vim-cursorword'        " 下划线
+Plug 'AndrewRadev/splitjoin.vim'     " gS  gJ 单行 多行
+Plug 'KabbAmine/vCoolor.vim'         " 颜色选择
+Plug 'godlygeek/tabular'             " 对齐文本
+Plug 'skywind3000/vim-terminal-help' " 快速打开terminal
+Plug 'chrisbra/NrrwRgn'              " 产生非干扰区
 "Plug 'dmrasf/vim-recite'
 
 call plug#end()
@@ -354,12 +355,12 @@ let g:airline#extensions#whitespace#enabled = 0
 
 " ===========================================
 " =========== vim-indent-guides =============
-" == =========================================
-let g:indent_guides_default_mapping = 0
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-nmap <silent> <Leader>t <Plug>IndentGuidesToggle
+" ===========================================
+"let g:indent_guides_default_mapping = 0
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_start_level = 2
+"let g:indent_guides_guide_size = 1
+"nmap <silent> <Leader>t <Plug>IndentGuidesToggle
 
 
 " ==================================
@@ -405,33 +406,37 @@ augroup END
 " ================================
 " =========== vim-go =============
 " ================================
-"let g:go_echo_go_info = 0
-"let g:go_doc_popup_window = 1
-"let g:go_def_mapping_enabled = 0
-"let g:go_template_autocreate = 0
-"let g:go_textobj_enabled = 0
-"let g:go_auto_type_info = 1
-"let g:go_def_mapping_enabled = 0
-"let g:go_highlight_array_whitespace_error = 1
-"let g:go_highlight_build_constraints = 1
-"let g:go_highlight_chan_whitespace_error = 1
-"let g:go_highlight_extra_types = 1
-"let g:go_highlight_fields = 1
-"let g:go_highlight_format_strings = 1
-"let g:go_highlight_function_calls = 1
-"let g:go_highlight_function_parameters = 1
-"let g:go_highlight_functions = 1
-"let g:go_highlight_generate_tags = 1
-"let g:go_highlight_methods = 1
-"let g:go_highlight_operators = 1
-"let g:go_highlight_space_tab_error = 1
-"let g:go_highlight_string_spellcheck = 1
-"let g:go_highlight_structs = 1
-"let g:go_highlight_trailing_whitespace_error = 1
-"let g:go_highlight_types = 1
-"let g:go_highlight_variable_assignments = 0
-"let g:go_highlight_variable_declarations = 0
-"let g:go_doc_keywordprg_enabled = 0
+let g:go_echo_go_info = 0
+let g:go_doc_keywordprg_enabled = 0
+let g:go_doc_popup_window = 1
+let g:go_def_mapping_enabled = 0
+let g:go_template_autocreate = 0
+let g:go_textobj_enabled = 0
+let g:go_auto_type_info = 1
+let g:go_def_mapping_enabled = 0
+let g:go_list_type = "quickfix"
+let g:go_highlight_array_whitespace_error = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_chan_whitespace_error = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_string_spellcheck = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_trailing_whitespace_error = 1
+let g:go_highlight_types = 1
+let g:go_highlight_variable_assignments = 0
+let g:go_highlight_variable_declarations = 0
+au FileType go nmap gd <Plug>(go-def)
+au FileType go nmap gr <Plug>(go-referrers)
+au FileType go nmap M <Plug>(go-doc)
 
 
 " ====================================
@@ -511,7 +516,19 @@ let g:vimwiki_list = [{'path': '~/Documents/Notes/',
 " ===========================
 " ======== undotree =========
 " ===========================
-map ud :UndotreeToggle<CR><LEADER>j<LEADER>i
+noremap L :UndotreeToggle<CR>
+let g:undotree_DiffAutoOpen = 1
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_ShortIndicators = 1
+let g:undotree_WindowLayout = 2
+let g:undotree_DiffpanelHeight = 8
+let g:undotree_SplitWidth = 24
+function g:Undotree_CustomMap()
+	nmap <buffer> i <plug>UndotreeNextState
+	nmap <buffer> k <plug>UndotreePreviousState
+	nmap <buffer> I 5<plug>UndotreeNextState
+	nmap <buffer> K 5<plug>UndotreePreviousState
+endfunc
 
 
 " =======================================
@@ -586,7 +603,7 @@ nmap '' <Plug>(easymotion-bd-c)
 " ========== coc ============
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-svg', 'coc-marketplace', 'coc-clangd', 'coc-spell-checker', 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
+let g:coc_global_extention = ['coc-go', 'coc-svg', 'coc-marketplace', 'coc-clangd', 'coc-spell-checker', 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
 autocmd FileType python nmap <silent> gd <Plug>(coc-definition)
 autocmd FileType python nmap <silent> gy <Plug>(coc-type-definition)
 autocmd FileType python nmap <silent> gi <Plug>(coc-implementation)
@@ -596,7 +613,7 @@ nnoremap <C-l> :CocList<CR>
 " coc-python
 nmap <leader>rn <Plug>(coc-rename)
 " coc-explorer
-nmap ne :CocCommand explorer<CR>
+nmap tt :CocCommand explorer<CR>
 " coc-translator
 nmap tr <Plug>(coc-translator-p)
 " coc-snippets
@@ -625,13 +642,12 @@ nmap <silent> b <Plug>(coc-ci-b)
 " ===========================
 " ========== ale ============
 " ===========================
-let g:ale_linters = {
-            \}
-            "\   'javascript': ['eslint'],
-            "\   'python': ['eslint'],
-            "\   'c': ['eslint'],
-            "\   'c++': ['eslint'],
-            "\   'asm': ['eslint'],
+let g:ale_linters = { 'go': ['eslint'], }
+"   'javascript': ['eslint'],
+"   'python': ['eslint'],
+"   'c': ['eslint'],
+"   'c++': ['eslint'],
+"   'asm': ['eslint'],
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 nmap <silent> <C-j> <Plug>(ale_previous_wrap)
