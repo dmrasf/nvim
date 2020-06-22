@@ -64,22 +64,9 @@
     "coc-actions.hideCursor": true,
     "coc-actions.showActionKind": true,
     "coc-actions.useCursorLine": false,
-    "cSpell.showStatus": false,
-    "cSpell.allowCompoundWords": false,
-    "cSpell.enabledLanguageIds": [
-        "csharp",
-        "markdown",
-        "c",
-        "txt",
-        "python",
-        "yml"
-    ],
-    "cSpell.userWords": [
-        "Crossfit",
-        "Grindr",
-        "Instagrams",
-        "Snapchats",
-        "dmenu"
+    "snippets.ultisnips.directories": [
+        "$HOME/.config/nvim/Ultisnips/",
+        "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
     ],
     "clangd.semanticHighlighting": true
 }

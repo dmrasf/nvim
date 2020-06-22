@@ -1,0 +1,14 @@
+snippet cc "vim注释" b
+" ==================================
+" =========== ${1:New plug} =============
+" ==================================
+${0}
+endsnippet
+
+snippet fs "script local function" b
+" $1: 
+function!s:${1:function_name}(${2}) abort "{{{
+	${3:" code}
+endfunction "}}}
+endsnippet
+

@@ -604,7 +604,7 @@ nmap '' <Plug>(easymotion-bd-c)
 " ========== coc ============
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-go', 'coc-svg', 'coc-marketplace', 'coc-clangd', 'coc-spell-checker', 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
+let g:coc_global_extention = ['coc-go', 'coc-svg', 'coc-marketplace', 'coc-clangd', 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
 autocmd FileType python nmap <silent> gd <Plug>(coc-definition)
 autocmd FileType python nmap <silent> gy <Plug>(coc-type-definition)
 autocmd FileType python nmap <silent> gi <Plug>(coc-implementation)
