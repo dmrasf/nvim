@@ -291,6 +291,7 @@ Plug 'easymotion/vim-easymotion'
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'rhysd/git-messenger.vim'
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
@@ -669,6 +670,13 @@ nnoremap ]g :GitGutterNextHunk<CR>
 noremap \g :Git
 
 
+" =====================================
+" =========== git-message =============
+" =====================================
+let g:git_messenger_no_default_mappings = v:true
+nmap gm <Plug>(git-messenger)
+
+
 " ===========================================
 " =========== vim-terminal-help =============
 " ===========================================
@@ -735,7 +743,6 @@ let g:user_emmet_leader_key='<M-m>'
 " =========== bullets  =============
 " ==================================
 let g:bullets_enabled_file_types = [
-            \ 'markdown',
             \ 'text',
             \ 'gitcommit',
             \ 'scratch'
