@@ -256,6 +256,9 @@ Plug 'connorholyday/vim-snazzy'
 Plug 'ajmwagar/vim-deus'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/goyo.vim'     " distraction free writing mode
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/vim-emoji'
 Plug 'jpo/vim-railscasts-theme'
 Plug 'ryanoasis/vim-devicons'
 "Plug 'nathanaelkane/vim-indent-guides'
@@ -298,7 +301,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
 Plug 'yianwillis/vimcdoc'    " 中文文档
-Plug 'junegunn/goyo.vim'     " distraction free writing mode
 Plug 'tpope/vim-surround'    " type cs'`to change 'word' to `word`
 Plug 'tpope/vim-capslock'    " <C-l> capslock
 Plug 'tpope/vim-speeddating' " <c-a> <c-x>
@@ -459,10 +461,17 @@ au FileType go nmap M <Plug>(go-doc)
 "sign define vimspectorPC text=🔶 texthl=SpellBad
 
 
-" ============================
-" ======== 全屏显示 ==========
-" ============================
+" ========================
+" ======== goyo ==========
+" ========================
 map <LEADER>gy :Goyo<CR>
+
+
+" ===================================
+" =========== limelight =============
+" ===================================
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 
 
 " =======================
@@ -525,10 +534,10 @@ let g:undotree_WindowLayout = 2
 let g:undotree_DiffpanelHeight = 8
 let g:undotree_SplitWidth = 24
 function g:Undotree_CustomMap()
-	nmap <buffer> i <plug>UndotreeNextState
-	nmap <buffer> k <plug>UndotreePreviousState
-	nmap <buffer> I 5<plug>UndotreeNextState
-	nmap <buffer> K 5<plug>UndotreePreviousState
+    nmap <buffer> i <plug>UndotreeNextState
+    nmap <buffer> k <plug>UndotreePreviousState
+    nmap <buffer> I 5<plug>UndotreeNextState
+    nmap <buffer> K 5<plug>UndotreePreviousState
 endfunc
 
 
@@ -662,6 +671,12 @@ nnoremap gf :GitGutterFold<CR>
 nnoremap gh :GitGutterPreviewHunk<CR>
 nnoremap [g :GitGutterPrevHunk<CR>
 nnoremap ]g :GitGutterNextHunk<CR>
+if emoji#available()
+    let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+    let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+    let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+    let g:gitgutter_sign_modified_removed = emoji#for('collision')
+endif
 
 
 " ==================================
