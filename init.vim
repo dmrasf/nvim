@@ -38,8 +38,8 @@ set updatetime=1000
 set vb t_vb=
 set ttyfast
 set list
-set listchars=tab:\|\ ,trail:▫
-set fillchars=vert:\║
+set listchars=tab:\█\ ,trail:▫
+set fillchars=vert:\│
 
 " zf 创建  zc 折叠  zo 打开  [z  ]z   zj  zk 在折叠间移动
 set foldmethod=indent
@@ -323,6 +323,7 @@ Plug 'KabbAmine/vCoolor.vim'         " 颜色选择
 Plug 'godlygeek/tabular'             " 对齐文本
 Plug 'skywind3000/vim-terminal-help' " 快速打开terminal
 Plug 'chrisbra/NrrwRgn'              " 产生非干扰区
+Plug 'chrisbra/unicode.vim'
 "Plug 'dmrasf/vim-recite'
 
 call plug#end()
