@@ -38,7 +38,7 @@ set updatetime=1000
 set vb t_vb=
 set ttyfast
 set list
-set listchars=tab:\█\ ,trail:▫
+set listchars=tab:\│\ ,trail:▫
 set fillchars=vert:\│
 
 " zf 创建  zc 折叠  zo 打开  [z  ]z   zj  zk 在折叠间移动
@@ -258,7 +258,6 @@ Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'     " distraction free writing mode
 Plug 'junegunn/limelight.vim'
-Plug 'junegunn/vim-emoji'
 Plug 'jpo/vim-railscasts-theme'
 Plug 'ryanoasis/vim-devicons'
 "Plug 'nathanaelkane/vim-indent-guides'
@@ -280,7 +279,8 @@ Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 Plug 'mbbill/undotree'
-Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
+Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries', 'for': ['go', 'vim-plug'], 'tag': '*' }
+Plug 'posva/vim-vue'   " syntax highlighting for Vue components.
 
 " 查找文件
 Plug 'junegunn/fzf.vim'
@@ -603,26 +603,30 @@ omap F <Plug>(clever-f-F)
 " ====================================
 " =========== easymotion =============
 " ====================================
-let g:EasyMotion_do_mapping = 0
+"let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_do_shade = 0
-let g:EasyMotion_smartcase = 1
-map '' <Plug>(easymotion-bd-c)
-nmap '' <Plug>(easymotion-bd-c)
+"let g:EasyMotion_smartcase = 1
+map ' <Plug>(easymotion-prefix)
 
 
 " ===========================
 " ========== coc ============
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-let g:coc_global_extention = ['coc-go', 'coc-svg', 'coc-marketplace', 'coc-clangd', 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver', 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore', 'coc-todolist', 'coc-actions']
-autocmd FileType python nmap <silent> gd <Plug>(coc-definition)
-autocmd FileType python nmap <silent> gy <Plug>(coc-type-definition)
-autocmd FileType python nmap <silent> gi <Plug>(coc-implementation)
-autocmd FileType python nmap <silent> gr <Plug>(coc-references)
+let g:coc_global_extention = [
+            \ 'coc-sh', 'coc-go', 'coc-svg', 'coc-marketplace', 'coc-clangd',
+            \ 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver',
+            \ 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python', 
+            \ 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists',
+            \ 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore',
+            \ 'coc-todolist', 'coc-actions', 'coc-vetur']
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
 nnoremap <C-c> :CocCommand<CR>
 nnoremap <C-l> :CocList<CR>
-" coc-python
-nmap <leader>rn <Plug>(coc-rename)
 " coc-explorer
 nmap tt :CocCommand explorer<CR>
 " coc-translator
@@ -672,12 +676,6 @@ nnoremap gf :GitGutterFold<CR>
 nnoremap gh :GitGutterPreviewHunk<CR>
 nnoremap [g :GitGutterPrevHunk<CR>
 nnoremap ]g :GitGutterNextHunk<CR>
-if emoji#available()
-    let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
-    let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
-    let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
-    let g:gitgutter_sign_modified_removed = emoji#for('collision')
-endif
 
 
 " ==================================
@@ -753,6 +751,12 @@ let g:VM_maps['I'] = 'H'
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,js EmmetInstall
 let g:user_emmet_leader_key='<M-m>'
+
+
+" =================================
+" =========== vim-vue =============
+" =================================
+let g:vue_pre_processors = []
 
 
 " ==================================
