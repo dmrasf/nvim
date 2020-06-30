@@ -241,63 +241,62 @@ endfunc
 
 call plug#begin('~/.config/nvim/plugged')
 
-" look
-Plug 'mg979/vim-xtabline'
-"Plug 'liuchengxu/eleline.vim'
-Plug 'bling/vim-bufferline'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-"Plug 'hardcoreplayers/spaceline.vim'
-Plug 'wincent/terminus'
-Plug 'luochen1990/rainbow'
-Plug 'connorholyday/vim-snazzy'
-Plug 'ajmwagar/vim-deus'
-Plug 'morhetz/gruvbox'
-Plug 'junegunn/seoul256.vim'
-Plug 'junegunn/goyo.vim'     " distraction free writing mode
-Plug 'junegunn/limelight.vim'
-Plug 'jpo/vim-railscasts-theme'
-Plug 'ryanoasis/vim-devicons'
-"Plug 'nathanaelkane/vim-indent-guides'
-"Plug 'Konfekt/FastFold'
-Plug 'Chiel92/vim-autoformat'
+" dress
+Plug 'mg979/vim-xtabline'             " xtabline
+Plug 'bling/vim-bufferline'           " bufferline
+Plug 'vim-airline/vim-airline'        " airline
+Plug 'vim-airline/vim-airline-themes' " airline theme
+Plug 'wincent/terminus'               " colorstheme
+Plug 'luochen1990/rainbow'            " rainbow 括号
+Plug 'connorholyday/vim-snazzy'       " colorstheme
+Plug 'ajmwagar/vim-deus'              " colorstheme
+Plug 'morhetz/gruvbox'                " colorstheme
+Plug 'junegunn/seoul256.vim'          " colorstheme
+Plug 'jpo/vim-railscasts-theme'       " colorstheme
+Plug 'junegunn/goyo.vim'              " distraction free writing mode
+Plug 'junegunn/limelight.vim'         " focus
+Plug 'ryanoasis/vim-devicons'         " nerdfont devicons
+Plug 'Chiel92/vim-autoformat'         " autoformat \f
+Plug 'godlygeek/tabular'              " 对齐文本
+Plug 'romainl/vim-cool'               " 自动取消高亮
+Plug 'itchyny/vim-cursorword'         " 下划线
+" Plug 'Konfekt/FastFold'
 
-"for coc-clangd
-Plug 'jackguo380/vim-lsp-cxx-highlight'
-"Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python'}
-Plug 'skywind3000/asynctasks.vim'
-Plug 'skywind3000/asyncrun.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'honza/vim-snippets'
-Plug 'mattn/emmet-vim'     "<C-y>,
-Plug 'dense-analysis/ale'
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
-Plug 'mbbill/undotree'
-Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries', 'for': ['go', 'vim-plug'], 'tag': '*' }
-Plug 'posva/vim-vue'   " syntax highlighting for Vue components.
+" highlight and complete
+Plug 'jackguo380/vim-lsp-cxx-highlight'         " for coc-clangd
+Plug 'posva/vim-vue'                            " syntax highlighting for Vue components.
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " coc
+Plug 'honza/vim-snippets'                       " 代码片段集合
+Plug 'mattn/emmet-vim'                          " <M-m>,  html
+Plug 'dense-analysis/ale'                       " error
+Plug 'OmniSharp/omnisharp-vim'                  " c#
+Plug 'maxmellon/vim-jsx-pretty'                 " jsx highlight
+Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] } " javascript highlight
+Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }      " javascript highlight
+Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }                  " python highlight
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': ['go', 'vim-plug'], 'tag': '*' }                " go very powerful
 
 " 查找文件
-Plug 'junegunn/fzf.vim'
-Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
-Plug 'brooth/far.vim'                   " :Far
-Plug 'rhysd/clever-f.vim'               "fsfff
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'pechorin/any-jump.vim'  " <M-j>
-Plug 'easymotion/vim-easymotion'
+Plug 'junegunn/fzf.vim'                         " fzf
+Plug 'kevinhwang91/rnvimr', {'do': 'make sync'} " ranger
+Plug 'brooth/far.vim'                           " :Far
+Plug 'rhysd/clever-f.vim'                       " fsfff
+Plug 'ctrlpvim/ctrlp.vim'                       " cmd CtrlP
+Plug 'pechorin/any-jump.vim'                    " <M-j>
+Plug 'easymotion/vim-easymotion'                " '+w
 
 " git
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'rhysd/git-messenger.vim'
+Plug 'tpope/vim-fugitive'      " git 命令
+Plug 'airblade/vim-gitgutter'  " show git
+Plug 'rhysd/git-messenger.vim' " git message
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
+" some tool
+Plug 'mbbill/undotree'
+Plug 'liuchengxu/vista.vim'
 Plug 'yianwillis/vimcdoc'    " 中文文档
 Plug 'tpope/vim-surround'    " type cs'`to change 'word' to `word`
 Plug 'tpope/vim-capslock'    " <C-l> capslock
@@ -306,7 +305,6 @@ Plug 'tpope/vim-repeat'
 Plug 'AndrewRadev/switch.vim' " gs
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line <space>
 Plug 'itchyny/calendar.vim'
-Plug 'liuchengxu/vista.vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'mhinz/vim-startify'
 Plug 'dkarter/bullets.vim'              "<C-t> <C-d>
@@ -314,13 +312,12 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'vimwiki/vimwiki'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'junegunn/vim-peekaboo'
-Plug 'romainl/vim-cool'              " 自动取消高亮
-Plug 'itchyny/vim-cursorword'        " 下划线
 Plug 'AndrewRadev/splitjoin.vim'     " gS  gJ 单行 多行
 Plug 'KabbAmine/vCoolor.vim'         " 颜色选择
-Plug 'godlygeek/tabular'             " 对齐文本
 Plug 'skywind3000/vim-terminal-help' " 快速打开terminal
 Plug 'chrisbra/NrrwRgn'              " 产生非干扰区
+Plug 'skywind3000/asynctasks.vim'
+Plug 'skywind3000/asyncrun.vim'
 Plug 'chrisbra/unicode.vim'
 "Plug 'dmrasf/vim-recite'
 
@@ -439,25 +436,6 @@ let g:go_highlight_variable_declarations = 0
 au FileType go nmap gd <Plug>(go-def)
 au FileType go nmap gr <Plug>(go-referrers)
 au FileType go nmap M <Plug>(go-doc)
-
-
-" ====================================
-" =========== vimspector =============
-" ====================================
-"let g:vimspector_enable_mappings = 'HUMAN'
-"function! s:read_template_into_buffer(template)
-"" has to be a function to avoid the extra space fzf#run insers otherwise
-"execute '0r ~/.config/nvim/sample_vimspector_json/'.a:template
-"endfunction
-"command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
-      "\   'source': 'ls -1 ~/.config/nvim/sample_vimspector_json',
-      "\   'down': 20,
-      "\   'sink': function('<sid>read_template_into_buffer')
-      "\ })
-"noremap <leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
-"sign define vimspectorBP text=☛ texthl=Normal
-"sign define vimspectorBPDisabled text=☞ texthl=Normal
-"sign define vimspectorPC text=🔶 texthl=SpellBad
 
 
 " ========================
