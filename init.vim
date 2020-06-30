@@ -247,12 +247,12 @@ Plug 'bling/vim-bufferline'           " bufferline
 Plug 'vim-airline/vim-airline'        " airline
 Plug 'vim-airline/vim-airline-themes' " airline theme
 Plug 'wincent/terminus'               " colorstheme
-Plug 'luochen1990/rainbow'            " rainbow 括号
 Plug 'connorholyday/vim-snazzy'       " colorstheme
 Plug 'ajmwagar/vim-deus'              " colorstheme
 Plug 'morhetz/gruvbox'                " colorstheme
 Plug 'junegunn/seoul256.vim'          " colorstheme
 Plug 'jpo/vim-railscasts-theme'       " colorstheme
+Plug 'luochen1990/rainbow'            " rainbow 括号
 Plug 'junegunn/goyo.vim'              " distraction free writing mode
 Plug 'junegunn/limelight.vim'         " focus
 Plug 'ryanoasis/vim-devicons'         " nerdfont devicons
@@ -260,7 +260,6 @@ Plug 'Chiel92/vim-autoformat'         " autoformat \f
 Plug 'godlygeek/tabular'              " 对齐文本
 Plug 'romainl/vim-cool'               " 自动取消高亮
 Plug 'itchyny/vim-cursorword'         " 下划线
-" Plug 'Konfekt/FastFold'
 
 " highlight and complete
 Plug 'jackguo380/vim-lsp-cxx-highlight'         " for coc-clangd
@@ -319,17 +318,18 @@ Plug 'chrisbra/NrrwRgn'              " 产生非干扰区
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'chrisbra/unicode.vim'
+"Plug 'Konfekt/FastFold'
 "Plug 'dmrasf/vim-recite'
 
 call plug#end()
 
 
+" ------------------------------- dress begin ----------------------------------
+
 " enable true colors support
 set termguicolors
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 color gruvbox
-"let g:seoul256_background = 233
-"colo seoul256
 
 
 " ==================================
@@ -352,90 +352,10 @@ let g:airline_theme='base16_gruvbox_dark_hard'
 let g:airline#extensions#whitespace#enabled = 0
 
 
-" ===========================================
-" =========== vim-indent-guides =============
-" ===========================================
-"let g:indent_guides_default_mapping = 0
-"let g:indent_guides_enable_on_vim_startup = 1
-"let g:indent_guides_start_level = 2
-"let g:indent_guides_guide_size = 1
-"nmap <silent> <Leader>t <Plug>IndentGuidesToggle
-
-
-" ==================================
-" =========== FastFold =============
-" ==================================
-nmap zuz <Plug>(FastFoldUpdate)
-let g:fastfold_savehook = 1
-let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
-let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
-
-
-" ====================================
-" =========== autoformat =============
-" ====================================
-noremap \f :Autoformat<CR>
-
-
-" ======================================
-" =========== vim-calendar =============
-" ======================================
-"noremap \c :Calendar -position=here<CR>
-noremap \\ :Calendar -view=clock -position=here<CR>
-"let g:calendar_google_calendar = 1
-"let g:calendar_google_task = 1
-augroup calendar-mappings
-  autocmd!
-  " diamond cursor
-  autocmd FileType calendar nmap <buffer> i <Plug>(calendar_up)
-  autocmd FileType calendar nmap <buffer> j <Plug>(calendar_left)
-  autocmd FileType calendar nmap <buffer> k <Plug>(calendar_down)
-  autocmd FileType calendar nmap <buffer> l <Plug>(calendar_right)
-  autocmd FileType calendar nmap <buffer> <c-i> <Plug>(calendar_move_up)
-  autocmd FileType calendar nmap <buffer> <c-j> <Plug>(calendar_move_left)
-  autocmd FileType calendar nmap <buffer> <c-k> <Plug>(calendar_move_down)
-  autocmd FileType calendar nmap <buffer> <c-l> <Plug>(calendar_move_right)
-  autocmd FileType calendar nmap <buffer> h <Plug>(calendar_start_insert)
-  autocmd FileType calendar nmap <buffer> H <Plug>(calendar_start_insert_head)
-  "autocmd FileType calendar nunmap <buffer> <C-n>
-  "autocmd FileType calendar nunmap <buffer> <C-p>
-augroup END
-
-
-" ================================
-" =========== vim-go =============
-" ================================
-let g:go_echo_go_info = 0
-let g:go_doc_keywordprg_enabled = 0
-let g:go_doc_popup_window = 1
-let g:go_def_mapping_enabled = 0
-let g:go_template_autocreate = 0
-let g:go_textobj_enabled = 0
-let g:go_auto_type_info = 1
-let g:go_def_mapping_enabled = 0
-let g:go_list_type = "quickfix"
-let g:go_highlight_array_whitespace_error = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_chan_whitespace_error = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_space_tab_error = 1
-let g:go_highlight_string_spellcheck = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_trailing_whitespace_error = 1
-let g:go_highlight_types = 1
-let g:go_highlight_variable_assignments = 0
-let g:go_highlight_variable_declarations = 0
-au FileType go nmap gd <Plug>(go-def)
-au FileType go nmap gr <Plug>(go-referrers)
-au FileType go nmap M <Plug>(go-doc)
+" =================================
+" =========== rainbow =============
+" =================================
+let g:rainbow_active = 1
 
 
 " ========================
@@ -451,138 +371,20 @@ autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
 
-" =======================
-" ======== far ==========
-" =======================
-set lazyredraw
-set regexpengine=1
-noremap <LEADER>f :F
-
-
-" ==================================
-" =========== any-jump =============
-" ==================================
-let g:any_jump_disable_default_keybindings = 1
-nnoremap <M-j> :AnyJump<CR>
-
-
-" ===================================
-" ======== MarkdownPreview ==========
-" ===================================
-let g:mkdp_auto_start = 0
-let g:mkdp_auto_close = 1
-let g:mkdp_refresh_slow = 0
-let g:mkdp_command_for_global = 0
-let g:mkdp_open_to_the_world = 1
-let g:mkdp_open_ip = ''
-let g:mkdp_brower = 'chromium'
-let g:mkdp_echo_preview_url = 1
-let g:mkdp_browserfunc = ''
-let g:mkdp_preview_options = {
-      \ 'mkit': {},
-      \ 'katex': {},
-      \ 'uml': {},
-      \ 'maid': {},
-      \ 'disable_sync_scroll': 0,
-      \ 'sync_scroll_type': 'middle',
-      \ 'hide_yaml_meta': 1
-      \ }
-let g:mkdp_markdown_css = ''
-let g:mkdp_highlight_css = ''
-let g:mkdp_port = ''
-let g:mkdp_page_title = '「${name}」'
-
-
-" ===========================
-" ======== vimwiki ==========
-" ===========================
-let g:vimwiki_list = [{'path': '~/Documents/Notes/',
-      \ 'syntax': 'markdown', 'ext': '.md'}]
-
-
-" ===========================
-" ======== undotree =========
-" ===========================
-noremap L :UndotreeToggle<CR>
-let g:undotree_DiffAutoOpen = 1
-let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_ShortIndicators = 1
-let g:undotree_WindowLayout = 2
-let g:undotree_DiffpanelHeight = 8
-let g:undotree_SplitWidth = 24
-function g:Undotree_CustomMap()
-  nmap <buffer> i <plug>UndotreeNextState
-  nmap <buffer> k <plug>UndotreePreviousState
-  nmap <buffer> I 5<plug>UndotreeNextState
-  nmap <buffer> K 5<plug>UndotreePreviousState
-endfunc
-
-
-" =======================================
-" =========== vim-bookmarks =============
-" =======================================
-let g:bookmark_sign = ''
-let g:bookmark_annotation_sign = ''
-let g:bookmark_auto_save_file = $HOME . '/.local/share/nvim/.vim-bookmarks'
-
-
-" ================================
-" =========== rnvimr =============
-" ================================
-let g:rnvimr_ex_enable = 1
-let g:rnvimr_pick_enable = 1
-nnoremap <silent> R :RnvimrSync<CR>:RnvimrToggle<CR>
-
-
-" ===========================
-" ========= fzf =============
-" ===========================
-set rtp+=/usr/local/opt/fzf
-noremap <C-f> :FZF<CR>
-noremap <C-q> :Ag<CR>
-noremap <C-h> :History<CR>
-noremap <C-y> :Buffers<CR>
-
-
-" ==================================
-" ======== vim-table-mode ==========
-" ==================================
-noremap <LEADER>tm :TableModeToggle<CR>
-
-
-" ============================
-" ========== vista ===========
-" ============================
-map <silent> T :Vista!!<CR>
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-let g:vista_default_executive = 'ctags'
-let g:vista_fzf_preview = ['right:50%']
-let g:vista#renderer#enable_icon = 1
-let g:vista#renderer#icons = {
-      \   "function": "\uf794",
-      \   "variable": "\uf71b",
-      \  }
-
-
-" ==================================
-" =========== clever-f =============
-" ==================================
-let g:clever_f_not_overwrites_standard_mappings = 1
-nmap f <Plug>(clever-f-f)
-xmap f <Plug>(clever-f-f)
-omap f <Plug>(clever-f-f)
-nmap F <Plug>(clever-f-F)
-xmap F <Plug>(clever-f-F)
-omap F <Plug>(clever-f-F)
-
-
 " ====================================
-" =========== easymotion =============
+" =========== autoformat =============
 " ====================================
-"let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_do_shade = 0
-"let g:EasyMotion_smartcase = 1
-map ' <Plug>(easymotion-prefix)
+noremap \f :Autoformat<CR>
+
+" -------------------------------- dress end -----------------------------------
+
+
+" ------------------------ highlight & complete begin --------------------------
+
+" =================================
+" =========== vim-vue =============
+" =================================
+let g:vue_pre_processors = []
 
 
 " ===========================
@@ -631,6 +433,14 @@ nmap <silent> b <Plug>(coc-ci-b)
 
 
 " ===========================
+" ======== emmet ==========
+" ===========================
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,js EmmetInstall
+let g:user_emmet_leader_key='<M-m>'
+
+
+" ===========================
 " ========== ale ============
 " ===========================
 let g:ale_linters = { 'go': ['eslint'], }
@@ -646,34 +456,6 @@ nmap <silent> <C-k> <Plug>(ale_next_wrap)
 
 
 " ===================================
-" =========== gitgutter =============
-" ===================================
-nnoremap gf :GitGutterFold<CR>
-nnoremap gh :GitGutterPreviewHunk<CR>
-nnoremap [g :GitGutterPrevHunk<CR>
-nnoremap ]g :GitGutterNextHunk<CR>
-
-
-" ==================================
-" =========== fugitive =============
-" ==================================
-noremap \g :Git
-
-
-" =====================================
-" =========== git-message =============
-" =====================================
-let g:git_messenger_no_default_mappings = v:true
-nmap gm <Plug>(git-messenger)
-
-
-" ===========================================
-" =========== vim-terminal-help =============
-" ===========================================
-let g:terminal_key = '--'
-
-
-" ===================================
 " =========== omnisharp =============
 " ===================================
 let g:OmniSharp_server_use_mono = 1
@@ -686,13 +468,82 @@ autocmd Filetype cs nnoremap <buffer> ga :OmniSharpGetCodeActions<CR>
 autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +5<CR>
 
 
-" ====================================
-" =========== asynctasks =============
-" ====================================
-let g:asyncrun_open = 6
-let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
-noremap <silent><f1> :AsyncTask file-run<cr>
-noremap <silent><f2> :AsyncTask file-build<cr>
+" ================================
+" =========== vim-go =============
+" ================================
+let g:go_echo_go_info = 0
+let g:go_doc_keywordprg_enabled = 0
+let g:go_doc_popup_window = 1
+let g:go_def_mapping_enabled = 0
+let g:go_template_autocreate = 0
+let g:go_textobj_enabled = 0
+let g:go_auto_type_info = 1
+let g:go_def_mapping_enabled = 0
+let g:go_list_type = "quickfix"
+let g:go_highlight_array_whitespace_error = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_chan_whitespace_error = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_string_spellcheck = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_trailing_whitespace_error = 1
+let g:go_highlight_types = 1
+let g:go_highlight_variable_assignments = 0
+let g:go_highlight_variable_declarations = 0
+au FileType go nmap gd <Plug>(go-def)
+au FileType go nmap gr <Plug>(go-referrers)
+au FileType go nmap M <Plug>(go-doc)
+
+" ------------------------- highlight & complete end ---------------------------
+
+
+" -------------------------------- find begin ----------------------------------
+
+" ===========================
+" ========= fzf =============
+" ===========================
+set rtp+=/usr/local/opt/fzf
+noremap <C-f> :FZF<CR>
+noremap <C-q> :Ag<CR>
+noremap <C-h> :History<CR>
+noremap <C-y> :Buffers<CR>
+
+
+" ================================
+" =========== rnvimr =============
+" ================================
+let g:rnvimr_ex_enable = 1
+let g:rnvimr_pick_enable = 1
+nnoremap <silent> R :RnvimrSync<CR>:RnvimrToggle<CR>
+
+
+" =======================
+" ======== far ==========
+" =======================
+set lazyredraw
+set regexpengine=1
+noremap <LEADER>f :F
+
+
+" ==================================
+" =========== clever-f =============
+" ==================================
+let g:clever_f_not_overwrites_standard_mappings = 1
+nmap f <Plug>(clever-f-f)
+xmap f <Plug>(clever-f-f)
+omap f <Plug>(clever-f-f)
+nmap F <Plug>(clever-f-F)
+xmap F <Plug>(clever-f-F)
+omap F <Plug>(clever-f-F)
 
 
 " ===============================
@@ -700,6 +551,146 @@ noremap <silent><f2> :AsyncTask file-build<cr>
 " ===============================
 let g:ctrlp_map = ''
 let g:ctrlp_cmd = 'CtrlP'
+
+
+" ==================================
+" =========== any-jump =============
+" ==================================
+let g:any_jump_disable_default_keybindings = 1
+nnoremap <M-j> :AnyJump<CR>
+
+
+" ====================================
+" =========== easymotion =============
+" ====================================
+"let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_do_shade = 0
+"let g:EasyMotion_smartcase = 1
+map ' <Plug>(easymotion-prefix)
+
+" -------------------------------- find end ------------------------------------
+
+
+" -------------------------------- git start -----------------------------------
+
+" ==================================
+" =========== fugitive =============
+" ==================================
+noremap \g :Git
+
+
+" ===================================
+" =========== gitgutter =============
+" ===================================
+nnoremap gf :GitGutterFold<CR>
+nnoremap gh :GitGutterPreviewHunk<CR>
+nnoremap [g :GitGutterPrevHunk<CR>
+nnoremap ]g :GitGutterNextHunk<CR>
+
+
+" =====================================
+" =========== git-message =============
+" =====================================
+let g:git_messenger_no_default_mappings = v:true
+nmap gm <Plug>(git-messenger)
+
+" -------------------------------- git end -------------------------------------
+
+
+" -------------------------------- md start ------------------------------------
+
+" ===================================
+" ======== MarkdownPreview ==========
+" ===================================
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 0
+let g:mkdp_command_for_global = 0
+let g:mkdp_open_to_the_world = 1
+let g:mkdp_open_ip = ''
+let g:mkdp_brower = 'chromium'
+let g:mkdp_echo_preview_url = 1
+let g:mkdp_browserfunc = ''
+let g:mkdp_preview_options = {
+      \ 'mkit': {},
+      \ 'katex': {},
+      \ 'uml': {},
+      \ 'maid': {},
+      \ 'disable_sync_scroll': 0,
+      \ 'sync_scroll_type': 'middle',
+      \ 'hide_yaml_meta': 1
+      \ }
+let g:mkdp_markdown_css = ''
+let g:mkdp_highlight_css = ''
+let g:mkdp_port = ''
+let g:mkdp_page_title = '「${name}」'
+
+
+" ==================================
+" ======== vim-table-mode ==========
+" ==================================
+noremap <LEADER>tm :TableModeToggle<CR>
+
+" -------------------------------- md end --------------------------------------
+
+
+" ----------------------------- tools start ------------------------------------
+
+" ===========================
+" ======== undotree =========
+" ===========================
+noremap L :UndotreeToggle<CR>
+let g:undotree_DiffAutoOpen = 1
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_ShortIndicators = 1
+let g:undotree_WindowLayout = 2
+let g:undotree_DiffpanelHeight = 8
+let g:undotree_SplitWidth = 24
+function g:Undotree_CustomMap()
+  nmap <buffer> i <plug>UndotreeNextState
+  nmap <buffer> k <plug>UndotreePreviousState
+  nmap <buffer> I 5<plug>UndotreeNextState
+  nmap <buffer> K 5<plug>UndotreePreviousState
+endfunc
+
+
+" ============================
+" ========== vista ===========
+" ============================
+map <silent> T :Vista!!<CR>
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_default_executive = 'ctags'
+let g:vista_fzf_preview = ['right:50%']
+let g:vista#renderer#enable_icon = 1
+let g:vista#renderer#icons = {
+      \   "function": "\uf794",
+      \   "variable": "\uf71b",
+      \  }
+
+
+" ======================================
+" =========== vim-calendar =============
+" ======================================
+"noremap \c :Calendar -position=here<CR>
+noremap \\ :Calendar -view=clock -position=here<CR>
+"let g:calendar_google_calendar = 1
+"let g:calendar_google_task = 1
+augroup calendar-mappings
+  autocmd!
+  " diamond cursor
+  autocmd FileType calendar nmap <buffer> i <Plug>(calendar_up)
+  autocmd FileType calendar nmap <buffer> j <Plug>(calendar_left)
+  autocmd FileType calendar nmap <buffer> k <Plug>(calendar_down)
+  autocmd FileType calendar nmap <buffer> l <Plug>(calendar_right)
+  autocmd FileType calendar nmap <buffer> <c-i> <Plug>(calendar_move_up)
+  autocmd FileType calendar nmap <buffer> <c-j> <Plug>(calendar_move_left)
+  autocmd FileType calendar nmap <buffer> <c-k> <Plug>(calendar_move_down)
+  autocmd FileType calendar nmap <buffer> <c-l> <Plug>(calendar_move_right)
+  autocmd FileType calendar nmap <buffer> h <Plug>(calendar_start_insert)
+  autocmd FileType calendar nmap <buffer> H <Plug>(calendar_start_insert_head)
+  "autocmd FileType calendar nunmap <buffer> <C-n>
+  "autocmd FileType calendar nunmap <buffer> <C-p>
+augroup END
 
 
 " ==========================================
@@ -720,20 +711,6 @@ let g:VM_maps['i'] = 'h'
 let g:VM_maps['I'] = 'H'
 
 
-" ===========================
-" ======== emmet ==========
-" ===========================
-let g:user_emmet_install_global = 0
-autocmd FileType html,css,js EmmetInstall
-let g:user_emmet_leader_key='<M-m>'
-
-
-" =================================
-" =========== vim-vue =============
-" =================================
-let g:vue_pre_processors = []
-
-
 " ==================================
 " =========== bullets  =============
 " ==================================
@@ -744,10 +721,43 @@ let g:bullets_enabled_file_types = [
       \]
 
 
-" =================================
-" =========== rainbow =============
-" =================================
-let g:rainbow_active = 1
+" =======================================
+" =========== vim-bookmarks =============
+" =======================================
+let g:bookmark_sign = ''
+let g:bookmark_annotation_sign = ''
+let g:bookmark_auto_save_file = $HOME . '/.local/share/nvim/.vim-bookmarks'
+
+
+" ===========================
+" ======== vimwiki ==========
+" ===========================
+let g:vimwiki_list = [{'path': '~/Documents/Notes/',
+      \ 'syntax': 'markdown', 'ext': '.md'}]
+
+
+" ===========================================
+" =========== vim-terminal-help =============
+" ===========================================
+let g:terminal_key = '--'
+
+
+" ====================================
+" =========== asynctasks =============
+" ====================================
+let g:asyncrun_open = 6
+let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
+noremap <silent><f1> :AsyncTask file-run<cr>
+noremap <silent><f2> :AsyncTask file-build<cr>
+
+
+" ==================================
+" =========== FastFold =============
+" ==================================
+nmap zuz <Plug>(FastFoldUpdate)
+let g:fastfold_savehook = 1
+let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
+let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
 
 
 " ================================
@@ -757,6 +767,8 @@ let g:recite_default_storage = "/home/dmr/Documents/Notes/recite"
 let g:recite_disable_default_keybindings = 1
 nnoremap <m-e> :RecitePre<CR>
 nnoremap <c-p> :ReciteOpen<CR>
+
+" ---------------------------- tools end ---------------------------------------
 
 
 " end
