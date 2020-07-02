@@ -64,6 +64,7 @@
     "coc-actions.hideCursor": true,
     "coc-actions.showActionKind": true,
     "coc-actions.useCursorLine": false,
+    "coc.preferences.snippetStatusText": "Ⓢ ",
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/Ultisnips/",
         "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"

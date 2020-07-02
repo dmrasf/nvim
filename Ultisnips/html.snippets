@@ -36,3 +36,16 @@ snippet cz "css注释" b
 */
 endsnippet
 
+snippet vue "基础" b
+<div id="${1}">
+	<h1>{{ message }}</h1>
+</div>
+<script charset="utf-8">
+	const ${2} = new Vue({
+		el: '#${1}',
+		data: {
+			message: '',
+		},
+	})
+</script>
+endsnippet
