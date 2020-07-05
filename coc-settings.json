@@ -1,6 +1,6 @@
 {
     "explorer.file.column.git.showIgnored": true,
-    "explorer.width": 30,
+    "explorer.width": 25,
     "explorer.icon.enableNerdfont": true,
     "explorer.keyMappings": {
         "i": "nodePrev",
@@ -69,5 +69,6 @@
         "$HOME/.config/nvim/Ultisnips/",
         "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
     ],
-    "clangd.semanticHighlighting": true
+    "clangd.semanticHighlighting": true,
+    "vetur.trace.server": "verbose"
 }
