@@ -404,7 +404,7 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-" Use <c-o> to trigger completion.
+" Use <c-o> <c-space> to trigger completion.
 inoremap <silent><expr> <c-o> coc#refresh()
 inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion.
