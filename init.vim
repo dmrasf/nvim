@@ -6,8 +6,8 @@
 "
 
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 let mapleader=" "
@@ -17,9 +17,10 @@ set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
 set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+autocmd BufNewFile,BufRead *.html,*.htm,*.css,*.js,*.vue set tabstop=2 shiftwidth=2 softtabstop=2
 set number
 set relativenumber
 set cursorline
@@ -168,8 +169,8 @@ silent !mkdir -p ~/.config/nvim/tmp/undo
 set backupdir=~/.config/nvim/tmp/backup,.
 set directory=~/.config/nvim/tmp/backup,.
 if has('persistent_undo')
-  set undofile
-  set undodir=~/.config/nvim/tmp/undo,.
+    set undofile
+    set undodir=~/.config/nvim/tmp/undo,.
 endif
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -179,58 +180,58 @@ inoremap <C-z> <ESC>u
 
 map <LEADER>r :call Run()<CR>
 func! Run()
-  exec "w"
-  if &filetype == 'c'
-    set splitbelow
-    silent! exec "!gcc -g -o %< % -Wall -lm"
-    :sp
-    :term ./%<
-  elseif &filetype == 'cpp'
-    set splitbelow
-    silent! exec "!g++ -std=c++11 % -Wall -o %<"
-    :sp
-    :term ./%<
-  elseif &filetype == "cs"
-    set splitbelow
-    silent! exec "!mcs *.cs"
-    :sp
-    let l:cs = "term mono " . "*.exe"
-    exec l:cs
-  elseif &filetype == 'java'
-    silent! exec "!javac %"
-    set splitbelow
-    :sp
-    :term java %<
-  elseif &filetype == 'sh'
-    set splitbelow
-    :sp
-    :term bash %
-  elseif &filetype == 'python'
-    set splitbelow
-    :sp
-    :term python3 %
-  elseif &filetype == 'perl'
-    set splitbelow
-    :sp
-    :term perl %
-  elseif &filetype == 'javascript'
-    set splitbelow
-    :sp
-    :term node %
-  elseif &filetype == 'html'
-    silent! exec "!firefox-developer-edition % &"
-  elseif &filetype == 'markdown'
-    exec "MarkdownPreview"
-  elseif &filetype == 'go'
-    set splitbelow
-    :sp
-    :term go run .
-  elseif &filetype == 'tex'
-    silent! exec "VimtexStop"
-    silent! exec "VimtexCompile"
-  elseif &filetype == 'vim'
-    :so %
-  endif
+    exec "w"
+    if &filetype == 'c'
+        set splitbelow
+        silent! exec "!gcc -g -o %< % -Wall -lm"
+        :sp
+        :term ./%<
+    elseif &filetype == 'cpp'
+        set splitbelow
+        silent! exec "!g++ -std=c++11 % -Wall -o %<"
+        :sp
+        :term ./%<
+    elseif &filetype == "cs"
+        set splitbelow
+        silent! exec "!mcs *.cs"
+        :sp
+        let l:cs = "term mono " . "*.exe"
+        exec l:cs
+    elseif &filetype == 'java'
+        silent! exec "!javac %"
+        set splitbelow
+        :sp
+        :term java %<
+    elseif &filetype == 'sh'
+        set splitbelow
+        :sp
+        :term bash %
+    elseif &filetype == 'python'
+        set splitbelow
+        :sp
+        :term python3 %
+    elseif &filetype == 'perl'
+        set splitbelow
+        :sp
+        :term perl %
+    elseif &filetype == 'javascript'
+        set splitbelow
+        :sp
+        :term node %
+    elseif &filetype == 'html'
+        silent! exec "!firefox-developer-edition % &"
+    elseif &filetype == 'markdown'
+        exec "MarkdownPreview"
+    elseif &filetype == 'go'
+        set splitbelow
+        :sp
+        :term go run .
+    elseif &filetype == 'tex'
+        silent! exec "VimtexStop"
+        silent! exec "VimtexCompile"
+    elseif &filetype == 'vim'
+        :so %
+    endif
 endfunc
 
 call plug#begin('~/.config/nvim/plugged')
@@ -302,7 +303,6 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'mhinz/vim-startify'
 Plug 'dkarter/bullets.vim'              "<C-t> <C-d>
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'vimwiki/vimwiki'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'junegunn/vim-peekaboo'
 Plug 'AndrewRadev/splitjoin.vim'     " gS  gJ 单行 多行
@@ -386,32 +386,32 @@ let g:vue_pre_processors = []
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 let g:coc_global_extention = [
-      \ 'coc-sh', 'coc-go', 'coc-svg', 'coc-marketplace', 'coc-clangd',
-      \ 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver',
-      \ 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python',
-      \ 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists',
-      \ 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore',
-      \ 'coc-todolist', 'coc-actions', 'coc-vetur']
+            \ 'coc-sh', 'coc-go', 'coc-svg', 'coc-marketplace', 'coc-clangd',
+            \ 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver',
+            \ 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python',
+            \ 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists',
+            \ 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore',
+            \ 'coc-todolist', 'coc-actions', 'coc-vetur']
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 " Use <c-o> <c-space> to trigger completion.
 inoremap <silent><expr> <c-o> coc#refresh()
 inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion.
 if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 " Use M to show documentation in preview window.
 nnoremap <silent> M :call <SID>show_documentation()<CR>
@@ -435,7 +435,7 @@ imap <C-k> <Plug>(coc-snippets-expand-jump)
 " coc-actions
 " Remap for do codeAction of selected region
 function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
+    execute 'CocCommand actions.open ' . a:type
 endfunction
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
@@ -455,7 +455,7 @@ nmap <silent> b <Plug>(coc-ci-b)
 " ======== emmet ==========
 " ===========================
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,js EmmetInstall
+autocmd FileType html,css,js,markdown EmmetInstall
 let g:user_emmet_leader_key='<M-m>'
 
 
@@ -463,8 +463,8 @@ let g:user_emmet_leader_key='<M-m>'
 " ========== ale ============
 " ===========================
 let g:ale_linters = {
-      \ 'go': ['eslint'],
-      \ 'javascript': ['eslint'] }
+            \ 'go': ['eslint'],
+            \ 'javascript': ['eslint'] }
 "   'python': ['eslint'],
 "   'c': ['eslint'],
 "   'c++': ['eslint'],
@@ -606,10 +606,10 @@ nnoremap gf :GitGutterFold<CR>
 nnoremap gh :GitGutterPreviewHunk<CR>
 nnoremap [g :GitGutterPrevHunk<CR>
 nnoremap ]g :GitGutterNextHunk<CR>
-let g:gitgutter_sign_added            = '🟩'
-let g:gitgutter_sign_removed          = '🟥'
-let g:gitgutter_sign_modified         = '🟨'
-let g:gitgutter_sign_modified_removed = '🟧'
+"let g:gitgutter_sign_added            = '🟩'
+"let g:gitgutter_sign_removed          = '🟥'
+"let g:gitgutter_sign_modified         = '🟨'
+"let g:gitgutter_sign_modified_removed = '🟧'
 
 
 " =====================================
@@ -636,14 +636,14 @@ let g:mkdp_brower = 'chromium'
 let g:mkdp_echo_preview_url = 1
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
-      \ 'mkit': {},
-      \ 'katex': {},
-      \ 'uml': {},
-      \ 'maid': {},
-      \ 'disable_sync_scroll': 0,
-      \ 'sync_scroll_type': 'middle',
-      \ 'hide_yaml_meta': 1
-      \ }
+            \ 'mkit': {},
+            \ 'katex': {},
+            \ 'uml': {},
+            \ 'maid': {},
+            \ 'disable_sync_scroll': 0,
+            \ 'sync_scroll_type': 'middle',
+            \ 'hide_yaml_meta': 1
+            \ }
 let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
@@ -671,10 +671,10 @@ let g:undotree_WindowLayout = 2
 let g:undotree_DiffpanelHeight = 8
 let g:undotree_SplitWidth = 24
 function g:Undotree_CustomMap()
-  nmap <buffer> i <plug>UndotreeNextState
-  nmap <buffer> k <plug>UndotreePreviousState
-  nmap <buffer> I 5<plug>UndotreeNextState
-  nmap <buffer> K 5<plug>UndotreePreviousState
+    nmap <buffer> i <plug>UndotreeNextState
+    nmap <buffer> k <plug>UndotreePreviousState
+    nmap <buffer> I 5<plug>UndotreeNextState
+    nmap <buffer> K 5<plug>UndotreePreviousState
 endfunc
 
 
@@ -687,9 +687,9 @@ let g:vista_default_executive = 'ctags'
 let g:vista_fzf_preview = ['right:50%']
 let g:vista#renderer#enable_icon = 1
 let g:vista#renderer#icons = {
-      \   "function": "\uf794",
-      \   "variable": "\uf71b",
-      \  }
+            \   "function": "\uf794",
+            \   "variable": "\uf71b",
+            \  }
 
 
 " ======================================
@@ -700,20 +700,20 @@ noremap \\ :Calendar -view=clock -position=here<CR>
 "let g:calendar_google_calendar = 1
 "let g:calendar_google_task = 1
 augroup calendar-mappings
-  autocmd!
-  " diamond cursor
-  autocmd FileType calendar nmap <buffer> i <Plug>(calendar_up)
-  autocmd FileType calendar nmap <buffer> j <Plug>(calendar_left)
-  autocmd FileType calendar nmap <buffer> k <Plug>(calendar_down)
-  autocmd FileType calendar nmap <buffer> l <Plug>(calendar_right)
-  autocmd FileType calendar nmap <buffer> <c-i> <Plug>(calendar_move_up)
-  autocmd FileType calendar nmap <buffer> <c-j> <Plug>(calendar_move_left)
-  autocmd FileType calendar nmap <buffer> <c-k> <Plug>(calendar_move_down)
-  autocmd FileType calendar nmap <buffer> <c-l> <Plug>(calendar_move_right)
-  autocmd FileType calendar nmap <buffer> h <Plug>(calendar_start_insert)
-  autocmd FileType calendar nmap <buffer> H <Plug>(calendar_start_insert_head)
-  "autocmd FileType calendar nunmap <buffer> <C-n>
-  "autocmd FileType calendar nunmap <buffer> <C-p>
+    autocmd!
+    " diamond cursor
+    autocmd FileType calendar nmap <buffer> i <Plug>(calendar_up)
+    autocmd FileType calendar nmap <buffer> j <Plug>(calendar_left)
+    autocmd FileType calendar nmap <buffer> k <Plug>(calendar_down)
+    autocmd FileType calendar nmap <buffer> l <Plug>(calendar_right)
+    autocmd FileType calendar nmap <buffer> <c-i> <Plug>(calendar_move_up)
+    autocmd FileType calendar nmap <buffer> <c-j> <Plug>(calendar_move_left)
+    autocmd FileType calendar nmap <buffer> <c-k> <Plug>(calendar_move_down)
+    autocmd FileType calendar nmap <buffer> <c-l> <Plug>(calendar_move_right)
+    autocmd FileType calendar nmap <buffer> h <Plug>(calendar_start_insert)
+    autocmd FileType calendar nmap <buffer> H <Plug>(calendar_start_insert_head)
+    "autocmd FileType calendar nunmap <buffer> <C-n>
+    "autocmd FileType calendar nunmap <buffer> <C-p>
 augroup END
 
 
@@ -739,10 +739,10 @@ let g:VM_maps['I'] = 'H'
 " =========== bullets  =============
 " ==================================
 let g:bullets_enabled_file_types = [
-      \ 'text',
-      \ 'gitcommit',
-      \ 'scratch'
-      \]
+            \ 'text',
+            \ 'gitcommit',
+            \ 'scratch'
+            \]
 
 
 " =======================================
@@ -751,13 +751,6 @@ let g:bullets_enabled_file_types = [
 let g:bookmark_sign = ''
 let g:bookmark_annotation_sign = ''
 let g:bookmark_auto_save_file = $HOME . '/.local/share/nvim/.vim-bookmarks'
-
-
-" ===========================
-" ======== vimwiki ==========
-" ===========================
-let g:vimwiki_list = [{'path': '~/Documents/Notes/',
-      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 
 " ===========================================
