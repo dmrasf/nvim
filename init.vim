@@ -147,6 +147,7 @@ let g:python3_host_prog='/usr/bin/python3'
 
 "autocmd Filetype markdown map <leader>w yiWi[<esc>Ea](<esc>pa)
 noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+autocmd Filetype markdown nnoremap ,c ebi`<ESC>ea`<ESC>b
 autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
 autocmd Filetype markdown inoremap ,n ---<Enter><Enter>
 autocmd Filetype markdown inoremap ,b **** <++><Esc>F*hi
@@ -312,9 +313,12 @@ Plug 'chrisbra/NrrwRgn'              " 产生非干扰区
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'chrisbra/unicode.vim'
+
+" test
 "Plug 'Konfekt/FastFold'
 "Plug 'dmrasf/vim-recite'
 "Plug 'hardcoreplayers/dashboard-nvim'
+Plug 'lpinilla/vim-codepainter'
 
 call plug#end()
 
@@ -543,7 +547,7 @@ noremap <C-y> :Buffers<CR>
 " ================================
 let g:rnvimr_ex_enable = 1
 let g:rnvimr_pick_enable = 1
-nnoremap <silent> R :RnvimrSync<CR>:RnvimrToggle<CR>
+nnoremap <silent> R :RnvimrToggle<CR>
 
 
 " =======================
@@ -767,6 +771,10 @@ let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
 noremap <silent><f1> :AsyncTask file-run<cr>
 noremap <silent><f2> :AsyncTask file-build<cr>
 
+" ---------------------------- tools end ---------------------------------------
+
+
+" ---------------------------- test end ---------------------------------------
 
 " ==================================
 " =========== FastFold =============
@@ -785,7 +793,7 @@ let g:recite_disable_default_keybindings = 1
 nnoremap <m-e> :RecitePre<CR>
 nnoremap <c-p> :ReciteOpen<CR>
 
-" ---------------------------- tools end ---------------------------------------
+" ---------------------------- test end ---------------------------------------
 
 
 " end
