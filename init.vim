@@ -148,6 +148,7 @@ let g:python3_host_prog='/usr/bin/python3'
 "autocmd Filetype markdown map <leader>w yiWi[<esc>Ea](<esc>pa)
 noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 autocmd Filetype markdown nnoremap ,c ebi`<ESC>ea`<ESC>b
+autocmd Filetype markdown nnoremap ,b 0i**<ESC>A**<ESC>j0
 autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
 autocmd Filetype markdown inoremap ,n ---<Enter><Enter>
 autocmd Filetype markdown inoremap ,b **** <++><Esc>F*hi
