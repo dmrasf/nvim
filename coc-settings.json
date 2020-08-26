@@ -1,14 +1,41 @@
 {
+    "suggest.noselect": true,
+    "suggest.enablePreselect": false,
+    "suggest.completionItemKindLabels": {
+        "class": "\uf0e8",
+        "color": "\ue22b",
+        "constant": "\uf8fe",
+        "default": "\uf29c",
+        "enum": "\uf435",
+        "enumMember": "\uf02b",
+        "event": "\ufacd",
+        "field": "\uf93d",
+        "file": "\uf723",
+        "folder": "\uf115",
+        "function": "\u0192",
+        "interface": "\uf417",
+        "keyword": "\uf1de",
+        "method": "\uf6a6",
+        "module": "\uf40d",
+        "operator": "\uf915",
+        "property": "\ue624",
+        "reference": "\ufa46",
+        "snippet": "\ue60b",
+        "struct": "\ufb44",
+        "text": "\ue612",
+        "typeParameter": "\uf728",
+        "unit": "\uf475",
+        "value": "\uf89f",
+        "variable": "\ue71b"
+    },
     "explorer.file.column.git.showIgnored": true,
     "explorer.width": 25,
     "explorer.icon.enableNerdfont": true,
     "explorer.keyMappings": {
         "i": "nodePrev",
         "k": "nodeNext",
-
         "*": "toggleSelection",
         "<tab>": "actionMenu",
-
         "j": "collapse",
         "l": "expand",
         "J": ["toggleSelection", "normal:j"],
@@ -21,7 +48,6 @@
         "E": "openInVsplit",
         "t": "openInTab",
         "<bs>": "gotoParent",
-
         "y": "copyFilepath",
         "Y": "copyFilename",
         "c": "copyFile",
@@ -29,38 +55,28 @@
         "p": "pasteFile",
         "d": "delete",
         "D": "deleteForever",
-
         "a": "addFile",
         "A": "addDirectory",
         "r": "rename",
-
         "zh": "toggleHidden",
         "R": "refresh",
-
         "?": "help",
         "q": "quit",
         "X": "systemExecute",
         "gd": "listDrive",
-
         "f": "search",
         "F": "searchRecursive",
-
         "gf": "gotoSource:file",
         "gb": "gotoSource:buffer",
-
         "[[": "sourcePrev",
         "]]": "sourceNext",
-
         "[d": "diagnosticPrev",
         "]d": "diagnosticNext",
-
         "[c": "gitPrev",
         "]c": "gitNext",
         "<<": "gitStage",
         ">>": "gitUnstage"
     },
-    "java.home": "/usr/lib/jvm/java-11-openjdk",
-    "java.jdt.ls.home": "/usr/share/java/jdtls",
     "coc-actions.hideCursor": true,
     "coc-actions.showActionKind": true,
     "coc-actions.useCursorLine": false,

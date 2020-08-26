@@ -392,7 +392,7 @@ let g:vue_pre_processors = []
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 let g:coc_global_extention = [
             \ 'coc-sh', 'coc-go', 'coc-svg', 'coc-marketplace', 'coc-clangd',
-            \ 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-java', 'coc-tsserver',
+            \ 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-tsserver',
             \ 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python',
             \ 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists',
             \ 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore',
@@ -400,6 +400,14 @@ let g:coc_global_extention = [
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
+set hidden
+set updatetime=100
+set shortmess+=c
+if has("path-8.1.1564")
+    set signcolumn=number
+else
+    set signcolumn=yes
+endif
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
@@ -409,8 +417,7 @@ function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-" Use <c-o> <c-space> to trigger completion.
-inoremap <silent><expr> <c-o> coc#refresh()
+" Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion.
 if exists('*complete_info')
@@ -420,6 +427,8 @@ else
 endif
 " Use M to show documentation in preview window.
 nnoremap <silent> M :call <SID>show_documentation()<CR>
+nmap <silent> <C-j> <Plug>(coc-diagnostic-prev)
+nmap <silent> <C-k> <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
