@@ -28,6 +28,28 @@
         "value": "\uf89f",
         "variable": "\ue71b"
     },
+    "coc.preferences.snippetStatusText": "Ⓢ ",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "json",
+        "python",
+        "css",
+        "html"
+    ],
+    "list.nextKeymap": "<C-k>",
+    "list.previousKeymap": "<C-j>",
+    "diagnostic.signOffset": 1,
+    "diagnostic.errorSign": "×",
+    "diagnostic.warningSign": "»",
+    "diagnostic.infoSign": "ღ",
+    "diagnostic.hintSign": "ஐ",
+    "diagnostic.displayByAle": false,
+    "diagnostic.refreshOnInsertMode": false,
+    "diagnostic.refreshAfterSave": false,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.virtualTextPrefix": " ❯❯❯ ",
+    "diagnostic.virtualText": true,
+    "codeLens.enable": true,
+    "codeLens.separator": "‣",
     "explorer.file.column.git.showIgnored": true,
     "explorer.width": 25,
     "explorer.icon.enableNerdfont": true,
@@ -38,8 +60,14 @@
         "<tab>": "actionMenu",
         "j": "collapse",
         "l": "expand",
-        "J": ["toggleSelection", "normal:j"],
-        "K": ["toggleSelection", "normal:k"],
+        "J": [
+            "toggleSelection",
+            "normal:j"
+        ],
+        "K": [
+            "toggleSelection",
+            "normal:k"
+        ],
         "gl": "expandRecursive",
         "gh": "collapseRecursive",
         "o": "expandOrCollapse",
@@ -80,7 +108,6 @@
     "coc-actions.hideCursor": true,
     "coc-actions.showActionKind": true,
     "coc-actions.useCursorLine": false,
-    "coc.preferences.snippetStatusText": "Ⓢ ",
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/Ultisnips/",
         "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"

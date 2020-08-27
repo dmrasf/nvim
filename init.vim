@@ -264,7 +264,7 @@ Plug 'posva/vim-vue'                            " syntax highlighting for Vue co
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " coc
 Plug 'honza/vim-snippets'                       " 代码片段集合
 Plug 'mattn/emmet-vim'                          " <M-m>,  html
-Plug 'dense-analysis/ale'                       " error
+"Plug 'dense-analysis/ale'                       " error
 Plug 'OmniSharp/omnisharp-vim'                  " c#
 Plug 'maxmellon/vim-jsx-pretty'                 " jsx highlight
 Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] } " javascript highlight
@@ -275,7 +275,6 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': ['go', 'vim-plug'], 'ta
 " 查找文件
 Plug 'junegunn/fzf.vim'                         " fzf
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'} " ranger
-Plug 'brooth/far.vim'                           " :Far
 Plug 'rhysd/clever-f.vim'                       " fsfff
 Plug 'ctrlpvim/ctrlp.vim'                       " cmd CtrlP
 Plug 'pechorin/any-jump.vim'                    " <M-j>
@@ -476,17 +475,17 @@ let g:user_emmet_leader_key='<M-m>'
 " ===========================
 " ========== ale ============
 " ===========================
-let g:ale_linters = {
-            \ 'go': ['eslint'],
-            \ 'javascript': ['eslint'] }
-"   'python': ['eslint'],
-"   'c': ['eslint'],
-"   'c++': ['eslint'],
-"   'asm': ['eslint'],
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
-nmap <silent> <C-j> <Plug>(ale_previous_wrap)
-nmap <silent> <C-k> <Plug>(ale_next_wrap)
+"let g:ale_linters = {
+            "\ 'go': ['eslint'],
+            "\ 'javascript': ['eslint'] }
+""   'python': ['eslint'],
+""   'c': ['eslint'],
+""   'c++': ['eslint'],
+""   'asm': ['eslint'],
+""let g:ale_sign_error = '>>'
+""let g:ale_sign_warning = '--'
+"nmap <silent> <C-j> <Plug>(ale_previous_wrap)
+"nmap <silent> <C-k> <Plug>(ale_next_wrap)
 
 
 " ===================================
@@ -558,14 +557,6 @@ noremap <C-y> :Buffers<CR>
 let g:rnvimr_ex_enable = 1
 let g:rnvimr_pick_enable = 1
 nnoremap <silent> R :RnvimrToggle<CR>
-
-
-" =======================
-" ======== far ==========
-" =======================
-set lazyredraw
-set regexpengine=1
-noremap <LEADER>f :F
 
 
 " ==================================
