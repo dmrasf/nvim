@@ -301,7 +301,7 @@ Plug 'AndrewRadev/switch.vim' " gs
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line <space>
 Plug 'itchyny/calendar.vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'mhinz/vim-startify'
+Plug 'hardcoreplayers/dashboard-nvim'   " 打开vim显示最近文件
 Plug 'dkarter/bullets.vim'              "<C-t> <C-d>
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
@@ -316,8 +316,7 @@ Plug 'chrisbra/unicode.vim'
 
 " test
 "Plug 'Konfekt/FastFold'
-"Plug 'dmrasf/vim-recite'
-"Plug 'hardcoreplayers/dashboard-nvim'
+Plug 'dmrasf/vim-recite'
 Plug 'lpinilla/vim-codepainter'
 
 call plug#end()
@@ -549,6 +548,8 @@ noremap <C-f> :FZF<CR>
 noremap <C-q> :Ag<CR>
 noremap <C-h> :History<CR>
 noremap <C-y> :Buffers<CR>
+let g:fzf_preview_window = 'right:60%'
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
 
 
 " ================================
@@ -720,6 +721,29 @@ augroup calendar-mappings
     "autocmd FileType calendar nunmap <buffer> <C-n>
     "autocmd FileType calendar nunmap <buffer> <C-p>
 augroup END
+
+
+" ===================================
+" =========== dashboard =============
+" ===================================
+let g:dashboard_default_executive = 'fzf'
+nmap <Leader>ss :<C-u>SessionSave<CR>
+nmap <Leader>sl :<C-u>SessionLoad<CR>
+nmap <Leader>cn :<C-u>DashboardNewFile<CR>
+nnoremap <silent> <Leader>fh :History<CR>
+nnoremap <silent> <Leader>ff :Files<CR>
+nnoremap <silent> <Leader>tc :Colors<CR>
+nnoremap <silent> <Leader>fa :Rg<CR>
+nnoremap <silent> <Leader>fb :Marks<CR>
+let g:dashboard_custom_shortcut={
+            \ 'last_session' : 'SPC s l',
+            \ 'find_history' : 'SPC f h',
+            \ 'find_file' : 'SPC f f',
+            \ 'new_file' : 'SPC c n',
+            \ 'change_colorscheme' : 'SPC t c',
+            \ 'find_word' : 'SPC f a',
+            \ 'book_marks' : 'SPC f b',
+            \ }
 
 
 " ==========================================
