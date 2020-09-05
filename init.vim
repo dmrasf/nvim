@@ -278,7 +278,6 @@ Plug 'kevinhwang91/rnvimr', {'do': 'make sync'} " ranger
 Plug 'rhysd/clever-f.vim'                       " fsfff
 Plug 'ctrlpvim/ctrlp.vim'                       " cmd CtrlP
 Plug 'pechorin/any-jump.vim'                    " <M-j>
-Plug 'easymotion/vim-easymotion'                " '+w
 
 " git
 Plug 'tpope/vim-fugitive'      " git 命令
@@ -292,7 +291,6 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 " some tool
 Plug 'mbbill/undotree'
 Plug 'liuchengxu/vista.vim'
-Plug 'yianwillis/vimcdoc'    " 中文文档
 Plug 'tpope/vim-surround'    " type cs'`to change 'word' to `word`
 Plug 'tpope/vim-capslock'    " <C-l> capslock
 Plug 'tpope/vim-speeddating' " <c-a> <c-x>
@@ -312,12 +310,8 @@ Plug 'skywind3000/vim-terminal-help' " 快速打开terminal
 Plug 'chrisbra/NrrwRgn'              " 产生非干扰区
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
-Plug 'chrisbra/unicode.vim'
 
 " test
-"Plug 'Konfekt/FastFold'
-Plug 'dmrasf/vim-recite'
-Plug 'lpinilla/vim-codepainter'
 
 call plug#end()
 
@@ -801,22 +795,6 @@ noremap <silent><f2> :AsyncTask file-build<cr>
 
 " ---------------------------- test end ---------------------------------------
 
-" ==================================
-" =========== FastFold =============
-" ==================================
-nmap zuz <Plug>(FastFoldUpdate)
-let g:fastfold_savehook = 1
-let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
-let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
-
-
-" ================================
-" =========== recite =============
-" ================================
-let g:recite_default_storage = "/home/dmr/Documents/Notes/recite"
-let g:recite_disable_default_keybindings = 1
-nnoremap <m-e> :RecitePre<CR>
-nnoremap <c-p> :ReciteOpen<CR>
 
 " ---------------------------- test end ---------------------------------------
 
