@@ -569,15 +569,6 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:any_jump_disable_default_keybindings = 1
 nnoremap <M-j> :AnyJump<CR>
 
-
-" ====================================
-" =========== easymotion =============
-" ====================================
-"let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_do_shade = 0
-"let g:EasyMotion_smartcase = 1
-map ' <Plug>(easymotion-prefix)
-
 " -------------------------------- find end -----------------------------------
 
 
