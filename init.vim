@@ -382,7 +382,7 @@ let g:vue_pre_processors = []
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 let g:coc_global_extention = [
-            \ 'coc-sh', 'coc-go', 'coc-svg', 'coc-marketplace', 'coc-clangd',
+            \ 'coc-sh', 'coc-go', 'coc-marketplace', 'coc-clangd',
             \ 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-tsserver',
             \ 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python',
             \ 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists',
@@ -536,7 +536,6 @@ au FileType go nmap M <Plug>(go-doc)
 " ===========================
 " ========= fzf =============
 " ===========================
-set rtp+=/usr/local/opt/fzf
 noremap <C-f> :FZF<CR>
 noremap <C-q> :Ag<CR>
 noremap <C-h> :History<CR>
