@@ -274,7 +274,6 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': ['go', 'vim-plug'], 'ta
 
 " 查找文件
 Plug 'junegunn/fzf.vim'                         " fzf
-Plug 'kevinhwang91/rnvimr', {'do': 'make sync'} " ranger
 Plug 'rhysd/clever-f.vim'                       " fsfff
 Plug 'ctrlpvim/ctrlp.vim'                       " cmd CtrlP
 Plug 'pechorin/any-jump.vim'                    " <M-j>
@@ -544,14 +543,6 @@ noremap <C-h> :History<CR>
 noremap <C-y> :Buffers<CR>
 let g:fzf_preview_window = 'right:60%'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
-
-
-" ================================
-" =========== rnvimr =============
-" ================================
-let g:rnvimr_ex_enable = 1
-let g:rnvimr_pick_enable = 1
-nnoremap <silent> R :RnvimrToggle<CR>
 
 
 " ==================================
