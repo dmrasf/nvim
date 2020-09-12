@@ -1,5 +1,5 @@
 {
-    "coc.preferences.extensionUpdateCheck": "daily",
+    "coc.preferences.extensionUpdateCheck": "never",
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
     "suggest.completionItemKindLabels": {
@@ -32,9 +32,7 @@
     "coc.preferences.snippetStatusText": "Ⓢ ",
     "coc.preferences.formatOnSaveFiletypes": [
         "json",
-        "python",
-        "css",
-        "html"
+        "python"
     ],
     "list.nextKeymap": "<C-k>",
     "list.previousKeymap": "<C-j>",
