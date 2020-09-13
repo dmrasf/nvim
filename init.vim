@@ -303,6 +303,7 @@ Plug 'KabbAmine/vCoolor.vim'         " 颜色选择  <M-r>
 Plug 'chrisbra/NrrwRgn'              " 产生非干扰区
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
+Plug 'yuttie/comfortable-motion.vim' " 更顺滑的scroll
 
 " test
 
@@ -672,6 +673,19 @@ let g:asyncrun_open = 6
 let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
 noremap <silent><f1> :AsyncTask file-run<cr>
 noremap <silent><f2> :AsyncTask file-build<cr>
+
+
+" ============================================
+" =========== comfortable_motion =============
+" ============================================
+let g:comfortable_motion_friction = 100
+let g:comfortable_motion_air_drag = 2
+let g:comfortable_motion_no_default_key_mappings = 1
+let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decrease this value.
+nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
+nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
+noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
+noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
 
 " ---------------------------- tools end --------------------------------------
 
