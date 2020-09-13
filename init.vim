@@ -252,7 +252,6 @@ Plug 'junegunn/seoul256.vim'          " colorstheme
 Plug 'jpo/vim-railscasts-theme'       " colorstheme
 Plug 'luochen1990/rainbow'            " rainbow 括号
 Plug 'junegunn/goyo.vim'              " distraction free writing mode
-Plug 'junegunn/limelight.vim'         " focus
 Plug 'ryanoasis/vim-devicons'         " nerdfont devicons
 Plug 'Chiel92/vim-autoformat'         " autoformat \f
 Plug 'godlygeek/tabular'              " 对齐文本
@@ -261,7 +260,6 @@ Plug 'itchyny/vim-cursorword'         " 下划线
 
 " highlight and complete
 Plug 'jackguo380/vim-lsp-cxx-highlight'         " for coc-clangd
-Plug 'posva/vim-vue'                            " syntax highlighting for Vue components.
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " coc
 Plug 'honza/vim-snippets'                       " 代码片段集合
 Plug 'mattn/emmet-vim'                          " <M-m>,  html
@@ -299,11 +297,9 @@ Plug 'itchyny/calendar.vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'dkarter/bullets.vim'              "<C-t> <C-d>
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/vim-peekaboo'         " 在插入模式下使用寄存器 <C-r>
 Plug 'AndrewRadev/splitjoin.vim'     " gS  gJ 单行 多行
-Plug 'KabbAmine/vCoolor.vim'         " 颜色选择
-Plug 'skywind3000/vim-terminal-help' " 快速打开terminal
+Plug 'KabbAmine/vCoolor.vim'         " 颜色选择  <M-r>
 Plug 'chrisbra/NrrwRgn'              " 产生非干扰区
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
@@ -353,13 +349,6 @@ let g:rainbow_active = 1
 map <LEADER>gy :Goyo<CR>
 
 
-" ===================================
-" =========== limelight =============
-" ===================================
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
-
-
 " ====================================
 " =========== autoformat =============
 " ====================================
@@ -369,12 +358,6 @@ noremap \f :Autoformat<CR>
 
 
 " ------------------------ highlight & complete begin -------------------------
-
-" =================================
-" =========== vim-vue =============
-" =================================
-let g:vue_pre_processors = []
-
 
 " ===========================
 " ========== coc ============
@@ -680,12 +663,6 @@ let g:bullets_enabled_file_types = [
 let g:bookmark_sign = ''
 let g:bookmark_annotation_sign = ''
 let g:bookmark_auto_save_file = $HOME . '/.local/share/nvim/.vim-bookmarks'
-
-
-" ===========================================
-" =========== vim-terminal-help =============
-" ===========================================
-let g:terminal_key = '--'
 
 
 " ====================================
