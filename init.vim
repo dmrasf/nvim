@@ -338,6 +338,7 @@ noremap \p :XTabInfo<CR>
 " ===========================
 let g:airline_theme='base16_gruvbox_dark_hard'
 let g:airline#extensions#whitespace#enabled = 0
+let g:airline_section_z = '%p%% %l%v'
 
 
 " =================================
