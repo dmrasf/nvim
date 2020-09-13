@@ -104,6 +104,7 @@
         "<<": "gitStage",
         ">>": "gitUnstage"
     },
+    "go.checkForUpdates": "ask",
     "coc-actions.hideCursor": true,
     "coc-actions.showActionKind": true,
     "coc-actions.useCursorLine": false,
