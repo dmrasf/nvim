@@ -47,6 +47,8 @@
     "diagnostic.checkCurrentLine": true,
     "diagnostic.virtualTextPrefix": " ❯❯❯ ",
     "diagnostic.virtualText": true,
+    "diagnostic.virtualTextCurrentLineOnly": false,
+    "diagnostic.messageTarget": "echo",
     "codeLens.enable": true,
     "codeLens.separator": "‣",
     "explorer.file.column.git.showIgnored": true,
