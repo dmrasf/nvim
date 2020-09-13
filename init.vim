@@ -41,6 +41,7 @@ set list
 set listchars=tab:\│\ ,trail:▫
 set fillchars=vert:\│
 set autochdir
+set keywordprg=:silent!
 
 set foldmethod=indent
 set foldlevel=99
