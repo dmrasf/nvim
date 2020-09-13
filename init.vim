@@ -40,6 +40,7 @@ set ttyfast
 set list
 set listchars=tab:\│\ ,trail:▫
 set fillchars=vert:\│
+set autochdir
 
 set foldmethod=indent
 set foldlevel=99
@@ -264,13 +265,11 @@ Plug 'posva/vim-vue'                            " syntax highlighting for Vue co
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " coc
 Plug 'honza/vim-snippets'                       " 代码片段集合
 Plug 'mattn/emmet-vim'                          " <M-m>,  html
-"Plug 'dense-analysis/ale'                       " error
 Plug 'OmniSharp/omnisharp-vim'                  " c#
 Plug 'maxmellon/vim-jsx-pretty'                 " jsx highlight
 Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] } " javascript highlight
 Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }      " javascript highlight
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }                  " python highlight
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': ['go', 'vim-plug'], 'tag': '*' }                " go very powerful
 
 " 查找文件
 Plug 'junegunn/fzf.vim'                         " fzf
@@ -298,7 +297,6 @@ Plug 'AndrewRadev/switch.vim' " gs
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line <space>
 Plug 'itchyny/calendar.vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'hardcoreplayers/dashboard-nvim'   " 打开vim显示最近文件
 Plug 'dkarter/bullets.vim'              "<C-t> <C-d>
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
@@ -464,22 +462,6 @@ autocmd FileType html,css,js,markdown EmmetInstall
 let g:user_emmet_leader_key='<M-m>'
 
 
-" ===========================
-" ========== ale ============
-" ===========================
-"let g:ale_linters = {
-            "\ 'go': ['eslint'],
-            "\ 'javascript': ['eslint'] }
-""   'python': ['eslint'],
-""   'c': ['eslint'],
-""   'c++': ['eslint'],
-""   'asm': ['eslint'],
-""let g:ale_sign_error = '>>'
-""let g:ale_sign_warning = '--'
-"nmap <silent> <C-j> <Plug>(ale_previous_wrap)
-"nmap <silent> <C-k> <Plug>(ale_next_wrap)
-
-
 " ===================================
 " =========== omnisharp =============
 " ===================================
@@ -492,41 +474,6 @@ autocmd Filetype cs nnoremap <buffer> gy :OmniSharpTypeLookup<CR>
 autocmd Filetype cs nnoremap <buffer> ga :OmniSharpGetCodeActions<CR>
 autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +5<CR>
 
-
-" ================================
-" =========== vim-go =============
-" ================================
-let g:go_echo_go_info = 0
-let g:go_doc_keywordprg_enabled = 0
-let g:go_doc_popup_window = 1
-let g:go_def_mapping_enabled = 0
-let g:go_template_autocreate = 0
-let g:go_textobj_enabled = 0
-let g:go_auto_type_info = 1
-let g:go_def_mapping_enabled = 0
-let g:go_list_type = "quickfix"
-let g:go_highlight_array_whitespace_error = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_chan_whitespace_error = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_space_tab_error = 1
-let g:go_highlight_string_spellcheck = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_trailing_whitespace_error = 1
-let g:go_highlight_types = 1
-let g:go_highlight_variable_assignments = 0
-let g:go_highlight_variable_declarations = 0
-au FileType go nmap gd <Plug>(go-def)
-au FileType go nmap gr <Plug>(go-referrers)
-au FileType go nmap M <Plug>(go-doc)
 
 " ------------------------- highlight & complete end --------------------------
 
@@ -696,29 +643,6 @@ augroup calendar-mappings
     "autocmd FileType calendar nunmap <buffer> <C-n>
     "autocmd FileType calendar nunmap <buffer> <C-p>
 augroup END
-
-
-" ===================================
-" =========== dashboard =============
-" ===================================
-let g:dashboard_default_executive = 'fzf'
-nmap <Leader>ss :<C-u>SessionSave<CR>
-nmap <Leader>sl :<C-u>SessionLoad<CR>
-nmap <Leader>cn :<C-u>DashboardNewFile<CR>
-nnoremap <silent> <Leader>fh :History<CR>
-nnoremap <silent> <Leader>ff :Files<CR>
-nnoremap <silent> <Leader>tc :Colors<CR>
-nnoremap <silent> <Leader>fa :Rg<CR>
-nnoremap <silent> <Leader>fb :Marks<CR>
-let g:dashboard_custom_shortcut={
-            \ 'last_session' : 'SPC s l',
-            \ 'find_history' : 'SPC f h',
-            \ 'find_file' : 'SPC f f',
-            \ 'new_file' : 'SPC c n',
-            \ 'change_colorscheme' : 'SPC t c',
-            \ 'find_word' : 'SPC f a',
-            \ 'book_marks' : 'SPC f b',
-            \ }
 
 
 " ==========================================
