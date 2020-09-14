@@ -270,6 +270,7 @@ Plug 'maxmellon/vim-jsx-pretty'                 " jsx highlight
 Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] } " javascript highlight
 Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }      " javascript highlight
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }                  " python highlight
+Plug 'dart-lang/dart-vim-plugin'
 
 " 查找文件
 Plug 'junegunn/fzf.vim'                         " fzf
@@ -492,6 +493,13 @@ autocmd Filetype cs nnoremap <buffer> gy :OmniSharpTypeLookup<CR>
 autocmd Filetype cs nnoremap <buffer> ga :OmniSharpGetCodeActions<CR>
 autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +5<CR>
 
+
+" =========================================
+" =========== dart-vim-plugin =============
+" =========================================
+let g:dart_style_guide = 2
+let g:dart_format_on_save = 1
+let g:dartfmt_options = ["-l 100"]
 
 " ------------------------- highlight & complete end --------------------------
 
