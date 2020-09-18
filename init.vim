@@ -404,7 +404,7 @@ let g:coc_global_extention = [
             \ 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python',
             \ 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists',
             \ 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore',
-            \ 'coc-todolist', 'coc-actions', 'coc-vetur']
+            \ 'coc-todolist', 'coc-actions', 'coc-vetur', 'coc-flutter']
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
