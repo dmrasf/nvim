@@ -58,10 +58,7 @@ noremap k j
 noremap K 5j
 noremap I 5k
 noremap H I
-noremap Q q
-noremap Z Q
 map s <nop>
-map q :q<CR>
 map r :w<CR>
 map ; :
 noremap n nzz
