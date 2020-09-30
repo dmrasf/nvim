@@ -5,10 +5,10 @@
 " |_|  |_| |_|   |_| \_|  \_/  |___|_|  |_|_| \_\\____|
 "
 
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-    silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+"if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+    "silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"endif
 
 let mapleader=" "
 
@@ -58,7 +58,10 @@ noremap k j
 noremap K 5j
 noremap I 5k
 noremap H I
+noremap Q q
+noremap Z Q
 map s <nop>
+map q :q<CR>
 map r :w<CR>
 map ; :
 noremap n nzz
@@ -103,6 +106,8 @@ inoremap <C-h> <Esc>I
 
 noremap <ESC> :ccl<CR>
 noremap tx :r !figlet
+noremap gU wbgUw
+noremap gu wbguw
 
 map <up> :res -1<CR>
 map <down> :res +1<CR>
@@ -140,9 +145,7 @@ let g:terminal_color_15 = '#ebdbb2'     "white
 
 noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
 
-let g:python2_host_prog='/usr/bin/python2'
 let g:python3_host_prog='/usr/bin/python3'
-
 
 "autocmd Filetype markdown map <leader>w yiWi[<esc>Ea](<esc>pa)
 noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
