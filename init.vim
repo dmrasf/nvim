@@ -42,6 +42,7 @@ set listchars=tab:\│\ ,trail:▫
 set fillchars=vert:\│
 set autochdir
 set keywordprg=:silent!
+set modeline
 
 set foldmethod=indent
 set foldlevel=99
@@ -270,6 +271,7 @@ Plug 'maxmellon/vim-jsx-pretty'                 " jsx highlight
 Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] } " javascript highlight
 Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }      " javascript highlight
 Plug 'dart-lang/dart-vim-plugin'
+Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python'}
 
 " 查找文件
 Plug 'junegunn/fzf.vim'                         " fzf
@@ -398,7 +400,7 @@ au FileType go nmap M <Plug>(go-doc)
 " ===========================
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 let g:coc_global_extention = [
-            \ 'coc-sh', 'coc-go', 'coc-marketplace', 'coc-clangd',
+            \ 'coc-sh', 'coc-go', 'coc-marketplace', 'coc-clangd', 'coc-cmake',
             \ 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-tsserver',
             \ 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python',
             \ 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists',
@@ -499,6 +501,12 @@ autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +
 let g:dart_style_guide = 2
 let g:dart_format_on_save = 1
 let g:dartfmt_options = ["-l 100"]
+
+
+" ====================================
+" =========== vimspector =============
+" ====================================
+let g:vimspector_enable_mappings = 'HUMAN'
 
 " ------------------------- highlight & complete end --------------------------
 
@@ -710,7 +718,7 @@ let g:bookmark_auto_save_file = $HOME . '/.local/share/nvim/.vim-bookmarks'
 " =========== asynctasks =============
 " ====================================
 let g:asyncrun_open = 6
-let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
+let g:asyncrun_rootmarks = ['build', '.git', '.svn', '.root', '.project', '.hg']
 noremap <silent><f1> :AsyncTask file-run<cr>
 noremap <silent><f2> :AsyncTask file-build<cr>
 
