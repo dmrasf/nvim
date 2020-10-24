@@ -20,7 +20,9 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-autocmd BufNewFile,BufRead *.html,*.htm,*.css,*.js,*.vue set tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype xml,html,htm,css,js,vue set tabstop=2 shiftwidth=2 softtabstop=2
+autocmd BufWinEnter *.launch,*.gazebo,*.xacro,*.dae,*.world set filetype=xml
+autocmd BufWinEnter *.rviz set filetype=yaml
 set number
 set relativenumber
 set cursorline
@@ -413,7 +415,7 @@ au FileType go nmap M <Plug>(go-doc)
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 let g:coc_global_extention = [
             \ 'coc-sh', 'coc-go', 'coc-marketplace', 'coc-clangd', 'coc-cmake',
-            \ 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-tsserver',
+            \ 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-tsserver', 'coc-yaml',
             \ 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python',
             \ 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists',
             \ 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore',
