@@ -35,8 +35,9 @@ set incsearch
 set ignorecase
 set smartcase
 set autoindent
-set colorcolumn=80
-set updatetime=1000
+set colorcolumn=100
+set updatetime=100
+set lazyredraw
 set vb t_vb=
 set ttyfast
 set list
