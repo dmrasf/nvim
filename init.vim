@@ -58,8 +58,12 @@ nnoremap i k
 nnoremap j h
 nnoremap h i
 nnoremap k j
+vnoremap i k
+vnoremap k j
 nnoremap K 5j
 nnoremap I 5k
+vnoremap K 5j
+vnoremap I 5k
 nnoremap H I
 nnoremap Q q
 nnoremap Z Q
@@ -580,6 +584,9 @@ noremap \g :Git
 " ===================================
 " =========== gitgutter =============
 " ===================================
+let g:gitgutter_sign_allow_clobber = 0
+let g:gitgutter_map_keys = 0
+let g:gitgutter_preview_win_floating = 1
 nnoremap gf :GitGutterFold<CR>
 nnoremap gh :GitGutterPreviewHunk<CR>
 nnoremap [g :GitGutterPrevHunk<CR>
