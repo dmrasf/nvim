@@ -48,80 +48,80 @@ set modeline
 set foldmethod=indent
 set foldlevel=99
 set foldenable
-au BufWinLeave * silent! mkview
-au BufWinEnter * silent! loadview
+"au BufWinLeave * silent! mkview
+"au BufWinEnter * silent! loadview
 
-noremap <LEADER><CR> :nohlsearch<CR>
+nnoremap <LEADER><CR> :nohlsearch<CR>
 
-noremap i k
-noremap j h
-noremap h i
-noremap k j
-noremap K 5j
-noremap I 5k
-noremap H I
-noremap Q q
-noremap Z Q
-map s <nop>
-map q :q<CR>
-map r :w<CR>
-map ; :
-noremap n nzz
-noremap N Nzz
-noremap W 5w
-noremap B 5b
+nnoremap i k
+nnoremap j h
+nnoremap h i
+nnoremap k j
+nnoremap K 5j
+nnoremap I 5k
+nnoremap H I
+nnoremap Q q
+nnoremap Z Q
+nnoremap s <nop>
+nnoremap q :q<CR>
+nnoremap r :w<CR>
+nnoremap ; :
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap W 5w
+nnoremap B 5b
 
 " 跳转文件
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 nnoremap [B :bfirst<CR>
 nnoremap ]B :blast<CR>
-noremap <C-b> :bd
-map <leader>1 :b 1<CR>
-map <leader>2 :b 2<CR>
-map <leader>3 :b 3<CR>
-map <leader>4 :b 4<CR>
-map <leader>5 :b 5<CR>
-map <leader>6 :b 6<CR>
-map <leader>7 :b 7<CR>
-map <leader>8 :b 8<CR>
-map <leader>9 :b 9<CR>
+nnoremap <C-b> :bd
+nnoremap <leader>1 :b 1<CR>
+nnoremap <leader>2 :b 2<CR>
+nnoremap <leader>3 :b 3<CR>
+nnoremap <leader>4 :b 4<CR>
+nnoremap <leader>5 :b 5<CR>
+nnoremap <leader>6 :b 6<CR>
+nnoremap <leader>7 :b 7<CR>
+nnoremap <leader>8 :b 8<CR>
+nnoremap <leader>9 :b 9<CR>
 
 nnoremap < <<
 nnoremap > >>
 
 vnoremap Y "+y
 
-map sd :set splitright<CR>:vsplit<CR>
-map sa :set nosplitright<CR>:vsplit<CR>
-map sw :set nosplitbelow<CR>:split<CR>
-map ss :set splitbelow<CR>:split<CR>
-map <LEADER>i <C-w>k
-map <LEADER>k <C-w>j
-map <LEADER>l <C-w>l
-map <LEADER>j <C-w>h
-noremap sv <C-w>b<C-w>K
-noremap sc <C-w>b<C-w>H
+nnoremap sd :set splitright<CR>:vsplit<CR>
+nnoremap sa :set nosplitright<CR>:vsplit<CR>
+nnoremap sw :set nosplitbelow<CR>:split<CR>
+nnoremap ss :set splitbelow<CR>:split<CR>
+nnoremap <LEADER>i <C-w>k
+nnoremap <LEADER>k <C-w>j
+nnoremap <LEADER>l <C-w>l
+nnoremap <LEADER>j <C-w>h
+nnoremap sv <C-w>b<C-w>K
+nnoremap sc <C-w>b<C-w>H
 
 inoremap <C-a> <Esc>A
 inoremap <C-h> <Esc>I
 
-noremap <ESC> :ccl<CR>
-noremap tx :r !figlet
-noremap gU wbgUw
-noremap gu wbguw
+nnoremap <ESC> :ccl<CR>
+nnoremap tx :r !figlet
+nnoremap gU wbgUw
+nnoremap gu wbguw
 
-map <up> :res -1<CR>
-map <down> :res +1<CR>
-map <left> :vertical resize+1<CR>
-map <right> :vertical resize-1<CR>
+nnoremap <up> :res -1<CR>
+nnoremap <down> :res +1<CR>
+nnoremap <left> :vertical resize+1<CR>
+nnoremap <right> :vertical resize-1<CR>
 
 " Tab management
-noremap tn :tabe<CR>
-noremap ti :-tabnext<CR>
-noremap tk :+tabnext<CR>
-noremap tmi :-tabmove<CR>
-noremap tmk :+tabmove<CR>
+nnoremap tn :tabe<CR>
+nnoremap ti :-tabnext<CR>
+nnoremap tk :+tabnext<CR>
+nnoremap tmi :-tabmove<CR>
+nnoremap tmk :+tabmove<CR>
 
 " 打开终端后进入插入模式
 let g:neoterm_autoscroll = 1
@@ -182,10 +182,16 @@ endif
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-noremap <LEADER>v :tabe ~/.config/nvim/init.vim<CR>
+nnoremap <LEADER>v :tabe ~/.config/nvim/init.vim<CR>
 inoremap <C-z> <ESC>u
 
-map <LEADER>r :call Run()<CR>
+" quickfix 设置，隐藏行号
+augroup VimInitStyle
+    au!
+    au FileType qf setlocal norelativenumber
+augroup END
+
+nnoremap <LEADER>r :call Run()<CR>
 func! Run()
     exec "w"
     if &filetype == 'c'
