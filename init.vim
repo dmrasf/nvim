@@ -27,6 +27,8 @@ set relativenumber
 set signcolumn=auto
 set cursorline
 set wrap
+set linebreak
+set spell spelllang=en_us
 set showcmd
 set wildmenu
 set scrolloff=5
@@ -38,7 +40,6 @@ set autoindent
 set colorcolumn=100
 set updatetime=100
 set lazyredraw
-set vb t_vb=
 set ttyfast
 set list
 set listchars=tab:\│\ ,trail:▫
@@ -46,6 +47,8 @@ set fillchars=vert:\│
 set autochdir
 set keywordprg=:silent!
 set modeline
+set noerrorbells
+set visualbell
 
 set foldmethod=indent
 set foldlevel=99
@@ -285,6 +288,7 @@ Plug 'Chiel92/vim-autoformat'         " autoformat \f
 Plug 'godlygeek/tabular'              " 对齐文本
 Plug 'romainl/vim-cool'               " 自动取消高亮
 Plug 'itchyny/vim-cursorword'         " 下划线
+Plug 'Yggdroot/indentLine'
 
 " highlight and complete
 Plug 'fatih/vim-go' , {'do': ':GoUpdateBinaries', 'for': ['go', 'vim-plug'], 'tag': '*' }
@@ -384,6 +388,12 @@ map <LEADER>gy :Goyo<CR>
 " =========== autoformat =============
 " ====================================
 noremap \f :Autoformat<CR>
+
+
+" ====================================
+" =========== indentLine =============
+" ====================================
+let g:indentLine_char = '│'
 
 " -------------------------------- dress end ----------------------------------
 
