@@ -23,7 +23,6 @@ set softtabstop=4
 autocmd Filetype xml,html,htm,css,js,vue set tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufWinEnter *.launch,*.gazebo,*.xacro,*.dae,*.world set filetype=xml
 autocmd BufWinEnter *.rviz set filetype=yaml
-set number
 set relativenumber
 set cursorline
 set wrap
@@ -127,8 +126,9 @@ noremap tmk :+tabmove<CR>
 " 打开终端后进入插入模式
 let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert
+autocmd TermOpen * setlocal norelativenumber signcolumn=no
+nnoremap te :set splitbelow<CR>:split<CR> :terminal<CR>
 tnoremap <C-N> <C-\><C-N>
-tnoremap <C-O> <C-\><C-N><C-O>
 let g:terminal_color_0  = '#282828'     "black
 let g:terminal_color_1  = '#cc241d'     "red
 let g:terminal_color_2  = '#98971a'     "green
