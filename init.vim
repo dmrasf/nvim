@@ -24,6 +24,7 @@ autocmd Filetype xml,html,htm,css,js,vue set tabstop=2 shiftwidth=2 softtabstop=
 autocmd BufWinEnter *.launch,*.gazebo,*.xacro,*.dae,*.world set filetype=xml
 autocmd BufWinEnter *.rviz set filetype=yaml
 set relativenumber
+set signcolumn=auto
 set cursorline
 set wrap
 set showcmd
@@ -432,11 +433,7 @@ let g:coc_global_extention = [
 set hidden
 set updatetime=100
 set shortmess+=c
-if has("path-8.1.1564")
-    set signcolumn=number
-else
-    set signcolumn=yes
-endif
+set signcolumn=auto
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
