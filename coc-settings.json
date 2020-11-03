@@ -1,5 +1,5 @@
 {
-    "coc.preferences.extensionUpdateCheck": "never",
+    "coc.preferences.extensionUpdateCheck": "weekly",
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
     "suggest.completionItemKindLabels": {
@@ -110,6 +110,7 @@
     "coc-actions.hideCursor": true,
     "coc-actions.showActionKind": true,
     "coc-actions.useCursorLine": false,
+    "explorer.previewAction.onHover": false,
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/Ultisnips/",
         "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"

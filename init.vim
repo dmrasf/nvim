@@ -20,15 +20,14 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-autocmd Filetype xml,html,htm,css,js,vue set tabstop=2 shiftwidth=2 softtabstop=2
-autocmd BufWinEnter *.launch,*.gazebo,*.xacro,*.dae,*.world set filetype=xml
-autocmd BufWinEnter *.rviz set filetype=yaml
+autocmd BufWinEnter *.xml,*.html,*.htm,*.css,*.js,*.vue setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd BufWinEnter *.launch,*.gazebo,*.xacro,*.dae,*.world setlocal filetype=xml
+autocmd BufWinEnter *.rviz setlocal filetype=yaml
+set number
 set relativenumber
 set signcolumn=auto
 set cursorline
 set wrap
-set linebreak
-set spell spelllang=en_us
 set showcmd
 set wildmenu
 set scrolloff=5
@@ -49,6 +48,7 @@ set keywordprg=:silent!
 set modeline
 set noerrorbells
 set visualbell
+set conceallevel=2
 
 set foldmethod=indent
 set foldlevel=99
@@ -63,6 +63,8 @@ nnoremap j h
 nnoremap h i
 nnoremap k j
 vnoremap i k
+vnoremap j h
+vnoremap h i
 vnoremap k j
 nnoremap K 5j
 nnoremap I 5k
@@ -271,7 +273,6 @@ endfunction
 call plug#begin('~/.config/nvim/plugged')
 
 " dress
-Plug 'mg979/vim-xtabline'             " xtabline
 Plug 'bling/vim-bufferline'           " bufferline
 Plug 'vim-airline/vim-airline'        " airline
 Plug 'vim-airline/vim-airline-themes' " airline theme
@@ -302,6 +303,7 @@ Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javas
 Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }      " javascript highlight
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python'}
+Plug 'wavded/vim-stylus'
 
 " 查找文件
 Plug 'junegunn/fzf.vim'                         " fzf
@@ -351,25 +353,16 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 color gruvbox
 
 
-" ==================================
-" =========== xtabline =============
-" ==================================
-let g:xtabline_settings = {}
-let g:xtabline_settings.enable_mappings = 0
-let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
-let g:xtabline_settings.enable_persistance = 0
-let g:xtabline_settings.show_right_corner = 0
-let g:xtabline_settings.last_open_first = 1
-noremap ts :XTabCycleMode<CR>
-noremap \p :XTabInfo<CR>
-
-
 " ===========================
 " ======== airline ==========
 " ===========================
-let g:airline_theme='base16_gruvbox_dark_hard'
+let g:airline_theme='gruvbox'
 let g:airline#extensions#whitespace#enabled = 0
-let g:airline_section_z = '%p%% %l%v'
+let g:airline_section_z = '%p%% %l:%v'
+let g:airline_section_b = ''
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#formatter = 'short_path'
 
 
 " =================================
@@ -394,6 +387,7 @@ noremap \f :Autoformat<CR>
 " =========== indentLine =============
 " ====================================
 let g:indentLine_char = '│'
+autocmd BufWinEnter *.json IndentLinesDisable
 
 " -------------------------------- dress end ----------------------------------
 
@@ -623,7 +617,7 @@ nmap gm <Plug>(git-messenger)
 " ======== MarkdownPreview ==========
 " ===================================
 let g:mkdp_auto_start = 0
-let g:mkdp_auto_close = 1
+let g:mkdp_auto_close = 0
 let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 1
