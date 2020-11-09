@@ -48,7 +48,7 @@ set keywordprg=:silent!
 set modeline
 set noerrorbells
 set visualbell
-set conceallevel=2
+set conceallevel=0
 
 set foldmethod=indent
 set foldlevel=99
@@ -304,6 +304,7 @@ Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python'}
 Plug 'wavded/vim-stylus'
+Plug 'lervag/vimtex'
 
 " 查找文件
 Plug 'junegunn/fzf.vim'                         " fzf
@@ -324,6 +325,7 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'mbbill/undotree'
 Plug 'liuchengxu/vista.vim'
 Plug 'tpope/vim-surround'    " type cs'`to change 'word' to `word`
+Plug 'gcmt/wildfire.vim'     " <ENTER>  <BS>
 Plug 'tpope/vim-capslock'    " <C-l> capslock
 Plug 'tpope/vim-speeddating' " <c-a> <c-x>
 Plug 'tpope/vim-repeat'
@@ -533,6 +535,20 @@ let g:dartfmt_options = ["-l 100"]
 " =========== vimspector =============
 " ====================================
 let g:vimspector_enable_mappings = 'HUMAN'
+
+
+" ================================
+" =========== vimtex =============
+" ================================
+let g:tex_flavor = 'latex'
+let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_log_ignore = ['Warning']
+let g:vimtex_mappings_enabled = 0
+let g:vimtex_text_obj_enabled = 0
+let g:vimtex_motion_enabled = 0
+let g:vimtex_quickfix_enabled = 0
+let maplocalleader = ' '
+let g:vimtex_compiler_progname = 'nvr'
 
 " ------------------------- highlight & complete end --------------------------
 
