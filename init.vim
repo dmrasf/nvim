@@ -331,7 +331,6 @@ Plug 'dkarter/bullets.vim'              "<C-t> <C-d>
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'junegunn/vim-peekaboo'         " 在插入模式下使用寄存器 <C-r>
 Plug 'AndrewRadev/splitjoin.vim'     " gS  gJ 单行 多行
-Plug 'KabbAmine/vCoolor.vim'         " 颜色选择  <M-r>
 Plug 'chrisbra/NrrwRgn'              " 产生非干扰区
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
