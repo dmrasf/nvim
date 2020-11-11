@@ -50,12 +50,6 @@ set noerrorbells
 set visualbell
 set conceallevel=0
 
-set foldmethod=indent
-set foldlevel=99
-set foldenable
-"au BufWinLeave * silent! mkview
-"au BufWinEnter * silent! loadview
-
 nnoremap <LEADER><CR> :nohlsearch<CR>
 
 nnoremap i k
@@ -383,6 +377,7 @@ map <LEADER>gy :Goyo<CR>
 " =========== autoformat =============
 " ====================================
 noremap \f :Autoformat<CR>
+autocmd BufWrite *.js :Autoformat
 
 
 " ====================================
