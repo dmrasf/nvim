@@ -555,7 +555,6 @@ let g:vimtex_compiler_progname = 'nvr'
 noremap <C-f> :FZF<CR>
 noremap <C-q> :Ag<CR>
 noremap <C-h> :History<CR>
-noremap <C-y> :Buffers<CR>
 let g:fzf_preview_window = 'right:60%'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
 
