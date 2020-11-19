@@ -159,6 +159,7 @@ let g:python3_host_prog='/usr/bin/python3'
 noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 autocmd Filetype markdown nnoremap ,c ebi`<ESC>ea`<ESC>b
 autocmd Filetype markdown nnoremap ,b 0i**<ESC>A**<ESC>j0
+autocmd Filetype markdown inoremap ,e $$<ESC>i
 autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
 autocmd Filetype markdown inoremap ,n ---<Enter><Enter>
 autocmd Filetype markdown inoremap ,b **** <++><Esc>F*hi
@@ -319,7 +320,6 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'mbbill/undotree'
 Plug 'liuchengxu/vista.vim'
 Plug 'tpope/vim-surround'    " type cs'`to change 'word' to `word`
-Plug 'gcmt/wildfire.vim'     " <ENTER>  <BS>
 Plug 'tpope/vim-capslock'    " <C-l> capslock
 Plug 'tpope/vim-speeddating' " <c-a> <c-x>
 Plug 'tpope/vim-repeat'
@@ -335,6 +335,7 @@ Plug 'chrisbra/NrrwRgn'              " 产生非干扰区
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'yuttie/comfortable-motion.vim' " 更顺滑的scroll
+Plug 'gcmt/wildfire.vim'     " <ENTER>  <BS>
 
 " test
 
@@ -772,6 +773,12 @@ nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impu
 nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
 noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
 noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+
+
+" ==================================
+" =========== wildfire =============
+" ==================================
+let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "i>"]
 
 " ---------------------------- tools end --------------------------------------
 
