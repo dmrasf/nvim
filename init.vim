@@ -225,6 +225,10 @@ func! Run()
         set splitbelow
         :sp
         :term bash %
+    elseif &filetype == 'pl'
+        set splitbelow
+        :sp
+        :term perl %
     elseif &filetype == 'python'
         set splitbelow
         :sp
@@ -430,7 +434,7 @@ let g:coc_global_extention = [
             \ 'coc-sh', 'coc-go', 'coc-marketplace', 'coc-clangd', 'coc-cmake',
             \ 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-tsserver', 'coc-yaml',
             \ 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python',
-            \ 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists',
+            \ 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-perl',
             \ 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore',
             \ 'coc-todolist', 'coc-actions', 'coc-vetur', 'coc-flutter']
 " Use tab for trigger completion with characters ahead and navigate.
