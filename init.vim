@@ -297,6 +297,8 @@ Plug 'wincent/terminus'               " colorstheme
 Plug 'connorholyday/vim-snazzy'       " colorstheme
 Plug 'ajmwagar/vim-deus'              " colorstheme
 Plug 'morhetz/gruvbox'                " colorstheme
+Plug 'sainnhe/gruvbox-material'       " colorstheme
+Plug 'sainnhe/forest-night'           " colorstheme
 Plug 'junegunn/seoul256.vim'          " colorstheme
 Plug 'jpo/vim-railscasts-theme'       " colorstheme
 Plug 'luochen1990/rainbow'            " rainbow 括号
@@ -366,15 +368,28 @@ call plug#end()
 
 " ------------------------------- dress begin ---------------------------------
 
-set termguicolors
-let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
-color gruvbox
+" =====================================
+" =========== colorscheme =============
+" =====================================
+if has('termguicolors')
+    set termguicolors
+    let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+endif
+let g:gruvbox_material_background = 'medium'
+let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_enable_bold = 1
+let g:gruvbox_material_visual = 'grey background'
+let g:gruvbox_material_transparent_background = 0
+let g:gruvbox_material_diagnostic_line_highlight = 1
+let g:gruvbox_material_menu_selection_background = 'green'
+let g:gruvbox_material_better_performance = 1
+colorscheme gruvbox-material
 
 
 " ===========================
 " ======== airline ==========
 " ===========================
-let g:airline_theme='gruvbox'
+let g:airline_theme='gruvbox_material'
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_section_z = '%p%% %l:%v'
 let g:airline_section_b = ''
