@@ -4,14 +4,17 @@
 " | |  | | | |   | |\  | \ V /  | || |  | |  _ <| |___
 " |_|  |_| |_|   |_| \_|  \_/  |___|_|  |_|_| \_\\____|
 "
+" Author: dmrasf
 
-"if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-    "silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-"endif
+" 自动下载插件 {{{
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+    silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+" }}}
 
+" nvim设置 {{{
 let mapleader=" "
-
 syntax on
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
@@ -36,7 +39,6 @@ set incsearch
 set ignorecase
 set smartcase
 set autoindent
-set colorcolumn=100
 set updatetime=100
 set lazyredraw
 set ttyfast
@@ -49,9 +51,11 @@ set modeline
 set noerrorbells
 set visualbell
 set conceallevel=0
+exec "nohlsearch"
+let g:python3_host_prog='/usr/bin/python3'
+" }}}
 
-nnoremap <LEADER><CR> :nohlsearch<CR>
-
+" 按键映射 {{{
 nnoremap i k
 nnoremap j h
 nnoremap h i
@@ -75,8 +79,23 @@ nnoremap n nzz
 nnoremap N Nzz
 nnoremap W 5w
 nnoremap B 5b
+nnoremap < <<
+nnoremap > >>
+vnoremap Y "+y
 
-" 跳转文件
+nnoremap <LEADER><CR> :nohlsearch<CR>
+inoremap <C-z> <ESC>u
+inoremap <C-a> <Esc>A
+inoremap <C-h> <Esc>I
+nnoremap <ESC> :ccl<CR>
+nnoremap gU wbgUw
+nnoremap gu wbguw
+noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
+nnoremap <LEADER>v :tabe ~/.config/nvim/init.vim<CR>
+nnoremap tx :r !figlet
+" }}}
+
+" buffer 快捷键 {{{
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 nnoremap [B :bfirst<CR>
@@ -91,12 +110,9 @@ nnoremap <leader>6 :b 6<CR>
 nnoremap <leader>7 :b 7<CR>
 nnoremap <leader>8 :b 8<CR>
 nnoremap <leader>9 :b 9<CR>
+" }}}
 
-nnoremap < <<
-nnoremap > >>
-
-vnoremap Y "+y
-
+" 窗口快捷键 {{{
 nnoremap sd :set splitright<CR>:vsplit<CR>
 nnoremap sa :set nosplitright<CR>:vsplit<CR>
 nnoremap sw :set nosplitbelow<CR>:split<CR>
@@ -107,28 +123,23 @@ nnoremap <LEADER>l <C-w>l
 nnoremap <LEADER>j <C-w>h
 nnoremap sv <C-w>b<C-w>K
 nnoremap sc <C-w>b<C-w>H
-
-inoremap <C-a> <Esc>A
-inoremap <C-h> <Esc>I
-
-nnoremap <ESC> :ccl<CR>
-nnoremap tx :r !figlet
-nnoremap gU wbgUw
-nnoremap gu wbguw
-
+noremap <M-u> <C-w>p<C-u><C-w>p
+noremap <M-d> <C-w>p<C-d><C-w>p
 nnoremap <up> :res -1<CR>
 nnoremap <down> :res +1<CR>
 nnoremap <left> :vertical resize+1<CR>
 nnoremap <right> :vertical resize-1<CR>
+" }}}
 
-" Tab management
+" Tab management {{{
 nnoremap tn :tabe<CR>
 nnoremap ti :-tabnext<CR>
 nnoremap tk :+tabnext<CR>
 nnoremap tmi :-tabmove<CR>
 nnoremap tmk :+tabmove<CR>
+" }}}
 
-" 打开终端后进入插入模式
+" 内置终端设置 {{{
 let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert
 autocmd TermOpen * setlocal norelativenumber signcolumn=no
@@ -150,12 +161,9 @@ let g:terminal_color_12 = '#83a598'     "blue
 let g:terminal_color_13 = '#d3869b'     "magenta
 let g:terminal_color_14 = '#8ec07c'     "cyan
 let g:terminal_color_15 = '#ebdbb2'     "white
+" }}}
 
-noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
-
-let g:python3_host_prog='/usr/bin/python3'
-
-"autocmd Filetype markdown map <leader>w yiWi[<esc>Ea](<esc>pa)
+" markdown 快捷键 {{{
 noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 autocmd Filetype markdown nnoremap ,c ebi`<ESC>ea`<ESC>b
 autocmd Filetype markdown nnoremap ,b 0i**<ESC>A**<ESC>j0
@@ -175,8 +183,9 @@ autocmd Filetype markdown inoremap ,2 ##<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,l --------<Enter>
+" }}}
 
-" 保存修改历史
+" 保存修改历史和光标位置 {{{
 silent !mkdir -p ~/.config/nvim/tmp/backup
 silent !mkdir -p ~/.config/nvim/tmp/undo
 set backupdir=~/.config/nvim/tmp/backup,.
@@ -187,16 +196,16 @@ if has('persistent_undo')
 endif
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" }}}
 
-nnoremap <LEADER>v :tabe ~/.config/nvim/init.vim<CR>
-inoremap <C-z> <ESC>u
-
-" quickfix 设置，隐藏行号
+" quickfix 设置 {{{
 augroup VimInitStyle
     au!
     au FileType qf setlocal norelativenumber
 augroup END
+" }}}
 
+" 执行程序 {{{
 nnoremap <LEADER>r :call Run()<CR>
 func! Run()
     exec "w"
@@ -256,7 +265,9 @@ func! Run()
         :so %
     endif
 endfunc
+" }}}
 
+" 大文件设置 {{{
 let g:LargeFile = 1024 * 1024 * 5
 augroup LargeFile
     autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
@@ -268,7 +279,9 @@ function LargeFile()
     setlocal undolevels=-1
     autocmd VimEnter * echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . " MB, so some options are changed (see init.vim for details)."
 endfunction
+" }}}
 
+" 输入法自动切换 {{{
 let g:input_toggle = 2
 function! Fcitx2en()
     let s:input_status = system("fcitx-remote")
@@ -286,8 +299,10 @@ endfunction
 set timeoutlen=300
 autocmd InsertLeave * call Fcitx2en()
 autocmd InsertEnter * call Fcitx2zh()
+" }}}
 
-call plug#begin('~/.config/nvim/plugged')
+" 插件目录 {{{
+call plug#begin('$HOME/.config/nvim/plugged')
 
 " dress
 Plug 'bling/vim-bufferline'           " bufferline
@@ -361,12 +376,9 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'yuttie/comfortable-motion.vim' " 更顺滑的scroll
 Plug 'gcmt/wildfire.vim'     " <ENTER>  <BS>
 
-" test
-
 call plug#end()
-
-
-" ------------------------------- dress begin ---------------------------------
+" }}}
+" 美化相关插件 {{{
 
 " =====================================
 " =========== colorscheme =============
@@ -423,10 +435,8 @@ autocmd BufWrite *.js :Autoformat
 let g:indentLine_char = '│'
 autocmd BufWinEnter *.json IndentLinesDisable
 
-" -------------------------------- dress end ----------------------------------
-
-
-" ------------------------ highlight & complete begin -------------------------
+" }}}
+" 高亮补全插件 {{{
 
 " ================================
 " =========== vim-go =============
@@ -467,7 +477,7 @@ let g:coc_global_extention = [
             \ 'coc-sh', 'coc-go', 'coc-marketplace', 'coc-clangd', 'coc-cmake',
             \ 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-tsserver', 'coc-yaml',
             \ 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python',
-            \ 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists', 'coc-perl',
+            \ 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists',
             \ 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore',
             \ 'coc-todolist', 'coc-actions', 'coc-vetur', 'coc-flutter']
 " Use tab for trigger completion with characters ahead and navigate.
@@ -582,10 +592,8 @@ let g:vimtex_quickfix_enabled = 0
 let maplocalleader = ' '
 let g:vimtex_compiler_progname = 'nvr'
 
-" ------------------------- highlight & complete end --------------------------
-
-
-" -------------------------------- find begin ---------------------------------
+" }}}
+" 查找工具插件 {{{
 
 " ===========================
 " ========= fzf =============
@@ -622,10 +630,8 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:any_jump_disable_default_keybindings = 1
 nnoremap <M-j> :AnyJump<CR>
 
-" -------------------------------- find end -----------------------------------
-
-
-" -------------------------------- git start ----------------------------------
+" }}}
+" git相关插件 {{{
 
 " ==================================
 " =========== fugitive =============
@@ -655,10 +661,8 @@ nnoremap ]g :GitGutterNextHunk<CR>
 let g:git_messenger_no_default_mappings = v:true
 nmap gm <Plug>(git-messenger)
 
-" -------------------------------- git end ------------------------------------
-
-
-" -------------------------------- md start -----------------------------------
+" }}}
+" markdown插件 {{{
 
 " ===================================
 " ======== MarkdownPreview ==========
@@ -692,10 +696,8 @@ let g:mkdp_page_title = '「${name}」'
 " ==================================
 noremap <LEADER>tm :TableModeToggle<CR>
 
-" -------------------------------- md end -------------------------------------
-
-
-" ----------------------------- tools start -----------------------------------
+" }}}
+" 常用工具插件 {{{
 
 " ===========================
 " ======== undotree =========
@@ -817,14 +819,6 @@ noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
 " ==================================
 let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "i>"]
 
-" ---------------------------- tools end --------------------------------------
+" }}}
 
-
-" ---------------------------- test end ---------------------------------------
-
-
-" ---------------------------- test end ---------------------------------------
-
-
-" end
-exec "nohlsearch"
+" vim:fdm=marker:fmr={{{,}}}:
