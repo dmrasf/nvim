@@ -50,6 +50,8 @@ set keywordprg=:silent!
 set modeline
 set noerrorbells
 set visualbell
+set hidden
+set shortmess+=c
 set conceallevel=0
 exec "nohlsearch"
 let g:python3_host_prog='/usr/bin/python3'
@@ -100,7 +102,6 @@ nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 nnoremap [B :bfirst<CR>
 nnoremap ]B :blast<CR>
-"nnoremap <C-b> :bd
 nnoremap <leader>1 :b 1<CR>
 nnoremap <leader>2 :b 2<CR>
 nnoremap <leader>3 :b 3<CR>
@@ -468,21 +469,35 @@ au FileType go nmap M <Plug>(go-doc)
 " ===========================
 " ========== coc ============
 " ===========================
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 let g:coc_global_extention = [
-            \ 'coc-sh', 'coc-go', 'coc-marketplace', 'coc-clangd', 'coc-cmake',
-            \ 'coc-ci', 'coc-vimlsp', 'coc-calc', 'coc-tsserver', 'coc-yaml',
-            \ 'coc-translator', 'coc-json', 'coc-explorer', 'coc-python',
-            \ 'coc-snippets', 'coc-yank', 'coc-pairs', 'coc-lists',
-            \ 'coc-highlight', 'coc-css', 'coc-html', 'coc-gitignore',
-            \ 'coc-todolist', 'coc-actions', 'coc-vetur', 'coc-flutter']
+            \ 'coc-calc',
+            \ 'coc-ci',
+            \ 'coc-clangd',
+            \ 'coc-cmake',
+            \ 'coc-css',
+            \ 'coc-explorer',
+            \ 'coc-flutter',
+            \ 'coc-gitignore',
+            \ 'coc-go',
+            \ 'coc-highlight',
+            \ 'coc-html',
+            \ 'coc-json',
+            \ 'coc-lists',
+            \ 'coc-marketplace',
+            \ 'coc-pairs',
+            \ 'coc-python',
+            \ 'coc-sh',
+            \ 'coc-snippets',
+            \ 'coc-translator',
+            \ 'coc-tsserver',
+            \ 'coc-vimlsp',
+            \ 'coc-yaml',
+            \ 'coc-yank',
+            \]
+nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-set hidden
-set updatetime=100
-set shortmess+=c
-set signcolumn=auto
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
@@ -518,21 +533,7 @@ nmap tr <Plug>(coc-translator-p)
 " coc-snippets
 let g:coc_snippet_next = '<C-k>'
 let g:coc_snippet_prev = '<C-i>'
-imap <slient><expr> <C-o> coc#expand()
-"imap <C-o> <Plug>(coc-snippets-expand)
-"vmap <C-k> <Plug>(coc-snippets-select)
-"imap <C-o> <Plug>(coc-snippets-expand-jump)
-" coc-actions
-" Remap for do codeAction of selected region
-function! s:cocActionsOpenFromSelected(type) abort
-    execute 'CocCommand actions.open ' . a:type
-endfunction
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-" coctodolist
-nnoremap <leader>tn :CocCommand todolist.create<CR>
-nnoremap <leader>tl :CocList todolist<CR>
-nnoremap <leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload<CR>
+imap <C-o> <Plug>(coc-snippets-expand)
 " coc-calc
 nmap <Leader>ca <Plug>(coc-calc-result-append)
 nmap <Leader>cr <Plug>(coc-calc-result-replace)
