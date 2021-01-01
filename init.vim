@@ -100,7 +100,7 @@ nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 nnoremap [B :bfirst<CR>
 nnoremap ]B :blast<CR>
-nnoremap <C-b> :bd
+"nnoremap <C-b> :bd
 nnoremap <leader>1 :b 1<CR>
 nnoremap <leader>2 :b 2<CR>
 nnoremap <leader>3 :b 3<CR>
@@ -308,13 +308,11 @@ call plug#begin('$HOME/.config/nvim/plugged')
 Plug 'bling/vim-bufferline'           " bufferline
 Plug 'vim-airline/vim-airline'        " airline
 Plug 'vim-airline/vim-airline-themes' " airline theme
-Plug 'wincent/terminus'               " colorstheme
 Plug 'connorholyday/vim-snazzy'       " colorstheme
 Plug 'ajmwagar/vim-deus'              " colorstheme
 Plug 'morhetz/gruvbox'                " colorstheme
 Plug 'sainnhe/gruvbox-material'       " colorstheme
 Plug 'sainnhe/forest-night'           " colorstheme
-Plug 'junegunn/seoul256.vim'          " colorstheme
 Plug 'jpo/vim-railscasts-theme'       " colorstheme
 Plug 'luochen1990/rainbow'            " rainbow 括号
 Plug 'junegunn/goyo.vim'              " distraction free writing mode
@@ -370,7 +368,6 @@ Plug 'dkarter/bullets.vim'              "<C-t> <C-d>
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'junegunn/vim-peekaboo'         " 在插入模式下使用寄存器 <C-r>
 Plug 'AndrewRadev/splitjoin.vim'     " gS  gJ 单行 多行
-Plug 'chrisbra/NrrwRgn'              " 产生非干扰区
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'yuttie/comfortable-motion.vim' " 更顺滑的scroll
@@ -378,8 +375,8 @@ Plug 'gcmt/wildfire.vim'     " <ENTER>  <BS>
 
 call plug#end()
 " }}}
-" 美化相关插件 {{{
 
+" 美化相关插件 {{{
 " =====================================
 " =========== colorscheme =============
 " =====================================
@@ -403,9 +400,9 @@ colorscheme gruvbox-material
 " ===========================
 let g:airline_theme='gruvbox_material'
 let g:airline#extensions#whitespace#enabled = 0
-let g:airline_section_z = '%p%% %l:%v'
+let g:airline_section_z = '%l:%v %p%%'
 let g:airline_section_b = ''
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#formatter = 'short_path'
 
@@ -434,10 +431,9 @@ autocmd BufWrite *.js :Autoformat
 " ====================================
 let g:indentLine_char = '│'
 autocmd BufWinEnter *.json IndentLinesDisable
-
 " }}}
-" 高亮补全插件 {{{
 
+" 高亮补全插件 {{{
 " ================================
 " =========== vim-go =============
 " ================================
@@ -506,7 +502,7 @@ else
 endif
 " Use M to show documentation in preview window.
 nnoremap <silent> M :call <SID>show_documentation()<CR>
-nmap <silent> <C-j> <Plug>(coc-diagnostic-prev)
+nmap <silent> <C-i> <Plug>(coc-diagnostic-prev)
 nmap <silent> <C-k> <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -520,11 +516,12 @@ nmap tt :CocCommand explorer<CR>
 " coc-translator
 nmap tr <Plug>(coc-translator-p)
 " coc-snippets
-imap <C-o> <Plug>(coc-snippets-expand)
-vmap <C-k> <Plug>(coc-snippets-select)
 let g:coc_snippet_next = '<C-k>'
 let g:coc_snippet_prev = '<C-i>'
-imap <C-k> <Plug>(coc-snippets-expand-jump)
+imap <slient><expr> <C-o> coc#expand()
+"imap <C-o> <Plug>(coc-snippets-expand)
+"vmap <C-k> <Plug>(coc-snippets-select)
+"imap <C-o> <Plug>(coc-snippets-expand-jump)
 " coc-actions
 " Remap for do codeAction of selected region
 function! s:cocActionsOpenFromSelected(type) abort
@@ -591,16 +588,16 @@ let g:vimtex_motion_enabled = 0
 let g:vimtex_quickfix_enabled = 0
 let maplocalleader = ' '
 let g:vimtex_compiler_progname = 'nvr'
-
 " }}}
-" 查找工具插件 {{{
 
+" 查找工具插件 {{{
 " ===========================
 " ========= fzf =============
 " ===========================
 noremap <C-f> :FZF<CR>
 noremap <C-q> :Ag<CR>
 noremap <C-h> :History<CR>
+noremap <c-b> :Buffers<CR>
 let g:fzf_preview_window = 'right:60%'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
 
@@ -629,10 +626,9 @@ let g:ctrlp_cmd = 'CtrlP'
 " ==================================
 let g:any_jump_disable_default_keybindings = 1
 nnoremap <M-j> :AnyJump<CR>
-
 " }}}
-" git相关插件 {{{
 
+" git相关插件 {{{
 " ==================================
 " =========== fugitive =============
 " ==================================
@@ -660,10 +656,9 @@ nnoremap ]g :GitGutterNextHunk<CR>
 " =====================================
 let g:git_messenger_no_default_mappings = v:true
 nmap gm <Plug>(git-messenger)
-
 " }}}
-" markdown插件 {{{
 
+" markdown插件 {{{
 " ===================================
 " ======== MarkdownPreview ==========
 " ===================================
@@ -695,10 +690,9 @@ let g:mkdp_page_title = '「${name}」'
 " ======== vim-table-mode ==========
 " ==================================
 noremap <LEADER>tm :TableModeToggle<CR>
-
 " }}}
-" 常用工具插件 {{{
 
+" 常用工具插件 {{{
 " ===========================
 " ======== undotree =========
 " ===========================
@@ -777,11 +771,7 @@ let g:VM_maps['I'] = 'H'
 " ==================================
 " =========== bullets  =============
 " ==================================
-let g:bullets_enabled_file_types = [
-            \ 'text',
-            \ 'gitcommit',
-            \ 'scratch'
-            \]
+let g:bullets_enabled_file_types = ['text',  'gitcommit',  'scratch']
 
 
 " =======================================
@@ -790,6 +780,15 @@ let g:bullets_enabled_file_types = [
 let g:bookmark_sign = ''
 let g:bookmark_annotation_sign = ''
 let g:bookmark_auto_save_file = $HOME . '/.local/share/nvim/.vim-bookmarks'
+
+
+" ===================================
+" =========== splitjoin =============
+" ===================================
+let g:splitjoin_split_mapping = ''
+let g:splitjoin_join_mapping = ''
+nmap si :SplitjoinJoin<cr>
+nmap sk :SplitjoinSplit<cr>
 
 
 " ====================================
@@ -818,7 +817,5 @@ noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
 " =========== wildfire =============
 " ==================================
 let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "i>"]
-
 " }}}
 
-" vim:fdm=marker:fmr={{{,}}}:
