@@ -30,6 +30,7 @@ set number
 set relativenumber
 set signcolumn=auto
 set cursorline
+set cursorcolumn
 set wrap
 set showcmd
 set wildmenu
@@ -44,7 +45,7 @@ set lazyredraw
 set ttyfast
 set list
 set listchars=tab:\│\ ,trail:▫
-set fillchars=vert:\│
+set fillchars=vert:\│,
 set autochdir
 set keywordprg=:silent!
 set modeline
@@ -373,6 +374,7 @@ Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'yuttie/comfortable-motion.vim' " 更顺滑的scroll
 Plug 'gcmt/wildfire.vim'     " <ENTER>  <BS>
+Plug 'matze/vim-move'
 
 call plug#end()
 " }}}
@@ -477,7 +479,6 @@ let g:coc_global_extention = [
             \ 'coc-css',
             \ 'coc-explorer',
             \ 'coc-flutter',
-            \ 'coc-gitignore',
             \ 'coc-go',
             \ 'coc-highlight',
             \ 'coc-html',
@@ -626,7 +627,7 @@ let g:ctrlp_cmd = 'CtrlP'
 " =========== any-jump =============
 " ==================================
 let g:any_jump_disable_default_keybindings = 1
-nnoremap <M-j> :AnyJump<CR>
+nnoremap <M-h> :AnyJump<CR>
 " }}}
 
 " git相关插件 {{{
@@ -818,5 +819,19 @@ noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
 " =========== wildfire =============
 " ==================================
 let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "i>"]
+
+
+" ==================================
+" =========== vim-move =============
+" ==================================
+let g:move_map_keys = 0
+vmap <A-k> <Plug>MoveBlockDown
+vmap <A-i> <Plug>MoveBlockUp
+vmap <A-j> <Plug>MoveBlockLeft
+vmap <A-l> <Plug>MoveBlockRight
+nmap <A-k> <Plug>MoveLineDown
+nmap <A-i> <Plug>MoveLineUp
+nmap <A-j> <Plug>MoveLineLeft
+nmap <A-l> <Plug>MoveLineRight
 " }}}
 
