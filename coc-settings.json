@@ -31,8 +31,7 @@
     },
     "coc.preferences.snippetStatusText": "Ⓢ ",
     "coc.preferences.formatOnSaveFiletypes": [
-        "json",
-        "python"
+        "json"
     ],
     "list.nextKeymap": "<C-k>",
     "list.previousKeymap": "<C-j>",
@@ -98,11 +97,64 @@
         "<<": "gitStage",
         ">>": "gitUnstage"
     },
-    "go.checkForUpdates": "ask",
     "snippets.ultisnips.directories": [
         "$HOME/.config/nvim/Ultisnips/",
         "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
     ],
-    "clangd.semanticHighlighting": true,
-    "vetur.trace.server": "verbose"
+    "vetur.trace.server": "verbose",
+    "languageserver": {
+        "bash": {
+            "command": "bash-language-server",
+            "args": [
+                "start"
+            ],
+            "filetypes": [
+                "sh"
+            ],
+            "ignoredRootPaths": [
+                "~"
+            ]
+        },
+        "clangd": {
+            "command": "clangd",
+            "rootPatterns": [
+                "compile_flags.txt",
+                "compile_commands.json"
+            ],
+            "filetypes": [
+                "c",
+                "cc",
+                "cpp",
+                "c++",
+                "objc",
+                "objcpp"
+            ]
+        },
+        "cmake": {
+            "command": "cmake-language-server",
+            "filetypes": [
+                "cmake"
+            ],
+            "rootPatterns": [
+                "build/"
+            ],
+            "initializationOptions": {
+                "buildDirectory": "build"
+            }
+        },
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": [
+                "go.mod"
+            ],
+            "filetypes": [
+                "go"
+            ],
+            "initializationOptions": {
+                "gocodeCompletionEnabled": true,
+                "diagnosticsEnabled": true,
+                "lintTool": "golint"
+            }
+        }
+    }
 }

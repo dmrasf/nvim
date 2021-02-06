@@ -354,6 +354,7 @@ Plug 'rhysd/git-messenger.vim' " git message
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+Plug 'mzlogin/vim-markdown-toc'
 
 " some tool
 Plug 'mbbill/undotree'
@@ -426,7 +427,7 @@ map <LEADER>gy :Goyo<CR>
 " =========== autoformat =============
 " ====================================
 noremap \f :Autoformat<CR>
-autocmd BufWrite *.js :Autoformat
+autocmd BufWrite *.py,*js :Autoformat
 
 
 " ====================================
@@ -474,20 +475,15 @@ au FileType go nmap M <Plug>(go-doc)
 let g:coc_global_extention = [
             \ 'coc-calc',
             \ 'coc-ci',
-            \ 'coc-clangd',
-            \ 'coc-cmake',
             \ 'coc-css',
             \ 'coc-explorer',
             \ 'coc-flutter',
-            \ 'coc-go',
             \ 'coc-highlight',
             \ 'coc-html',
             \ 'coc-json',
+            \ 'coc-jedi',
             \ 'coc-lists',
-            \ 'coc-marketplace',
             \ 'coc-pairs',
-            \ 'coc-python',
-            \ 'coc-sh',
             \ 'coc-snippets',
             \ 'coc-translator',
             \ 'coc-tsserver',
@@ -518,7 +514,7 @@ else
 endif
 " Use M to show documentation in preview window.
 nnoremap <silent> M :call <SID>show_documentation()<CR>
-nmap <silent> <C-i> <Plug>(coc-diagnostic-prev)
+nmap <silent> <C-j> <Plug>(coc-diagnostic-prev)
 nmap <silent> <C-k> <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
