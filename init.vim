@@ -253,7 +253,7 @@ func! Run()
         :sp
         :term node %
     elseif &filetype == 'html'
-        silent! exec "!firefox-developer-edition % &"
+        silent! exec "!firefox % &"
     elseif &filetype == 'markdown'
         exec "MarkdownPreview"
     elseif &filetype == 'go'
@@ -673,7 +673,7 @@ let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 1
 let g:mkdp_open_ip = ''
-let g:mkdp_brower = 'chromium'
+let g:mkdp_brower = 'firefox'
 let g:mkdp_echo_preview_url = 1
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
