@@ -350,6 +350,7 @@ Plug 'pechorin/any-jump.vim'                    " <M-j>
 Plug 'tpope/vim-fugitive'      " git 命令
 Plug 'airblade/vim-gitgutter'  " show git
 Plug 'rhysd/git-messenger.vim' " git message
+Plug 'APZelos/blamer.nvim'
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
@@ -654,6 +655,12 @@ nnoremap ]g :GitGutterNextHunk<CR>
 " =====================================
 let g:git_messenger_no_default_mappings = v:true
 nmap gm <Plug>(git-messenger)
+
+
+" ================================
+" =========== blamer =============
+" ================================
+let g:blamer_delay = 0
 " }}}
 
 " markdown插件 {{{
