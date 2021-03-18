@@ -23,7 +23,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-autocmd BufWinEnter *.xml,*.html,*.htm,*.css,*.js,*.vue setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd BufWinEnter *.xml,*.html,*.htm,*.css,*.js,*.vue,*.json setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufWinEnter *.launch,*.gazebo,*.xacro,*.dae,*.world setlocal filetype=xml
 autocmd BufWinEnter *.rviz setlocal filetype=yaml
 set number
@@ -253,7 +253,7 @@ func! Run()
         :sp
         :term node %
     elseif &filetype == 'html'
-        silent! exec "!firefox % &"
+        silent! exec "!google-chrome-stable % &"
     elseif &filetype == 'markdown'
         exec "MarkdownPreview"
     elseif &filetype == 'go'
@@ -307,9 +307,9 @@ autocmd InsertEnter * call Fcitx2zh()
 call plug#begin('$HOME/.config/nvim/plugged')
 
 " dress
-Plug 'bling/vim-bufferline'           " bufferline
-Plug 'vim-airline/vim-airline'        " airline
-Plug 'vim-airline/vim-airline-themes' " airline theme
+Plug 'dmrasf/eleline.vim'
+"Plug 'vim-airline/vim-airline'        " airline
+"Plug 'vim-airline/vim-airline-themes' " airline theme
 Plug 'connorholyday/vim-snazzy'       " colorstheme
 Plug 'ajmwagar/vim-deus'              " colorstheme
 Plug 'morhetz/gruvbox'                " colorstheme
@@ -336,7 +336,7 @@ Plug 'maxmellon/vim-jsx-pretty'                 " jsx highlight
 Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] } " javascript highlight
 Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }      " javascript highlight
 Plug 'dart-lang/dart-vim-plugin'
-Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python'}
+Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python'] }
 Plug 'wavded/vim-stylus'
 Plug 'lervag/vimtex'
 
@@ -482,9 +482,9 @@ let g:coc_global_extention = [
             \ 'coc-highlight',
             \ 'coc-html',
             \ 'coc-json',
-            \ 'coc-jedi',
             \ 'coc-lists',
             \ 'coc-pairs',
+            \ 'coc-python',
             \ 'coc-snippets',
             \ 'coc-translator',
             \ 'coc-tsserver',
@@ -538,6 +538,8 @@ nmap <Leader>cr <Plug>(coc-calc-result-replace)
 " coc-ci
 nmap <silent> w <Plug>(coc-ci-w)
 nmap <silent> b <Plug>(coc-ci-b)
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 
 " ===========================
@@ -566,13 +568,6 @@ autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +
 " =========================================
 let g:dart_style_guide = 2
 let g:dart_format_on_save = 1
-let g:dartfmt_options = ["-l 100"]
-
-
-" ====================================
-" =========== vimspector =============
-" ====================================
-let g:vimspector_enable_mappings = 'HUMAN'
 
 
 " ================================

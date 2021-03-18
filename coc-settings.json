@@ -1,160 +1,162 @@
 {
-    "coc.preferences.extensionUpdateCheck": "weekly",
-    "suggest.noselect": true,
-    "suggest.enablePreselect": false,
-    "suggest.completionItemKindLabels": {
-        "class": "\uf0e8",
-        "color": "\ue22b",
-        "constant": "\uf8fe",
-        "default": "\uf29c",
-        "enum": "\uf435",
-        "enumMember": "\uf02b",
-        "event": "\ufacd",
-        "field": "\uf192",
-        "file": "\uf723",
-        "folder": "\uf115",
-        "function": "\u0192",
-        "interface": "\uf417",
-        "keyword": "\uf1de",
-        "method": "\uf6a6",
-        "module": "\uf40d",
-        "operator": "\uf067",
-        "property": "\ue624",
-        "reference": "\ufa46",
-        "snippet": "\ue60b",
-        "struct": "\ufb44",
-        "text": "\ue612",
-        "typeParameter": "\uf728",
-        "unit": "\uf475",
-        "value": "\uf89f",
-        "variable": "\ue71b"
+  "coc.preferences.extensionUpdateCheck": "weekly",
+  "suggest.noselect": true,
+  "suggest.enablePreselect": false,
+  "suggest.completionItemKindLabels": {
+    "class": "\uf0e8",
+    "color": "\ue22b",
+    "constant": "\uf8fe",
+    "default": "\uf29c",
+    "enum": "\uf435",
+    "enumMember": "\uf02b",
+    "event": "\ufacd",
+    "field": "\uf192",
+    "file": "\uf723",
+    "folder": "\uf115",
+    "function": "\u0192",
+    "interface": "\uf417",
+    "keyword": "\uf1de",
+    "method": "\uf6a6",
+    "module": "\uf40d",
+    "operator": "\uf067",
+    "property": "\ue624",
+    "reference": "\ufa46",
+    "snippet": "\ue60b",
+    "struct": "\ufb44",
+    "text": "\ue612",
+    "typeParameter": "\uf728",
+    "unit": "\uf475",
+    "value": "\uf89f",
+    "variable": "\ue71b"
+  },
+  "coc.preferences.snippetStatusText": "Ⓢ ",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "json"
+  ],
+  "flutter.autoOpenDevLog": true,
+  "flutter.lsp.initialization.onlyAnalyzeProjectsWithOpenFiles": false,
+  "list.nextKeymap": "<C-k>",
+  "list.previousKeymap": "<C-j>",
+  "diagnostic.errorSign": "\uf467",
+  "diagnostic.warningSign": "\uf071",
+  "diagnostic.infoSign": "\uf129",
+  "diagnostic.hintSign": "\uf864",
+  "diagnostic.displayByAle": false,
+  "diagnostic.refreshOnInsertMode": false,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.virtualTextPrefix": " ❯❯❯ ",
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "diagnostic.messageTarget": "echo",
+  "codeLens.enable": true,
+  "codeLens.separator": "‣",
+  "explorer.quitOnOpen": true,
+  "explorer.git.showIgnored": true,
+  "explorer.width": 25,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.previewAction.onHover": false,
+  "explorer.keyMappingMode": "none",
+  "explorer.keyMappings.global": {
+    "i": "nodePrev",
+    "k": "nodeNext",
+    "j": "collapse",
+    "l": "expand",
+    "h": "toggleSelection",
+    "<tab>": "actionMenu",
+    "gl": "expandRecursive",
+    "gh": "collapseRecursive",
+    "o": "expandOrCollapse",
+    "<cr>": "open",
+    "e": "open",
+    "E": "openInVsplit",
+    "t": "openInTab",
+    "<bs>": "gotoParent",
+    "yp": "copyFilepath",
+    "yn": "copyFilename",
+    "yy": "copyFile",
+    "dd": "cutFile",
+    "pp": "pasteFile",
+    "dD": "deleteForever",
+    "a": "addFile",
+    "A": "addDirectory",
+    "r": "rename",
+    "zh": "toggleHidden",
+    "R": "refresh",
+    "?": "help",
+    "q": "quit",
+    "X": "systemExecute",
+    "gd": "listDrive",
+    "f": "search",
+    "F": "searchRecursive",
+    "gf": "gotoSource:file",
+    "gb": "gotoSource:buffer",
+    "[[": "sourcePrev",
+    "]]": "sourceNext",
+    "[d": "diagnosticPrev",
+    "]d": "diagnosticNext",
+    "[g": "gitPrev",
+    "]g": "gitNext",
+    "<<": "gitStage",
+    ">>": "gitUnstage"
+  },
+  "snippets.ultisnips.directories": [
+    "$HOME/.config/nvim/Ultisnips/",
+    "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
+  ],
+  "vetur.trace.server": "verbose",
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": [
+        "start"
+      ],
+      "filetypes": [
+        "sh"
+      ],
+      "ignoredRootPaths": [
+        "~"
+      ]
     },
-    "coc.preferences.snippetStatusText": "Ⓢ ",
-    "coc.preferences.formatOnSaveFiletypes": [
-        "json"
-    ],
-    "list.nextKeymap": "<C-k>",
-    "list.previousKeymap": "<C-j>",
-    "diagnostic.errorSign": "\uf467",
-    "diagnostic.warningSign": "\uf071",
-    "diagnostic.infoSign": "\uf129",
-    "diagnostic.hintSign": "\uf864",
-    "diagnostic.displayByAle": false,
-    "diagnostic.refreshOnInsertMode": false,
-    "diagnostic.checkCurrentLine": true,
-    "diagnostic.virtualTextPrefix": " ❯❯❯ ",
-    "diagnostic.virtualText": true,
-    "diagnostic.virtualTextCurrentLineOnly": false,
-    "diagnostic.messageTarget": "echo",
-    "codeLens.enable": true,
-    "codeLens.separator": "‣",
-    "explorer.quitOnOpen": true,
-    "explorer.git.showIgnored": true,
-    "explorer.width": 25,
-    "explorer.icon.enableNerdfont": true,
-    "explorer.previewAction.onHover": false,
-    "explorer.keyMappingMode": "none",
-    "explorer.keyMappings.global": {
-        "i": "nodePrev",
-        "k": "nodeNext",
-        "j": "collapse",
-        "l": "expand",
-        "h": "toggleSelection",
-        "<tab>": "actionMenu",
-        "gl": "expandRecursive",
-        "gh": "collapseRecursive",
-        "o": "expandOrCollapse",
-        "<cr>": "open",
-        "e": "open",
-        "E": "openInVsplit",
-        "t": "openInTab",
-        "<bs>": "gotoParent",
-        "yp": "copyFilepath",
-        "yn": "copyFilename",
-        "yy": "copyFile",
-        "dd": "cutFile",
-        "pp": "pasteFile",
-        "dD": "deleteForever",
-        "a": "addFile",
-        "A": "addDirectory",
-        "r": "rename",
-        "zh": "toggleHidden",
-        "R": "refresh",
-        "?": "help",
-        "q": "quit",
-        "X": "systemExecute",
-        "gd": "listDrive",
-        "f": "search",
-        "F": "searchRecursive",
-        "gf": "gotoSource:file",
-        "gb": "gotoSource:buffer",
-        "[[": "sourcePrev",
-        "]]": "sourceNext",
-        "[d": "diagnosticPrev",
-        "]d": "diagnosticNext",
-        "[g": "gitPrev",
-        "]g": "gitNext",
-        "<<": "gitStage",
-        ">>": "gitUnstage"
+    "clangd": {
+      "command": "clangd",
+      "rootPatterns": [
+        "compile_flags.txt",
+        "compile_commands.json"
+      ],
+      "filetypes": [
+        "c",
+        "cc",
+        "cpp",
+        "c++",
+        "objc",
+        "objcpp"
+      ]
     },
-    "snippets.ultisnips.directories": [
-        "$HOME/.config/nvim/Ultisnips/",
-        "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
-    ],
-    "vetur.trace.server": "verbose",
-    "languageserver": {
-        "bash": {
-            "command": "bash-language-server",
-            "args": [
-                "start"
-            ],
-            "filetypes": [
-                "sh"
-            ],
-            "ignoredRootPaths": [
-                "~"
-            ]
-        },
-        "clangd": {
-            "command": "clangd",
-            "rootPatterns": [
-                "compile_flags.txt",
-                "compile_commands.json"
-            ],
-            "filetypes": [
-                "c",
-                "cc",
-                "cpp",
-                "c++",
-                "objc",
-                "objcpp"
-            ]
-        },
-        "cmake": {
-            "command": "cmake-language-server",
-            "filetypes": [
-                "cmake"
-            ],
-            "rootPatterns": [
-                "build/"
-            ],
-            "initializationOptions": {
-                "buildDirectory": "build"
-            }
-        },
-        "golang": {
-            "command": "gopls",
-            "rootPatterns": [
-                "go.mod"
-            ],
-            "filetypes": [
-                "go"
-            ],
-            "initializationOptions": {
-                "gocodeCompletionEnabled": true,
-                "diagnosticsEnabled": true,
-                "lintTool": "golint"
-            }
-        }
+    "cmake": {
+      "command": "cmake-language-server",
+      "filetypes": [
+        "cmake"
+      ],
+      "rootPatterns": [
+        "build/"
+      ],
+      "initializationOptions": {
+        "buildDirectory": "build"
+      }
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": [
+        "go.mod"
+      ],
+      "filetypes": [
+        "go"
+      ],
+      "initializationOptions": {
+        "gocodeCompletionEnabled": true,
+        "diagnosticsEnabled": true,
+        "lintTool": "golint"
+      }
     }
+  }
 }
