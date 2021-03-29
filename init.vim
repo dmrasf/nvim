@@ -377,6 +377,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'yuttie/comfortable-motion.vim' " 更顺滑的scroll
 Plug 'gcmt/wildfire.vim'     " <ENTER>  <BS>
 Plug 'matze/vim-move'
+Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 " }}}
