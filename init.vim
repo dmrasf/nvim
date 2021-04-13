@@ -23,7 +23,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-autocmd BufWinEnter *.xml,*.html,*.htm,*.css,*.js,*.vue,*.json setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd BufWinEnter *.xml,*.html,*.htm,*.css,*.js,*.vue,*.json,*.go setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufWinEnter *.launch,*.gazebo,*.xacro,*.dae,*.world setlocal filetype=xml
 autocmd BufWinEnter *.rviz setlocal filetype=yaml
 set number
@@ -404,13 +404,13 @@ colorscheme gruvbox-material
 " ===========================
 " ======== airline ==========
 " ===========================
-let g:airline_theme='gruvbox_material'
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline_section_z = '%l:%v %p%%'
-let g:airline_section_b = ''
-let g:airline#extensions#tabline#enabled = 0
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#formatter = 'short_path'
+"let g:airline_theme='gruvbox_material'
+"let g:airline#extensions#whitespace#enabled = 0
+"let g:airline_section_z = '%l:%v %p%%'
+"let g:airline_section_b = ''
+"let g:airline#extensions#tabline#enabled = 0
+"let g:airline#extensions#tabline#show_buffers = 0
+"let g:airline#extensions#tabline#formatter = 'short_path'
 
 
 " =================================
