@@ -56,6 +56,7 @@ set shortmess+=c
 set conceallevel=0
 exec "nohlsearch"
 let g:python3_host_prog='/usr/bin/python3'
+let g:ruby_host_prog = '$HOME/.gem/ruby/3.0.0/bin/neovim-ruby-host'
 " }}}
 
 " 按键映射 {{{

@@ -50,7 +50,7 @@
   "diagnostic.messageTarget": "echo",
   "codeLens.enable": true,
   "codeLens.separator": "‣",
-  "explorer.quitOnOpen": true,
+  "explorer.quitOnOpen": false,
   "explorer.git.showIgnored": true,
   "explorer.width": 25,
   "explorer.icon.enableNerdfont": true,
