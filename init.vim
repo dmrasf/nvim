@@ -332,7 +332,6 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'         " for coc-clangd
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " coc
 Plug 'honza/vim-snippets'                       " 代码片段集合
 Plug 'mattn/emmet-vim'                          " <M-m>,  html
-Plug 'OmniSharp/omnisharp-vim'                  " c#
 Plug 'maxmellon/vim-jsx-pretty'                 " jsx highlight
 Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] } " javascript highlight
 Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }      " javascript highlight
@@ -550,19 +549,6 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,js,markdown EmmetInstall
 let g:user_emmet_leader_key='<M-m>'
-
-
-" ===================================
-" =========== omnisharp =============
-" ===================================
-let g:OmniSharp_server_use_mono = 1
-let g:OmniSharp_server_stdio = 0
-let g:OmniSharp_selector_ui = 'ctrlp'
-autocmd Filetype cs nnoremap <buffer> gd :OmniSharpPreviewDefinition<CR>
-autocmd Filetype cs nnoremap <buffer> gr :OmniSharpFindUsages<CR>
-autocmd Filetype cs nnoremap <buffer> gy :OmniSharpTypeLookup<CR>
-autocmd Filetype cs nnoremap <buffer> ga :OmniSharpGetCodeActions<CR>
-autocmd Filetype cs nnoremap <buffer> <LEADER>rn :OmniSharpRename<CR><C-N>:res +5<CR>
 
 
 " =========================================
