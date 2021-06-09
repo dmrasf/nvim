@@ -266,6 +266,10 @@ func! Run()
         silent! exec "VimtexCompile"
     elseif &filetype == 'vim'
         :so %
+    elseif &filetype == 'rust'
+        set splitbelow
+        :sp
+        :term cargo run
     endif
 endfunc
 " }}}
@@ -378,6 +382,7 @@ Plug 'yuttie/comfortable-motion.vim' " 更顺滑的scroll
 Plug 'gcmt/wildfire.vim'     " <ENTER>  <BS>
 Plug 'matze/vim-move'
 Plug 'wakatime/vim-wakatime'
+Plug 'mzlogin/vim-markdown-toc'
 
 call plug#end()
 " }}}
@@ -486,6 +491,7 @@ let g:coc_global_extention = [
             \ 'coc-lists',
             \ 'coc-pairs',
             \ 'coc-python',
+            \ 'coc-rls',
             \ 'coc-snippets',
             \ 'coc-translator',
             \ 'coc-tsserver',
@@ -819,5 +825,11 @@ nmap <A-k> <Plug>MoveLineDown
 nmap <A-i> <Plug>MoveLineUp
 nmap <A-j> <Plug>MoveLineLeft
 nmap <A-l> <Plug>MoveLineRight
+
+
+" ==========================================
+" =========== vim-markdown-toc =============
+" ==========================================
+let g:vmt_dont_insert_fence = 1
 " }}}
 
