@@ -9,7 +9,5 @@ sessions/
 recite/
 autoload/
 workspace/
-backupdir=~/
-directory=~/
 .netrwhist
 _machine_specific.vim

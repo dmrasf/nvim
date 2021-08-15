@@ -7,7 +7,7 @@
 " Author: dmrasf
 
 " 自动下载插件 {{{
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+if empty(glob('$HOME/.local/share/nvim/site/autoload/plug.vim'))
     silent !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
@@ -95,7 +95,7 @@ nnoremap <ESC> :ccl<CR>
 nnoremap gU wbgUw
 nnoremap gu wbguw
 noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
-nnoremap <LEADER>v :tabe ~/.config/nvim/init.vim<CR>
+nnoremap <LEADER>v :tabe $HOME/.config/nvim/init.vim<CR>
 nnoremap tx :r !figlet
 " }}}
 
@@ -148,22 +148,6 @@ autocmd TermOpen term://* startinsert
 autocmd TermOpen * setlocal norelativenumber signcolumn=no
 nnoremap te :set splitbelow<CR>:split<CR> :terminal<CR>
 tnoremap <C-N> <C-\><C-N>
-let g:terminal_color_0  = '#282828'     "black
-let g:terminal_color_1  = '#cc241d'     "red
-let g:terminal_color_2  = '#98971a'     "green
-let g:terminal_color_3  = '#d79921'     "yellow
-let g:terminal_color_4  = '#458588'     "blue
-let g:terminal_color_5  = '#b16286'     "magenta
-let g:terminal_color_6  = '#689d6a'     "cyan
-let g:terminal_color_7  = '#a89984'     "white
-let g:terminal_color_8  = '#928374'     "black
-let g:terminal_color_9  = '#fb4934'     "red
-let g:terminal_color_10 = '#b8bb26'     "green
-let g:terminal_color_11 = '#fabd2f'     "yellow
-let g:terminal_color_12 = '#83a598'     "blue
-let g:terminal_color_13 = '#d3869b'     "magenta
-let g:terminal_color_14 = '#8ec07c'     "cyan
-let g:terminal_color_15 = '#ebdbb2'     "white
 " }}}
 
 " markdown 快捷键 {{{
@@ -189,13 +173,13 @@ autocmd Filetype markdown inoremap ,l --------<Enter>
 " }}}
 
 " 保存修改历史和光标位置 {{{
-silent !mkdir -p ~/.config/nvim/tmp/backup
-silent !mkdir -p ~/.config/nvim/tmp/undo
-set backupdir=~/.config/nvim/tmp/backup,.
-set directory=~/.config/nvim/tmp/backup,.
+silent !mkdir -p $HOME/.config/nvim/tmp/backup
+silent !mkdir -p $HOME/.config/nvim/tmp/undo
+set backupdir=$HOME/.config/nvim/tmp/backup,.
+set directory=$HOME/.config/nvim/tmp/backup,.
 if has('persistent_undo')
     set undofile
-    set undodir=~/.config/nvim/tmp/undo,.
+    set undodir=$HOME/.config/nvim/tmp/undo,.
 endif
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -269,7 +253,7 @@ func! Run()
     elseif &filetype == 'rust'
         set splitbelow
         :sp
-        :term cargo run
+        :term proxychains -q cargo run
     endif
 endfunc
 " }}}
@@ -383,6 +367,7 @@ Plug 'gcmt/wildfire.vim'     " <ENTER>  <BS>
 Plug 'matze/vim-move'
 Plug 'wakatime/vim-wakatime'
 Plug 'mzlogin/vim-markdown-toc'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }       " 颜色高亮
 
 call plug#end()
 " }}}
@@ -485,7 +470,6 @@ let g:coc_global_extention = [
             \ 'coc-css',
             \ 'coc-explorer',
             \ 'coc-flutter',
-            \ 'coc-highlight',
             \ 'coc-html',
             \ 'coc-json',
             \ 'coc-lists',
@@ -831,5 +815,10 @@ nmap <A-l> <Plug>MoveLineRight
 " =========== vim-markdown-toc =============
 " ==========================================
 let g:vmt_dont_insert_fence = 1
+
+" ========================================
+" =========== vim-hexokinase =============
+" ========================================
+let g:Hexokinase_highlighters = [ 'virtual' ]
 " }}}
 
