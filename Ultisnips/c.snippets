@@ -1,0 +1,21 @@
+snippet lc "行注释" b
+/* ${1} */
+endsnippet
+
+snippet inc "头文件注释" b
+#ifndef ${1}
+#define ${1}
+
+${2}
+
+#endif /* ${1} */
+
+endsnippet
+
+snippet fuc "函数注释" b
+/**
+ * ${1:描述功能}
+ * @param ${2:参数}
+ * @return ${3:返回值}
+ */
+endsnippet

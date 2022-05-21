@@ -327,7 +327,7 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python'] }
 Plug 'wavded/vim-stylus'
 Plug 'lervag/vimtex'
-Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c'}
+"Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c'}
 
 " 查找文件
 Plug 'junegunn/fzf.vim'                         " fzf
@@ -469,6 +469,8 @@ let g:coc_global_extention = [
             \ 'coc-calc',
             \ 'coc-ci',
             \ 'coc-css',
+            \ 'coc-clangd',
+            \ 'coc-cmake',
             \ 'coc-explorer',
             \ 'coc-flutter',
             \ 'coc-html',
@@ -566,16 +568,16 @@ let g:vimtex_compiler_progname = 'nvr'
 " ====================================
 " =========== vimspector =============
 " ====================================
-let g:vimspector_enable_mappings = 'HUMAN'
-function! s:read_template_into_buffer(template)
-	execute '0r $HOME/.config/nvim/vimspector_json/'.a:template
-endfunction
-command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
-			\   'source': 'ls -1 $HOME/.config/nvim/vimspector_json',
-			\   'down': 10,
-			\   'sink': function('<sid>read_template_into_buffer')
-			\ })
-noremap <leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
+"let g:vimspector_enable_mappings = 'HUMAN'
+"function! s:read_template_into_buffer(template)
+	"execute '0r $HOME/.config/nvim/vimspector_json/'.a:template
+"endfunction
+"command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
+			"\   'source': 'ls -1 $HOME/.config/nvim/vimspector_json',
+			"\   'down': 10,
+			"\   'sink': function('<sid>read_template_into_buffer')
+			"\ })
+"noremap <leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
 " }}}
 
 " 查找工具插件 {{{
