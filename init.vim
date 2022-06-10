@@ -30,7 +30,7 @@ set number
 set relativenumber
 set signcolumn=auto
 set cursorline
-set cursorcolumn
+"set cursorcolumn
 set wrap
 set showcmd
 set wildmenu
@@ -54,6 +54,7 @@ set visualbell
 set hidden
 set shortmess+=c
 set conceallevel=0
+set mouse=a
 exec "nohlsearch"
 let g:python3_host_prog='/usr/bin/python3'
 let g:ruby_host_prog = '$HOME/.gem/ruby/3.0.0/bin/neovim-ruby-host'
@@ -301,9 +302,9 @@ Plug 'dmrasf/eleline.vim'
 "Plug 'vim-airline/vim-airline-themes' " airline theme
 Plug 'connorholyday/vim-snazzy'       " colorstheme
 Plug 'ajmwagar/vim-deus'              " colorstheme
-Plug 'morhetz/gruvbox'                " colorstheme
 Plug 'sainnhe/gruvbox-material'       " colorstheme
 Plug 'sainnhe/forest-night'           " colorstheme
+Plug 'sonph/onehalf', { 'rtp': 'vim' } " colorstheme
 Plug 'jpo/vim-railscasts-theme'       " colorstheme
 Plug 'luochen1990/rainbow'            " rainbow 括号
 Plug 'junegunn/goyo.vim'              " distraction free writing mode
@@ -349,7 +350,7 @@ Plug 'mzlogin/vim-markdown-toc'
 " some tool
 Plug 'mbbill/undotree'
 Plug 'liuchengxu/vista.vim'
-Plug 'tpope/vim-surround'    " type cs'`to change 'word' to `word`
+Plug 'tpope/vim-surround'    " type cs'[to change 'word' to [word]
 Plug 'tpope/vim-capslock'    " <C-l> capslock
 Plug 'tpope/vim-speeddating' " <c-a> <c-x>
 Plug 'tpope/vim-repeat'
@@ -365,7 +366,7 @@ Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'yuttie/comfortable-motion.vim' " 更顺滑的scroll
 Plug 'gcmt/wildfire.vim'     " <ENTER>  <BS>
-Plug 'matze/vim-move'
+Plug 'matze/vim-move' " 整行 整块移动
 Plug 'wakatime/vim-wakatime'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }       " 颜色高亮
@@ -382,13 +383,22 @@ if has('termguicolors')
     let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 endif
 let g:gruvbox_material_background = 'medium'
+let g:gruvbox_material_transparent_background = 0
+let g:gruvbox_material_better_performance = 1
+
+let g:gruvbox_material_enable_italic_comment = 1
 let g:gruvbox_material_enable_italic = 1
 let g:gruvbox_material_enable_bold = 1
-let g:gruvbox_material_visual = 'grey background'
-let g:gruvbox_material_transparent_background = 0
-let g:gruvbox_material_diagnostic_line_highlight = 1
-let g:gruvbox_material_menu_selection_background = 'green'
-let g:gruvbox_material_better_performance = 1
+
+let g:gruvbox_material_visual = 'reverse'
+let g:gruvbox_material_menu_selection_background = 'orange'
+let g:gruvbox_material_sign_column_background = 'none'
+let g:gruvbox_material_spell_foreground = 'colored'
+let g:gruvbox_material_ui_contrast = 'high'
+
+let g:gruvbox_material_diagnostic_text_highlight = 0
+let g:gruvbox_material_diagnostic_line_highlight = 0
+let g:gruvbox_material_diagnostic_virtual_text = 'colored'
 colorscheme gruvbox-material
 
 
@@ -570,13 +580,13 @@ let g:vimtex_compiler_progname = 'nvr'
 " ====================================
 "let g:vimspector_enable_mappings = 'HUMAN'
 "function! s:read_template_into_buffer(template)
-	"execute '0r $HOME/.config/nvim/vimspector_json/'.a:template
+"execute '0r $HOME/.config/nvim/vimspector_json/'.a:template
 "endfunction
 "command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
-			"\   'source': 'ls -1 $HOME/.config/nvim/vimspector_json',
-			"\   'down': 10,
-			"\   'sink': function('<sid>read_template_into_buffer')
-			"\ })
+            "\   'source': 'ls -1 $HOME/.config/nvim/vimspector_json',
+            "\   'down': 10,
+            "\   'sink': function('<sid>read_template_into_buffer')
+            "\ })
 "noremap <leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
 " }}}
 
@@ -803,8 +813,8 @@ let g:comfortable_motion_no_default_key_mappings = 1
 let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decrease this value.
 nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
 nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
-noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
-noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+"noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
+"noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
 
 
 " ==================================
