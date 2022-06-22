@@ -26,11 +26,12 @@ set softtabstop=4
 autocmd BufWinEnter *.xml,*.html,*.htm,*.css,*.js,*.vue,*.json,*.go setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufWinEnter *.launch,*.gazebo,*.xacro,*.dae,*.world setlocal filetype=xml
 autocmd BufWinEnter *.rviz setlocal filetype=yaml
+autocmd BufWinEnter *.dts,*.dtsi setlocal noexpandtab
 set number
-set relativenumber
+set norelativenumber
 set signcolumn=auto
-set cursorline
-"set cursorcolumn
+set nocursorline
+set nocursorcolumn
 set wrap
 set showcmd
 set wildmenu
@@ -55,6 +56,10 @@ set hidden
 set shortmess+=c
 set conceallevel=0
 set mouse=a
+set foldmethod=syntax
+set foldlevel=99
+"set fdc=auto
+hi FoldColumn guifg=orange
 exec "nohlsearch"
 let g:python3_host_prog='/usr/bin/python3'
 let g:ruby_host_prog = '$HOME/.gem/ruby/3.0.0/bin/neovim-ruby-host'
@@ -69,10 +74,10 @@ vnoremap i k
 vnoremap j h
 vnoremap h i
 vnoremap k j
-nnoremap K 5j
-nnoremap I 5k
-vnoremap K 5j
-vnoremap I 5k
+nnoremap K 3j
+nnoremap I 3k
+vnoremap K 3j
+vnoremap I 3k
 nnoremap H I
 nnoremap Q q
 nnoremap Z Q
@@ -87,15 +92,14 @@ nnoremap B 5b
 nnoremap < <<
 nnoremap > >>
 vnoremap Y "+y
+nnoremap fw *
+nnoremap fb #
 
 nnoremap <LEADER><CR> :nohlsearch<CR>
 inoremap <C-z> <ESC>u
 inoremap <C-a> <Esc>A
 inoremap <C-h> <Esc>I
 nnoremap <ESC> :ccl<CR>
-nnoremap gU wbgUw
-nnoremap gu wbguw
-noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
 nnoremap <LEADER>v :tabe $HOME/.config/nvim/init.vim<CR>
 nnoremap tx :r !figlet
 " }}}
@@ -127,8 +131,8 @@ nnoremap <LEADER>l <C-w>l
 nnoremap <LEADER>j <C-w>h
 nnoremap sv <C-w>b<C-w>K
 nnoremap sc <C-w>b<C-w>H
-noremap <M-u> <C-w>p<C-u><C-w>p
-noremap <M-d> <C-w>p<C-d><C-w>p
+nnoremap <M-u> <C-w>p<C-u><C-w>p
+nnoremap <M-d> <C-w>p<C-d><C-w>p
 nnoremap <up> :res -1<CR>
 nnoremap <down> :res +1<CR>
 nnoremap <left> :vertical resize+1<CR>
@@ -146,8 +150,10 @@ nnoremap tmk :+tabmove<CR>
 " 内置终端设置 {{{
 let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert
-autocmd TermOpen * setlocal norelativenumber signcolumn=no
-nnoremap te :set splitbelow<CR>:split<CR> :terminal<CR>
+autocmd TermOpen * setlocal norelativenumber nonumber signcolumn=no
+nnoremap <a-t> :set splitbelow<CR>:split<CR> :terminal<CR>
+nnoremap <a-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
+nnoremap <a-r> :tabe<CR>:-tabmove<CR>:term ranger<CR>
 tnoremap <C-N> <C-\><C-N>
 " }}}
 
@@ -332,7 +338,7 @@ Plug 'lervag/vimtex'
 
 " 查找文件
 Plug 'junegunn/fzf.vim'                         " fzf
-Plug 'rhysd/clever-f.vim'                       " fsfff
+"Plug 'rhysd/clever-f.vim'                       " fsfff
 Plug 'ctrlpvim/ctrlp.vim'                       " cmd CtrlP
 Plug 'pechorin/any-jump.vim'                    " <M-j>
 
@@ -371,6 +377,7 @@ Plug 'wakatime/vim-wakatime'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }       " 颜色高亮
 
+"Plug 'github/copilot.vim'
 call plug#end()
 " }}}
 
@@ -385,17 +392,14 @@ endif
 let g:gruvbox_material_background = 'medium'
 let g:gruvbox_material_transparent_background = 0
 let g:gruvbox_material_better_performance = 1
-
 let g:gruvbox_material_enable_italic_comment = 1
 let g:gruvbox_material_enable_italic = 1
 let g:gruvbox_material_enable_bold = 1
-
 let g:gruvbox_material_visual = 'reverse'
 let g:gruvbox_material_menu_selection_background = 'orange'
 let g:gruvbox_material_sign_column_background = 'none'
 let g:gruvbox_material_spell_foreground = 'colored'
 let g:gruvbox_material_ui_contrast = 'high'
-
 let g:gruvbox_material_diagnostic_text_highlight = 0
 let g:gruvbox_material_diagnostic_line_highlight = 0
 let g:gruvbox_material_diagnostic_virtual_text = 'colored'
@@ -438,6 +442,7 @@ autocmd BufWrite *.py,*js :Autoformat
 " ====================================
 let g:indentLine_char = '│'
 autocmd BufWinEnter *.json IndentLinesDisable
+autocmd TermOpen * IndentLinesDisable
 " }}}
 
 " 高亮补全插件 {{{
@@ -605,13 +610,13 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
 " ==================================
 " =========== clever-f =============
 " ==================================
-let g:clever_f_not_overwrites_standard_mappings = 1
-nmap f <Plug>(clever-f-f)
-xmap f <Plug>(clever-f-f)
-omap f <Plug>(clever-f-f)
-nmap F <Plug>(clever-f-F)
-xmap F <Plug>(clever-f-F)
-omap F <Plug>(clever-f-F)
+"let g:clever_f_not_overwrites_standard_mappings = 1
+"nmap f <Plug>(clever-f-f)
+"xmap f <Plug>(clever-f-f)
+"omap f <Plug>(clever-f-f)
+"nmap F <Plug>(clever-f-F)
+"xmap F <Plug>(clever-f-F)
+"omap F <Plug>(clever-f-F)
 
 
 " ===============================
@@ -641,8 +646,8 @@ noremap \g :Git
 let g:gitgutter_sign_allow_clobber = 0
 let g:gitgutter_map_keys = 0
 let g:gitgutter_preview_win_floating = 1
-nnoremap gf :GitGutterFold<CR>
-nnoremap gh :GitGutterPreviewHunk<CR>
+nnoremap <LEADER>gf :GitGutterFold<CR>
+nnoremap <LEADER>gh :GitGutterPreviewHunk<CR>
 nnoremap [g :GitGutterPrevHunk<CR>
 nnoremap ]g :GitGutterNextHunk<CR>
 "let g:gitgutter_sign_added            = '🟩'
@@ -662,7 +667,7 @@ nmap gm <Plug>(git-messenger)
 " =========== blamer =============
 " ================================
 let g:blamer_enabled = 1
-let g:blamer_delay = 1000
+let g:blamer_delay = 300
 let g:blamer_show_in_visual_modes = 0
 let g:blamer_show_in_insert_modes = 0
 let g:blamer_prefix = ' '
@@ -748,6 +753,7 @@ noremap \\ :Calendar -view=clock -position=here<CR>
 "let g:calendar_google_task = 1
 augroup calendar-mappings
     autocmd!
+    autocmd FileType calendar IndentLinesDisable
     " diamond cursor
     autocmd FileType calendar nmap <buffer> i <Plug>(calendar_up)
     autocmd FileType calendar nmap <buffer> j <Plug>(calendar_left)
