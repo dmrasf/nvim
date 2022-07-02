@@ -30,7 +30,7 @@ autocmd BufWinEnter *.dts,*.dtsi setlocal noexpandtab
 set number
 set norelativenumber
 set signcolumn=auto
-set nocursorline
+set cursorline
 set nocursorcolumn
 set wrap
 set showcmd
@@ -294,8 +294,6 @@ function! Fcitx2zh()
         let g:input_toggle = 2
     endif
 endfunction
-set timeoutlen=300
-autocmd InsertLeave * call Fcitx2en()
 autocmd InsertEnter * call Fcitx2zh()
 " }}}
 
@@ -303,50 +301,41 @@ autocmd InsertEnter * call Fcitx2zh()
 call plug#begin('$HOME/.config/nvim/plugged')
 
 " dress
-Plug 'dmrasf/eleline.vim'
-"Plug 'vim-airline/vim-airline'        " airline
-"Plug 'vim-airline/vim-airline-themes' " airline theme
-Plug 'connorholyday/vim-snazzy'       " colorstheme
-Plug 'ajmwagar/vim-deus'              " colorstheme
-Plug 'sainnhe/gruvbox-material'       " colorstheme
-Plug 'sainnhe/forest-night'           " colorstheme
+Plug 'dmrasf/eleline.vim'              " 状态栏
+Plug 'connorholyday/vim-snazzy'        " colorstheme
+Plug 'ajmwagar/vim-deus'               " colorstheme
+Plug 'sainnhe/gruvbox-material'        " colorstheme
+Plug 'sainnhe/forest-night'            " colorstheme
 Plug 'sonph/onehalf', { 'rtp': 'vim' } " colorstheme
-Plug 'jpo/vim-railscasts-theme'       " colorstheme
-Plug 'luochen1990/rainbow'            " rainbow 括号
-Plug 'junegunn/goyo.vim'              " distraction free writing mode
-Plug 'ryanoasis/vim-devicons'         " nerdfont devicons
-Plug 'Chiel92/vim-autoformat'         " autoformat \f
-Plug 'godlygeek/tabular'              " 对齐文本
-Plug 'romainl/vim-cool'               " 自动取消高亮
-Plug 'itchyny/vim-cursorword'         " 下划线
-Plug 'Yggdroot/indentLine'
+Plug 'jpo/vim-railscasts-theme'        " colorstheme
+Plug 'ayu-theme/ayu-vim'               " colorstheme
+Plug 'luochen1990/rainbow'             " rainbow 括号
+Plug 'junegunn/goyo.vim'               " distraction free writing mode
+Plug 'ryanoasis/vim-devicons'          " nerdfont devicons
+Plug 'Chiel92/vim-autoformat'          " autoformat \f
+Plug 'godlygeek/tabular'               " 对齐文本
+Plug 'romainl/vim-cool'                " 自动取消高亮
+Plug 'itchyny/vim-cursorword'          " 下划线
+Plug 'Yggdroot/indentLine'             " indentLine
 
 " highlight and complete
-"Plug 'fatih/vim-go' , {'do': ':GoUpdateBinaries', 'for': ['go', 'vim-plug'], 'tag': '*' }
-Plug 'jackguo380/vim-lsp-cxx-highlight'         " for coc-clangd
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " coc
-Plug 'honza/vim-snippets'                       " 代码片段集合
-Plug 'mattn/emmet-vim'                          " <M-m>,  html
-Plug 'maxmellon/vim-jsx-pretty'                 " jsx highlight
-Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] } " javascript highlight
-Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }      " javascript highlight
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python'] }
-Plug 'wavded/vim-stylus'
-Plug 'lervag/vimtex'
-"Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}                             " coc
+Plug 'honza/vim-snippets'                                                   " 代码片段集合
+Plug 'mattn/emmet-vim'                                                      " <M-m>,  html
+Plug 'dart-lang/dart-vim-plugin'                                            " dart lsp
+Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python'] } " 高亮python
+Plug 'lervag/vimtex'                                                        " 写latex
 
 " 查找文件
-Plug 'junegunn/fzf.vim'                         " fzf
-"Plug 'rhysd/clever-f.vim'                       " fsfff
-Plug 'ctrlpvim/ctrlp.vim'                       " cmd CtrlP
-Plug 'pechorin/any-jump.vim'                    " <M-j>
+Plug 'junegunn/fzf.vim'      " fzf
+Plug 'ctrlpvim/ctrlp.vim'    " cmd CtrlP
+Plug 'pechorin/any-jump.vim' " <M-j>
 
 " git
 Plug 'tpope/vim-fugitive'      " git 命令
 Plug 'airblade/vim-gitgutter'  " show git
 Plug 'rhysd/git-messenger.vim' " git message
-Plug 'APZelos/blamer.nvim'
+Plug 'APZelos/blamer.nvim'     " 显示提交信息
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
@@ -354,30 +343,28 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'mzlogin/vim-markdown-toc'
 
 " some tool
-Plug 'mbbill/undotree'
-Plug 'liuchengxu/vista.vim'
-Plug 'tpope/vim-surround'    " type cs'[to change 'word' to [word]
-Plug 'tpope/vim-capslock'    " <C-l> capslock
-Plug 'tpope/vim-speeddating' " <c-a> <c-x>
-Plug 'tpope/vim-repeat'
-Plug 'AndrewRadev/switch.vim' " gs
-Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line <space>
-Plug 'itchyny/calendar.vim'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'dkarter/bullets.vim'              "<C-t> <C-d>
-Plug 'MattesGroeger/vim-bookmarks'
-Plug 'junegunn/vim-peekaboo'         " 在插入模式下使用寄存器 <C-r>
-Plug 'AndrewRadev/splitjoin.vim'     " gS  gJ 单行 多行
-Plug 'skywind3000/asynctasks.vim'
-Plug 'skywind3000/asyncrun.vim'
-Plug 'yuttie/comfortable-motion.vim' " 更顺滑的scroll
-Plug 'gcmt/wildfire.vim'     " <ENTER>  <BS>
-Plug 'matze/vim-move' " 整行 整块移动
-Plug 'wakatime/vim-wakatime'
-Plug 'mzlogin/vim-markdown-toc'
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }       " 颜色高亮
+Plug 'mbbill/undotree'                                    " 修改历史
+Plug 'liuchengxu/vista.vim'                               " 大纲
+Plug 'tpope/vim-surround'                                 " type cs'[to change 'word' to [word]
+Plug 'tpope/vim-capslock'                                 " <C-l> 插入模式下暂时切换capslock
+Plug 'tpope/vim-speeddating'                              " <c-a> <c-x> 数字增加
+Plug 'tpope/vim-repeat'                                   " . 支持其它插件操作
+Plug 'AndrewRadev/switch.vim'                             " gs 修改true false
+Plug 'scrooloose/nerdcommenter'                           " in <space>cc to comment a line <space>
+Plug 'itchyny/calendar.vim'                               " 日历
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}       " 多选编辑
+Plug 'dkarter/bullets.vim'                                " <C-t> <C-d>
+Plug 'MattesGroeger/vim-bookmarks'                        " 书签
+Plug 'junegunn/vim-peekaboo'                              " 在插入模式下使用寄存器 <C-r>
+Plug 'AndrewRadev/splitjoin.vim'                          " gS  gJ 单行 多行
+Plug 'skywind3000/asynctasks.vim'                         " 自动任务
+Plug 'skywind3000/asyncrun.vim'                           " 自动任务
+Plug 'yuttie/comfortable-motion.vim'                      " 更顺滑的scroll
+Plug 'gcmt/wildfire.vim'                                  " <ENTER>  <BS>
+Plug 'matze/vim-move'                                     " 整行 整块移动
+Plug 'wakatime/vim-wakatime'                              " 编辑时间
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " 颜色高亮
 
-"Plug 'github/copilot.vim'
 call plug#end()
 " }}}
 
@@ -404,18 +391,6 @@ let g:gruvbox_material_diagnostic_text_highlight = 0
 let g:gruvbox_material_diagnostic_line_highlight = 0
 let g:gruvbox_material_diagnostic_virtual_text = 'colored'
 colorscheme gruvbox-material
-
-
-" ===========================
-" ======== airline ==========
-" ===========================
-"let g:airline_theme='gruvbox_material'
-"let g:airline#extensions#whitespace#enabled = 0
-"let g:airline_section_z = '%l:%v %p%%'
-"let g:airline_section_b = ''
-"let g:airline#extensions#tabline#enabled = 0
-"let g:airline#extensions#tabline#show_buffers = 0
-"let g:airline#extensions#tabline#formatter = 'short_path'
 
 
 " =================================
@@ -446,37 +421,6 @@ autocmd TermOpen * IndentLinesDisable
 " }}}
 
 " 高亮补全插件 {{{
-" ================================
-" =========== vim-go =============
-" ================================
-"let g:go_echo_go_info = 0
-"let g:go_auto_type_info = 1
-"let g:go_doc_popup_window = 1
-"let g:go_def_mapping_enabled = 0
-"let g:go_doc_keywordprg_enabled = 0
-"let g:go_list_type = "quickfix"
-"let g:go_highlight_array_whitespace_error = 1
-"let g:go_highlight_build_constraints = 1
-"let g:go_highlight_chan_whitespace_error = 1
-"let g:go_highlight_extra_types = 1
-"let g:go_highlight_fields = 1
-"let g:go_highlight_format_strings = 1
-"let g:go_highlight_function_calls = 1
-"let g:go_highlight_function_parameters = 1
-"let g:go_highlight_functions = 1
-"let g:go_highlight_generate_tags = 1
-"let g:go_highlight_methods = 1
-"let g:go_highlight_operators = 1
-"let g:go_highlight_space_tab_error = 1
-"let g:go_highlight_string_spellcheck = 1
-"let g:go_highlight_structs = 1
-"let g:go_highlight_trailing_whitespace_error = 1
-"let g:go_highlight_types = 1
-"let g:go_highlight_variable_assignments = 0
-"let g:go_highlight_variable_declarations = 0
-"au FileType go nmap M <Plug>(go-doc)
-
-
 " ===========================
 " ========== coc ============
 " ===========================
@@ -578,21 +522,6 @@ let g:vimtex_motion_enabled = 0
 let g:vimtex_quickfix_enabled = 0
 let maplocalleader = ' '
 let g:vimtex_compiler_progname = 'nvr'
-
-
-" ====================================
-" =========== vimspector =============
-" ====================================
-"let g:vimspector_enable_mappings = 'HUMAN'
-"function! s:read_template_into_buffer(template)
-"execute '0r $HOME/.config/nvim/vimspector_json/'.a:template
-"endfunction
-"command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
-            "\   'source': 'ls -1 $HOME/.config/nvim/vimspector_json',
-            "\   'down': 10,
-            "\   'sink': function('<sid>read_template_into_buffer')
-            "\ })
-"noremap <leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
 " }}}
 
 " 查找工具插件 {{{
@@ -605,18 +534,6 @@ noremap <C-h> :History<CR>
 noremap <c-b> :Buffers<CR>
 let g:fzf_preview_window = 'right:60%'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
-
-
-" ==================================
-" =========== clever-f =============
-" ==================================
-"let g:clever_f_not_overwrites_standard_mappings = 1
-"nmap f <Plug>(clever-f-f)
-"xmap f <Plug>(clever-f-f)
-"omap f <Plug>(clever-f-f)
-"nmap F <Plug>(clever-f-F)
-"xmap F <Plug>(clever-f-F)
-"omap F <Plug>(clever-f-F)
 
 
 " ===============================
@@ -709,6 +626,12 @@ let g:mkdp_page_title = '「${name}」'
 " ======== vim-table-mode ==========
 " ==================================
 noremap <LEADER>tm :TableModeToggle<CR>
+
+
+" ==========================================
+" =========== vim-markdown-toc =============
+" ==========================================
+let g:vmt_dont_insert_fence = 1
 " }}}
 
 " 常用工具插件 {{{
@@ -749,8 +672,6 @@ let g:vista#renderer#icons = {
 " ======================================
 "noremap \c :Calendar -position=here<CR>
 noremap \\ :Calendar -view=clock -position=here<CR>
-"let g:calendar_google_calendar = 1
-"let g:calendar_google_task = 1
 augroup calendar-mappings
     autocmd!
     autocmd FileType calendar IndentLinesDisable
@@ -850,11 +771,6 @@ nmap <A-i> <Plug>MoveLineUp
 nmap <A-j> <Plug>MoveLineLeft
 nmap <A-l> <Plug>MoveLineRight
 
-
-" ==========================================
-" =========== vim-markdown-toc =============
-" ==========================================
-let g:vmt_dont_insert_fence = 1
 
 " ========================================
 " =========== vim-hexokinase =============
