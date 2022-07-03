@@ -301,7 +301,9 @@ autocmd InsertEnter * call Fcitx2zh()
 call plug#begin('$HOME/.config/nvim/plugged')
 
 " dress
-Plug 'dmrasf/eleline.vim'              " 状态栏
+"Plug 'dmrasf/eleline.vim'              " 状态栏
+Plug 'nvim-lualine/lualine.nvim'       " lua statusline
+Plug 'kyazdani42/nvim-web-devicons'    " devicons
 Plug 'connorholyday/vim-snazzy'        " colorstheme
 Plug 'ajmwagar/vim-deus'               " colorstheme
 Plug 'sainnhe/gruvbox-material'        " colorstheme
@@ -364,11 +366,18 @@ Plug 'gcmt/wildfire.vim'                                  " <ENTER>  <BS>
 Plug 'matze/vim-move'                                     " 整行 整块移动
 Plug 'wakatime/vim-wakatime'                              " 编辑时间
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " 颜色高亮
+Plug 'dstein64/vim-startuptime'                           " 显示启动时间
 
 call plug#end()
 " }}}
 
 " 美化相关插件 {{{
+" =================================
+" =========== lualine =============
+" =================================
+source $HOME/.config/nvim/lualine_config.lua
+
+
 " =====================================
 " =========== colorscheme =============
 " =====================================
@@ -435,6 +444,7 @@ let g:coc_global_extention = [
             \ 'coc-html',
             \ 'coc-json',
             \ 'coc-lists',
+            \ 'coc-lua',
             \ 'coc-pairs',
             \ 'coc-python',
             \ 'coc-rls',
