@@ -30,7 +30,7 @@ autocmd BufWinEnter *.dts,*.dtsi setlocal noexpandtab
 set number
 set norelativenumber
 set signcolumn=auto
-set cursorline
+set nocursorline
 set nocursorcolumn
 set wrap
 set showcmd
@@ -295,13 +295,13 @@ function! Fcitx2zh()
     endif
 endfunction
 autocmd InsertEnter * call Fcitx2zh()
+autocmd InsertLeave * call Fcitx2en()
 " }}}
 
 " 插件目录 {{{
 call plug#begin('$HOME/.config/nvim/plugged')
 
 " dress
-"Plug 'dmrasf/eleline.vim'              " 状态栏
 Plug 'nvim-lualine/lualine.nvim'       " lua statusline
 Plug 'kyazdani42/nvim-web-devicons'    " devicons
 Plug 'connorholyday/vim-snazzy'        " colorstheme

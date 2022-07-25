@@ -104,6 +104,7 @@
     "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
   ],
   "vetur.trace.server": "verbose",
+  "clangd.inlayHints.enable": false,
   "languageserver": {
     "bash": {
       "command": "bash-language-server",
