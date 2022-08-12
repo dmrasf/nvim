@@ -32,6 +32,7 @@ set norelativenumber
 set signcolumn=auto
 set nocursorline
 set nocursorcolumn
+set colorcolumn=80
 set wrap
 set showcmd
 set wildmenu
@@ -331,7 +332,7 @@ Plug 'lervag/vimtex'                                                        " �
 " 查找文件
 Plug 'junegunn/fzf.vim'      " fzf
 Plug 'ctrlpvim/ctrlp.vim'    " cmd CtrlP
-Plug 'pechorin/any-jump.vim' " <M-j>
+Plug 'pechorin/any-jump.vim' " <M-h>
 
 " git
 Plug 'tpope/vim-fugitive'      " git 命令
@@ -367,6 +368,7 @@ Plug 'matze/vim-move'                                     " 整行 整块移动
 Plug 'wakatime/vim-wakatime'                              " 编辑时间
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " 颜色高亮
 Plug 'dstein64/vim-startuptime'                           " 显示启动时间
+Plug 'airblade/vim-rooter'                                " 自动切换项目根目录
 
 call plug#end()
 " }}}
@@ -418,7 +420,7 @@ map <LEADER>gy :Goyo<CR>
 " =========== autoformat =============
 " ====================================
 noremap \f :Autoformat<CR>
-autocmd BufWrite *.py,*js :Autoformat
+autocmd BufWrite *js :Autoformat
 
 
 " ====================================
@@ -539,10 +541,10 @@ let g:vimtex_compiler_progname = 'nvr'
 " ========= fzf =============
 " ===========================
 noremap <C-f> :FZF<CR>
-noremap <C-q> :Ag<CR>
+noremap <C-q> :Ag 
 noremap <C-h> :History<CR>
 noremap <c-b> :Buffers<CR>
-let g:fzf_preview_window = 'right:60%'
+let g:fzf_preview_window = 'right:30%'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
 
 
@@ -593,7 +595,7 @@ nmap gm <Plug>(git-messenger)
 " ================================
 " =========== blamer =============
 " ================================
-let g:blamer_enabled = 1
+let g:blamer_enabled = 0
 let g:blamer_delay = 300
 let g:blamer_show_in_visual_modes = 0
 let g:blamer_show_in_insert_modes = 0
@@ -786,5 +788,10 @@ nmap <A-l> <Plug>MoveLineRight
 " =========== vim-hexokinase =============
 " ========================================
 let g:Hexokinase_highlighters = [ 'virtual' ]
+
+" ====================================
+" =========== vim-rooter =============
+" ====================================
+let g:rooter_patterns = ['.git', '*.sln']
 " }}}
 
