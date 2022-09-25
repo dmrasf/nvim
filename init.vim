@@ -427,8 +427,8 @@ autocmd BufWrite *js :Autoformat
 " =========== indentLine =============
 " ====================================
 let g:indentLine_char = '│'
-autocmd BufWinEnter *.json IndentLinesDisable
-autocmd TermOpen * IndentLinesDisable
+autocmd BufWinEnter *.md,*.json IndentLinesDisable
+let g:indentLine_bufTypeExclude = ['help', 'terminal']
 " }}}
 
 " 高亮补全插件 {{{
