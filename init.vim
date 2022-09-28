@@ -57,7 +57,7 @@ set hidden
 set shortmess+=c
 set conceallevel=0
 set mouse=a
-set foldmethod=syntax
+set foldmethod=indent " 会影响文件打开速度
 set foldlevel=99
 "set fdc=auto
 hi FoldColumn guifg=orange
