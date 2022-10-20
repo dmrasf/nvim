@@ -247,8 +247,6 @@ func! Run()
         :term node %
     elseif &filetype == 'html'
         silent! exec "!google-chrome-stable % &"
-    elseif &filetype == 'markdown'
-        exec "MarkdownPreview"
     elseif &filetype == 'go'
         set splitbelow
         :sp
@@ -341,7 +339,6 @@ Plug 'rhysd/git-messenger.vim' " git message
 Plug 'APZelos/blamer.nvim'     " 显示提交信息
 
 " Markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'mzlogin/vim-markdown-toc'
 
@@ -449,7 +446,7 @@ let g:coc_global_extention = [
             \ 'coc-lua',
             \ 'coc-pairs',
             \ 'coc-python',
-            \ 'coc-rls',
+            \ 'coc-rust-analyzer',
             \ 'coc-snippets',
             \ 'coc-translator',
             \ 'coc-tsserver',
@@ -612,33 +609,6 @@ highlight Blamer guifg=grey
 " }}}
 
 " markdown插件 {{{
-" ===================================
-" ======== MarkdownPreview ==========
-" ===================================
-let g:mkdp_auto_start = 0
-let g:mkdp_auto_close = 0
-let g:mkdp_refresh_slow = 0
-let g:mkdp_command_for_global = 0
-let g:mkdp_open_to_the_world = 1
-let g:mkdp_open_ip = ''
-let g:mkdp_brower = 'firefox'
-let g:mkdp_echo_preview_url = 1
-let g:mkdp_browserfunc = ''
-let g:mkdp_preview_options = {
-            \ 'mkit': {},
-            \ 'katex': {},
-            \ 'uml': {},
-            \ 'maid': {},
-            \ 'disable_sync_scroll': 0,
-            \ 'sync_scroll_type': 'middle',
-            \ 'hide_yaml_meta': 1
-            \ }
-let g:mkdp_markdown_css = ''
-let g:mkdp_highlight_css = ''
-let g:mkdp_port = ''
-let g:mkdp_page_title = '「${name}」'
-
-
 " ==================================
 " ======== vim-table-mode ==========
 " ==================================

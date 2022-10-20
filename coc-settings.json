@@ -29,12 +29,10 @@
     "value": "\uf89f",
     "variable": "\ue71b"
   },
-  "coc.preferences.snippetStatusText": "Ⓢ ",
+  "snippet.statusText": "Ⓢ ",
   "coc.preferences.formatOnSaveFiletypes": [
     "json"
   ],
-  "flutter.autoOpenDevLog": true,
-  "flutter.lsp.initialization.onlyAnalyzeProjectsWithOpenFiles": false,
   "list.nextKeymap": "<C-k>",
   "list.previousKeymap": "<C-j>",
   "diagnostic.errorSign": "\uf467",
