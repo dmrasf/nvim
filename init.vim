@@ -32,7 +32,7 @@ set norelativenumber
 set signcolumn=auto
 set nocursorline
 set nocursorcolumn
-set colorcolumn=80
+set colorcolumn=81
 set wrap
 set showcmd
 set wildmenu
@@ -55,6 +55,8 @@ set noerrorbells
 set visualbell
 set hidden
 set shortmess+=c
+set shortmess+=a
+set cmdheight=1
 set conceallevel=0
 set mouse=a
 set foldmethod=indent " 会影响文件打开速度
@@ -80,6 +82,7 @@ nnoremap I 3k
 vnoremap K 3j
 vnoremap I 3k
 nnoremap H I
+vnoremap H I
 nnoremap Q q
 nnoremap Z Q
 nnoremap s <nop>
@@ -416,8 +419,8 @@ map <LEADER>gy :Goyo<CR>
 " ====================================
 " =========== autoformat =============
 " ====================================
-noremap \f :Autoformat<CR>
-autocmd BufWrite *js :Autoformat
+noremap <a-f> :Autoformat<CR>
+autocmd BufWrite *.js :Autoformat
 
 
 " ====================================
@@ -503,10 +506,14 @@ imap <C-o> <Plug>(coc-snippets-expand)
 nmap <Leader>ca <Plug>(coc-calc-result-append)
 nmap <Leader>cr <Plug>(coc-calc-result-replace)
 " coc-ci
-nmap <silent> w <Plug>(coc-ci-w)
-nmap <silent> b <Plug>(coc-ci-b)
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <silent>w <Plug>(coc-ci-w)
+nmap <silent>b <Plug>(coc-ci-b)
+" coc-action
+xmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>ac <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf <Plug>(coc-fix-current)
 
 
 " ===========================
@@ -652,6 +659,25 @@ let g:vista#renderer#icons = {
             \   "function": "\uf794",
             \   "variable": "\uf71b",
             \  }
+
+
+" =======================================
+" =========== nerdcommenter =============
+" =======================================
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+let g:NERDAltDelims_c = 1
+let g:NERDAltDelims_java = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = {}
 
 
 " ======================================
