@@ -23,6 +23,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+autocmd Filetype * set formatoptions-=o
 autocmd BufWinEnter *.xml,*.html,*.htm,*.css,*.js,*.vue,*.json,*.go setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufWinEnter *.launch,*.gazebo,*.xacro,*.dae,*.world setlocal filetype=xml
 autocmd BufWinEnter *.rviz setlocal filetype=yaml
@@ -54,14 +55,12 @@ set modeline
 set noerrorbells
 set visualbell
 set hidden
-set shortmess+=c
-set shortmess+=a
+set shortmess+=ca
 set cmdheight=1
 set conceallevel=0
 set mouse=a
 set foldmethod=indent " 会影响文件打开速度
 set foldlevel=99
-"set fdc=auto
 hi FoldColumn guifg=orange
 exec "nohlsearch"
 let g:python3_host_prog='/usr/bin/python3'
@@ -333,7 +332,6 @@ Plug 'lervag/vimtex'                                                        " �
 " 查找文件
 Plug 'junegunn/fzf.vim'      " fzf
 Plug 'ctrlpvim/ctrlp.vim'    " cmd CtrlP
-Plug 'pechorin/any-jump.vim' " <M-h>
 
 " git
 Plug 'tpope/vim-fugitive'      " git 命令
@@ -549,10 +547,10 @@ let g:vimtex_compiler_progname = 'nvr'
 " ===========================
 " ========= fzf =============
 " ===========================
-noremap <C-f> :FZF<CR>
-noremap <C-q> :Ag 
-noremap <C-h> :History<CR>
-noremap <c-b> :Buffers<CR>
+noremap \f :FZF<CR>
+noremap <a-q> :Ag 
+noremap <a-h> :History<CR>
+noremap <a-b> :Buffers<CR>
 let g:fzf_preview_window = 'right:30%'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
 
@@ -562,13 +560,6 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
 " ===============================
 let g:ctrlp_map = ''
 let g:ctrlp_cmd = 'CtrlP'
-
-
-" ==================================
-" =========== any-jump =============
-" ==================================
-let g:any_jump_disable_default_keybindings = 1
-nnoremap <M-h> :AnyJump<CR>
 " }}}
 
 " git相关插件 {{{

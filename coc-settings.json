@@ -101,8 +101,8 @@
     "$HOME/.config/nvim/Ultisnips/",
     "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
   ],
+  "rust-analyzer.checkOnSave.allTargets": false,
   "vetur.trace.server": "verbose",
-  "clangd.inlayHints.enable": false,
   "languageserver": {
     "bash": {
       "command": "bash-language-server",
@@ -114,15 +114,6 @@
       ],
       "ignoredRootPaths": [
         "~"
-      ]
-    },
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": [
-        "go.mod"
-      ],
-      "filetypes": [
-        "go"
       ]
     }
   }
