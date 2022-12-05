@@ -26,6 +26,7 @@ set softtabstop=4
 autocmd Filetype * set formatoptions-=o
 autocmd BufWinEnter *.xml,*.html,*.htm,*.css,*.js,*.vue,*.json,*.go setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufWinEnter *.launch,*.gazebo,*.xacro,*.dae,*.world setlocal filetype=xml
+autocmd BufWinEnter *.S setlocal filetype=asm
 autocmd BufWinEnter *.rviz setlocal filetype=yaml
 autocmd BufWinEnter *.dts,*.dtsi setlocal noexpandtab
 set number
@@ -259,9 +260,7 @@ func! Run()
     elseif &filetype == 'vim'
         :so %
     elseif &filetype == 'rust'
-        set splitbelow
-        :sp
-        :term proxychains -q cargo run
+        :CocCommand rust-analyzer.run
     endif
 endfunc
 " }}}
@@ -366,7 +365,7 @@ Plug 'matze/vim-move'                                     " 整行 整块移动
 Plug 'wakatime/vim-wakatime'                              " 编辑时间
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " 颜色高亮
 Plug 'dstein64/vim-startuptime'                           " 显示启动时间
-Plug 'airblade/vim-rooter'                                " 自动切换项目根目录
+" Plug 'airblade/vim-rooter'                                " 自动切换项目根目录
 
 call plug#end()
 " }}}
@@ -493,6 +492,7 @@ nmap <leader>f <Plug>(coc-format-selected)
 nnoremap <C-c> :CocCommand<CR>
 nnoremap <C-l> :CocList<CR>
 " coc-explorer
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 nmap tt :CocCommand explorer<CR>
 " coc-translator
 nmap tr <Plug>(coc-translator-p)
