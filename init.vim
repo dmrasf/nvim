@@ -103,7 +103,7 @@ nnoremap <LEADER><CR> :nohlsearch<CR>
 inoremap <C-z> <ESC>u
 inoremap <C-a> <Esc>A
 inoremap <C-h> <Esc>I
-nnoremap <ESC> :ccl<CR>
+nnoremap <silent> <ESC> :ccl<CR>
 nnoremap <LEADER>v :tabe $HOME/.config/nvim/init.vim<CR>
 nnoremap tx :r !figlet
 " }}}
@@ -410,7 +410,15 @@ let g:rainbow_active = 1
 " ========================
 " ======== goyo ==========
 " ========================
-map <LEADER>gy :Goyo<CR>
+nnoremap <silent> <LEADER>gy :Goyo<CR>
+function! s:goyo_enter()
+    exec "lua require('lualine').hide()"
+endfunction
+function! s:goyo_leave()
+    exec "lua require('lualine').hide({unhide=true})"
+endfunction
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 
 " ====================================
@@ -675,7 +683,7 @@ let g:NERDCustomDelimiters = {}
 " =========== vim-calendar =============
 " ======================================
 "noremap \c :Calendar -position=here<CR>
-noremap \\ :Calendar -view=clock -position=here<CR>
+noremap <silent> \\ :Calendar -view=clock -position=here<CR>
 augroup calendar-mappings
     autocmd!
     autocmd FileType calendar IndentLinesDisable
