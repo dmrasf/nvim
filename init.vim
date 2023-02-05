@@ -299,6 +299,8 @@ autocmd InsertLeave * call Fcitx2en()
 " }}}
 
 " 插件目录 {{{
+lua require('plugins')
+
 call plug#begin('$HOME/.config/nvim/plugged')
 
 " dress
@@ -325,7 +327,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}                             " co
 Plug 'honza/vim-snippets'                                                   " 代码片段集合
 Plug 'mattn/emmet-vim'                                                      " <M-m>,  html
 Plug 'dart-lang/dart-vim-plugin'                                            " dart lsp
-Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python'] } " 高亮python
+Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for': ['python'] } " 高亮python
 Plug 'lervag/vimtex'                                                        " 写latex
 
 " 查找文件
@@ -365,7 +367,7 @@ Plug 'matze/vim-move'                                     " 整行 整块移动
 Plug 'wakatime/vim-wakatime'                              " 编辑时间
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " 颜色高亮
 Plug 'dstein64/vim-startuptime'                           " 显示启动时间
-" Plug 'airblade/vim-rooter'                                " 自动切换项目根目录
+Plug 'airblade/vim-rooter'                                " 自动切换项目根目录
 
 call plug#end()
 " }}}
@@ -374,7 +376,7 @@ call plug#end()
 " =================================
 " =========== lualine =============
 " =================================
-source $HOME/.config/nvim/lualine_config.lua
+lua require('lualine_config')
 
 
 " =====================================
@@ -654,10 +656,6 @@ let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_default_executive = 'ctags'
 let g:vista_fzf_preview = ['right:50%']
 let g:vista#renderer#enable_icon = 1
-let g:vista#renderer#icons = {
-            \   "function": "\uf794",
-            \   "variable": "\uf71b",
-            \  }
 
 
 " =======================================
@@ -792,6 +790,6 @@ let g:Hexokinase_highlighters = [ 'virtual' ]
 " ====================================
 " =========== vim-rooter =============
 " ====================================
-let g:rooter_patterns = ['.git', '*.sln']
+let g:rooter_patterns = ['.git', '*.sln', '.vscode', '.cache']
 " }}}
 
