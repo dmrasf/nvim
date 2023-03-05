@@ -129,10 +129,10 @@ nnoremap sd :set splitright<CR>:vsplit<CR>
 nnoremap sa :set nosplitright<CR>:vsplit<CR>
 nnoremap sw :set nosplitbelow<CR>:split<CR>
 nnoremap ss :set splitbelow<CR>:split<CR>
-nnoremap <LEADER>i <C-w>k
-nnoremap <LEADER>k <C-w>j
-nnoremap <LEADER>l <C-w>l
-nnoremap <LEADER>j <C-w>h
+" nnoremap <LEADER>i <C-w>k
+" nnoremap <LEADER>k <C-w>j
+" nnoremap <LEADER>l <C-w>l
+" nnoremap <LEADER>j <C-w>h
 nnoremap sv <C-w>b<C-w>K
 nnoremap sc <C-w>b<C-w>H
 nnoremap <M-u> <C-w>p<C-u><C-w>p
@@ -368,6 +368,7 @@ Plug 'wakatime/vim-wakatime'                              " 编辑时间
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " 颜色高亮
 Plug 'dstein64/vim-startuptime'                           " 显示启动时间
 Plug 'airblade/vim-rooter'                                " 自动切换项目根目录
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 " }}}
@@ -791,5 +792,15 @@ let g:Hexokinase_highlighters = [ 'virtual' ]
 " =========== vim-rooter =============
 " ====================================
 let g:rooter_patterns = ['.git', '*.sln', '.vscode', '.cache']
+
+
+" ============================================
+" =========== vim-tmux-navigator =============
+" ============================================
+let g:tmux_navigator_no_mappings = 1
+noremap <silent> <LEADER>j :<C-U>TmuxNavigateLeft<cr>
+noremap <silent> <LEADER>k :<C-U>TmuxNavigateDown<cr>
+noremap <silent> <LEADER>i :<C-U>TmuxNavigateUp<cr>
+noremap <silent> <LEADER>l :<C-U>TmuxNavigateRight<cr>
 " }}}
 
