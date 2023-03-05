@@ -7,18 +7,18 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    use({
-        'dense-analysis/neural',
-        config = function()
-            require('neural').setup({
-                open_ai = {
-                    api_key = os.getenv("OPENAPI_API_KEY")
-                }
-            })
-        end,
-        requires = {
-            'MunifTanjim/nui.nvim',
-            'ElPiloto/significant.nvim'
-        }
-    })
+    -- use({
+    --     'dense-analysis/neural',
+    --     config = function()
+    --         require('neural').setup({
+    --             open_ai = {
+    --                 api_key = os.getenv("OPENAPI_API_KEY")
+    --             }
+    --         })
+    --     end,
+    --     requires = {
+    --         'MunifTanjim/nui.nvim',
+    --         'ElPiloto/significant.nvim'
+    --     }
+    -- })
 end)
