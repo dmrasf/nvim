@@ -26,6 +26,7 @@ set softtabstop=4
 autocmd Filetype * set formatoptions-=o
 autocmd BufWinEnter *.xml,*.html,*.htm,*.css,*.js,*.vue,*.json,*.go setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufWinEnter *.launch,*.gazebo,*.xacro,*.dae,*.world setlocal filetype=xml
+autocmd BufWinEnter *.arb setlocal filetype=json
 autocmd BufWinEnter *.S setlocal filetype=asm
 autocmd BufWinEnter *.rviz setlocal filetype=yaml
 autocmd BufWinEnter *.dts,*.dtsi setlocal noexpandtab
@@ -522,7 +523,7 @@ xmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>ac <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf <Plug>(coc-fix-current)
+nmap <leader>f <Plug>(coc-fix-current)
 
 
 " ===========================
@@ -788,10 +789,11 @@ nmap <A-l> <Plug>MoveLineRight
 " ========================================
 let g:Hexokinase_highlighters = [ 'virtual' ]
 
+
 " ====================================
 " =========== vim-rooter =============
 " ====================================
-let g:rooter_patterns = ['.git', '*.sln', '.vscode', '.cache']
+let g:rooter_patterns = ['.git', '*.sln']
 
 
 " ============================================
