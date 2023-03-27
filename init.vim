@@ -301,6 +301,7 @@ autocmd InsertLeave * call Fcitx2en()
 
 " 插件目录 {{{
 lua require('plugins')
+lua require('init')
 
 call plug#begin('$HOME/.config/nvim/plugged')
 

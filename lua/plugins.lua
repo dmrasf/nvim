@@ -7,18 +7,11 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    -- use({
-    --     'dense-analysis/neural',
-    --     config = function()
-    --         require('neural').setup({
-    --             open_ai = {
-    --                 api_key = os.getenv("OPENAPI_API_KEY")
-    --             }
-    --         })
-    --     end,
-    --     requires = {
-    --         'MunifTanjim/nui.nvim',
-    --         'ElPiloto/significant.nvim'
-    --     }
-    -- })
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+    }
 end)
