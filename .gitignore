@@ -4,6 +4,7 @@ tmp/
 view/
 .DS_Store
 .tasks
+lazy-lock.json
 plugged/
 plugin/
 sessions/

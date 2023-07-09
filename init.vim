@@ -23,7 +23,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-autocmd Filetype * set formatoptions-=o
+set formatoptions-=o
 autocmd BufWinEnter *.xml,*.html,*.htm,*.css,*.js,*.vue,*.json,*.go setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufWinEnter *.launch,*.gazebo,*.xacro,*.dae,*.world setlocal filetype=xml
 autocmd BufWinEnter *.arb setlocal filetype=json
@@ -162,28 +162,6 @@ nnoremap <a-r> :tabe<CR>:-tabmove<CR>:term ranger<CR>
 tnoremap <C-N> <C-\><C-N>
 " }}}
 
-" markdown 快捷键 {{{
-noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
-autocmd Filetype markdown nnoremap ,c ebi`<ESC>ea`<ESC>b
-autocmd Filetype markdown nnoremap ,b 0i**<ESC>A**<ESC>j0
-autocmd Filetype markdown inoremap ,e $$<ESC>i
-autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
-autocmd Filetype markdown inoremap ,n ---<Enter><Enter>
-autocmd Filetype markdown inoremap ,b **** <++><Esc>F*hi
-autocmd Filetype markdown inoremap ,s ~~~~ <++><Esc>F~hi
-autocmd Filetype markdown inoremap ,i ** <++><Esc>F*i
-autocmd Filetype markdown inoremap ,d `` <++><Esc>F`i
-autocmd Filetype markdown inoremap ,c ```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA
-autocmd Filetype markdown inoremap ,h ====<Space><++><Esc>F=hi
-autocmd Filetype markdown inoremap ,p ![](<++>) <++><Esc>F[a
-autocmd Filetype markdown inoremap ,a [](<++>) <++><Esc>F[a
-autocmd Filetype markdown inoremap ,1 #<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap ,2 ##<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap ,l --------<Enter>
-" }}}
-
 " 保存修改历史和光标位置 {{{
 silent !mkdir -p $HOME/.config/nvim/tmp/backup
 silent !mkdir -p $HOME/.config/nvim/tmp/undo
@@ -297,17 +275,12 @@ autocmd InsertLeave * call Fcitx2en()
 " }}}
 
 " 插件目录 {{{
-lua require('plugins')
-lua require('init')
-
 call plug#begin('$HOME/.config/nvim/plugged')
 
 " dress
-Plug 'nvim-lualine/lualine.nvim'       " lua statusline
 Plug 'kyazdani42/nvim-web-devicons'    " devicons
 Plug 'connorholyday/vim-snazzy'        " colorstheme
 Plug 'ajmwagar/vim-deus'               " colorstheme
-Plug 'sainnhe/gruvbox-material'        " colorstheme
 Plug 'sainnhe/forest-night'            " colorstheme
 Plug 'sonph/onehalf', { 'rtp': 'vim' } " colorstheme
 Plug 'jpo/vim-railscasts-theme'        " colorstheme
@@ -363,7 +336,6 @@ Plug 'yuttie/comfortable-motion.vim'                      " 更顺滑的scroll
 Plug 'gcmt/wildfire.vim'                                  " <ENTER>  <BS>
 Plug 'matze/vim-move'                                     " 整行 整块移动
 Plug 'wakatime/vim-wakatime'                              " 编辑时间
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " 颜色高亮
 Plug 'dstein64/vim-startuptime'                           " 显示启动时间
 Plug 'airblade/vim-rooter'                                " 自动切换项目根目录
 Plug 'christoomey/vim-tmux-navigator'
@@ -372,12 +344,6 @@ call plug#end()
 " }}}
 
 " 美化相关插件 {{{
-" =================================
-" =========== lualine =============
-" =================================
-lua require('lualine_config')
-
-
 " =====================================
 " =========== colorscheme =============
 " =====================================
@@ -385,21 +351,6 @@ if has('termguicolors')
     set termguicolors
     let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 endif
-let g:gruvbox_material_background = 'medium'
-let g:gruvbox_material_transparent_background = 0
-let g:gruvbox_material_better_performance = 1
-let g:gruvbox_material_enable_italic_comment = 1
-let g:gruvbox_material_enable_italic = 1
-let g:gruvbox_material_enable_bold = 1
-let g:gruvbox_material_visual = 'reverse'
-let g:gruvbox_material_menu_selection_background = 'orange'
-let g:gruvbox_material_sign_column_background = 'none'
-let g:gruvbox_material_spell_foreground = 'colored'
-let g:gruvbox_material_ui_contrast = 'high'
-let g:gruvbox_material_diagnostic_text_highlight = 0
-let g:gruvbox_material_diagnostic_line_highlight = 0
-let g:gruvbox_material_diagnostic_virtual_text = 'colored'
-colorscheme gruvbox-material
 
 
 " =================================
