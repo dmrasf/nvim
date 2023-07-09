@@ -272,10 +272,7 @@ augroup LargeFile
     autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
 augroup END
 function LargeFile()
-    syntax off
-    exec "CocDisable"
-    setlocal bufhidden=unload
-    setlocal undolevels=-1
+    setlocal noswapfile syntax=off bufhidden=unload undolevels=-1
     autocmd VimEnter * echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . " MB, so some options are changed (see init.vim for details)."
 endfunction
 " }}}
@@ -329,7 +326,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}                             " co
 Plug 'honza/vim-snippets'                                                   " 代码片段集合
 Plug 'mattn/emmet-vim'                                                      " <M-m>,  html
 Plug 'dart-lang/dart-vim-plugin'                                            " dart lsp
-Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for': ['python'] } " 高亮python
 Plug 'lervag/vimtex'                                                        " 写latex
 
 " 查找文件
