@@ -185,13 +185,13 @@ autocmd Filetype markdown inoremap ,l --------<Enter>
 " }}}
 
 " 保存修改历史和光标位置 {{{
-silent !mkdir -p $HOME/.config/nvim/tmp/backup
-silent !mkdir -p $HOME/.config/nvim/tmp/undo
-set backupdir=$HOME/.config/nvim/tmp/backup,.
-set directory=$HOME/.config/nvim/tmp/backup,.
+silent !mkdir -p $HOME/.local/share/nvim/tmp/backup
+silent !mkdir -p $HOME/.local/share/nvim/tmp/undo
+set backupdir=$HOME/.local/share/nvim/tmp/backup,.
+set directory=$HOME/.local/share/nvim/tmp/backup,.
 if has('persistent_undo')
     set undofile
-    set undodir=$HOME/.config/nvim/tmp/undo,.
+    set undodir=$HOME/.local/share/nvim/tmp/undo,.
 endif
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -297,9 +297,6 @@ autocmd InsertLeave * call Fcitx2en()
 " }}}
 
 " 插件目录 {{{
-lua require('plugins')
-lua require('init')
-
 call plug#begin('$HOME/.config/nvim/plugged')
 
 " dress
