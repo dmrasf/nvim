@@ -20,9 +20,8 @@ return {
 					chars = { "│" },
 					use_treesitter = false,
 				},
-				blank = {
-					enable = false,
-				},
+				blank = { enable = false },
+				line_num = { enable = false },
 			})
 		end,
 	},
