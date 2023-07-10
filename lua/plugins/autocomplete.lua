@@ -51,8 +51,6 @@ return {
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
-						elseif has_words_before() then
-							cmp.complete()
 						else
 							fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
 						end
@@ -60,6 +58,8 @@ return {
 					["<S-Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+						elseif has_words_before() then
+							cmp.complete()
 						else
 							fallback()
 						end
@@ -105,22 +105,9 @@ return {
 				},
 			})
 
-			-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-			-- cmp.setup.cmdline(":", {
-			-- 	mapping = cmp.mapping.preset.cmdline(),
-			-- 	sources = cmp.config.sources({
-			-- 		{ name = "path" },
-			-- 	}, {
-			-- 		{ name = "cmdline" },
-			-- 	}),
-			-- })
-
 			-- Set up lspconfig.
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-			require("lspconfig").pylsp.setup({
-				capabilities = capabilities,
-			})
 			require("lspconfig").lua_ls.setup({
 				capabilities = capabilities,
 			})

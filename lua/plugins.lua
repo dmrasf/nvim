@@ -29,5 +29,7 @@ require("lazy").setup({
 	require("plugins.autocomplete"),
 	require("plugins.lspconfig"),
 	require("plugins.snippets"),
-	require("plugins.search"),
+	require("plugins.useless"),
+	require("plugins.telescope"),
+	require("plugins.yank"),
 })
