@@ -1,26 +1,31 @@
 return {
 	{
-		"weilbith/nvim-code-action-menu",
-		config = function()
-			vim.g.code_action_menu_window_border = "single"
-			vim.g.code_action_menu_show_details = true
-			vim.g.code_action_menu_show_diff = true
-			vim.g.code_action_menu_show_action_kind = true
-			vim.keymap.set("n", "<leader>f", ":CodeActionMenu<cr>", { noremap = true })
-		end,
-	},
-	{
-		"hrsh7th/nvim-cmp",
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v2.x",
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
-			"quangnguyen30192/cmp-nvim-ultisnips",
+			"neovim/nvim-lspconfig",
 			{
-				"windwp/nvim-autopairs",
-				event = "InsertEnter",
-				opts = {},
+				"williamboman/mason.nvim",
+				build = function()
+					pcall(vim.cmd, "MasonUpdate")
+				end,
+			},
+			"williamboman/mason-lspconfig.nvim",
+			{
+				"hrsh7th/nvim-cmp",
+				dependencies = {
+					"hrsh7th/cmp-nvim-lsp",
+					"hrsh7th/cmp-buffer",
+					"hrsh7th/cmp-path",
+					"hrsh7th/cmp-cmdline",
+					"hrsh7th/cmp-calc",
+					"quangnguyen30192/cmp-nvim-ultisnips",
+					{
+						"windwp/nvim-autopairs",
+						event = "InsertEnter",
+						opts = {},
+					},
+				},
 			},
 		},
 		config = function()
@@ -28,19 +33,12 @@ return {
 			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 			local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 
-			local has_words_before = function()
-				local line, col = vim.api.nvim_win_get_cursor(0)
-				return col ~= 0
-					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-			end
-
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 			cmp.setup({
 				snippet = {
-					-- REQUIRED - you must specify a snippet engine
 					expand = function(args)
-						vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+						vim.fn["UltiSnips#Anon"](args.body)
 					end,
 				},
 				window = {
@@ -52,14 +50,19 @@ return {
 						if cmp.visible() then
 							cmp.select_next_item()
 						else
-							fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+							fallback()
 						end
 					end, { "i", "s" }),
 					["<S-Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-						elseif has_words_before() then
-							cmp.complete()
+						else
+							fallback()
+						end
+					end),
+					["<cr>"] = cmp.mapping(function(fallback)
+						if cmp.visible() and cmp.get_active_entry() then
+							cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
 						else
 							fallback()
 						end
@@ -70,21 +73,15 @@ return {
 					["<c-j>"] = cmp.mapping(function(fallback)
 						cmp_ultisnips_mappings.jump_backwards(fallback)
 					end, { "i", "s" }),
-					["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					["<C-e>"] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping(function(fallback)
-						if cmp.visible() and cmp.get_active_entry() then
-							cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-						else
-							fallback()
-						end
-					end),
+					["<c-u>"] = cmp.mapping.scroll_docs(-4),
+					["<c-d>"] = cmp.mapping.scroll_docs(4),
+					["<c-e>"] = cmp.mapping.abort(),
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 					{ name = "ultisnips" },
 					{ name = "buffer" },
+					{ name = "calc" },
 				}),
 			})
 
@@ -105,18 +102,29 @@ return {
 				},
 			})
 
-			-- Set up lspconfig.
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-			require("lspconfig").lua_ls.setup({
-				capabilities = capabilities,
+			local lsp = require("lsp-zero").preset({})
+			lsp.on_attach(function(client, bufnr)
+				lsp.default_keymaps({ buffer = bufnr })
+				vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = true })
+				vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = true })
+			end)
+			lsp.set_sign_icons({
+				error = "",
+				warn = "",
+				hint = "»",
+				info = "",
 			})
-			require("lspconfig").clangd.setup({
-				capabilities = capabilities,
-			})
-			require("lspconfig").vimls.setup({
-				capabilities = capabilities,
-			})
+			lsp.setup()
+		end,
+	},
+	{
+		"weilbith/nvim-code-action-menu",
+		config = function()
+			vim.g.code_action_menu_window_border = "single"
+			vim.g.code_action_menu_show_details = true
+			vim.g.code_action_menu_show_diff = true
+			vim.g.code_action_menu_show_action_kind = true
+			vim.keymap.set("n", "<leader>f", ":CodeActionMenu<cr>", { noremap = true })
 		end,
 	},
 }

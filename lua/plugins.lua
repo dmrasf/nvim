@@ -27,7 +27,6 @@ require("lazy").setup({
 	require("plugins.format"),
 	require("plugins.tmux"),
 	require("plugins.autocomplete"),
-	require("plugins.lspconfig"),
 	require("plugins.snippets"),
 	require("plugins.useless"),
 	require("plugins.telescope"),

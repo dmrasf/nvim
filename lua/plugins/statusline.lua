@@ -31,7 +31,7 @@ return {
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = { "filename" },
+				lualine_b = { "filename", "diff" },
 				lualine_c = {
 					{
 						"diagnostics",
@@ -67,8 +67,8 @@ return {
 			inactive_sections = {
 				lualine_a = {},
 				lualine_b = {},
-				lualine_c = {},
-				lualine_x = {},
+				lualine_c = { "filename" },
+				lualine_x = { "location" },
 				lualine_y = {},
 				lualine_z = {},
 			},

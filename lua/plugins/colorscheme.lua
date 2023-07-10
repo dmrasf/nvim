@@ -19,10 +19,8 @@ return {
 			vim.cmd([[colorscheme gruvbox-material]])
 		end,
 	},
-	{
-		-- 自动取消高亮
-		"romainl/vim-cool",
-	},
+	"romainl/vim-cool",
+	"itchyny/vim-cursorword",
 	{
 		"norcalli/nvim-colorizer.lua",
 		config = function()
