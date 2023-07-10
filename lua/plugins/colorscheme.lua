@@ -8,7 +8,7 @@ return {
 			vim.g.gruvbox_material_enable_italic_comment = 1
 			vim.g.gruvbox_material_enable_italic = 1
 			vim.g.gruvbox_material_enable_bold = 1
-			vim.g.gruvbox_material_visual = "reverse"
+			vim.g.gruvbox_material_visual = "grey background"
 			vim.g.gruvbox_material_menu_selection_background = "orange"
 			vim.g.gruvbox_material_sign_column_background = "none"
 			vim.g.gruvbox_material_spell_foreground = "colored"

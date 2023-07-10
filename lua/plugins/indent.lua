@@ -14,7 +14,7 @@ return {
 						left_bottom = "└",
 						right_arrow = "─",
 					},
-					style = "#ffffff",
+					style = "#afafaf",
 				},
 				indent = {
 					chars = { "│" },
