@@ -111,7 +111,7 @@ return {
 			lsp.set_sign_icons({
 				error = "",
 				warn = "",
-				hint = "»",
+				hint = "",
 				info = "",
 			})
 			lsp.setup()

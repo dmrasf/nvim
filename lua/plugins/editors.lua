@@ -50,4 +50,8 @@ return {
 			vim.keymap.set("n", "sk", ":SplitjoinSplit<cr>", { noremap = true, silent = true })
 		end,
 	},
+	{
+		"AndrewRadev/switch.vim",
+		config = function() end,
+	},
 }

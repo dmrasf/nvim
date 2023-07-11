@@ -27,6 +27,7 @@ vim.opt.hidden = true
 vim.opt.cmdheight = 1
 vim.opt.conceallevel = 0
 vim.opt.termguicolors = true
+vim.g.python3_host_prog = "/usr/bin/python3"
 
 vim.cmd([[
 silent !mkdir -p $HOME/.local/share/nvim/tmp/backup
