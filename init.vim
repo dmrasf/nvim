@@ -360,7 +360,6 @@ Plug 'yuttie/comfortable-motion.vim'                      " 更顺滑的scroll
 Plug 'gcmt/wildfire.vim'                                  " <ENTER>  <BS>
 Plug 'matze/vim-move'                                     " 整行 整块移动
 Plug 'wakatime/vim-wakatime'                              " 编辑时间
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' } " 颜色高亮
 Plug 'dstein64/vim-startuptime'                           " 显示启动时间
 Plug 'airblade/vim-rooter'                                " 自动切换项目根目录
 Plug 'christoomey/vim-tmux-navigator'
@@ -762,12 +761,6 @@ nmap <A-k> <Plug>MoveLineDown
 nmap <A-i> <Plug>MoveLineUp
 nmap <A-j> <Plug>MoveLineLeft
 nmap <A-l> <Plug>MoveLineRight
-
-
-" ========================================
-" =========== vim-hexokinase =============
-" ========================================
-let g:Hexokinase_highlighters = [ 'virtual' ]
 
 
 " ====================================
