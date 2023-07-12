@@ -9,6 +9,13 @@ return {
 				build = function()
 					pcall(vim.cmd, "MasonUpdate")
 				end,
+				config = function()
+					require("mason").setup({
+						ui = {
+							keymaps = { install_package = "a" },
+						},
+					})
+				end,
 			},
 			"williamboman/mason-lspconfig.nvim",
 			{
@@ -103,7 +110,7 @@ return {
 			})
 
 			local lsp = require("lsp-zero").preset({})
-			lsp.on_attach(function(client, bufnr)
+			lsp.on_attach(function(_, bufnr)
 				lsp.default_keymaps({ buffer = bufnr })
 				vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = true })
 				vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = true })

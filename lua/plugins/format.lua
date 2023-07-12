@@ -1,10 +1,7 @@
 return {
 	"mhartington/formatter.nvim",
+	keys = { "<a-f>" },
 	config = function()
-		-- Utilities for creating configurations
-		local util = require("formatter.util")
-
-		-- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 		require("formatter").setup({
 			-- Enable or disable logging
 			logging = true,
@@ -15,9 +12,11 @@ return {
 				lua = {
 					require("formatter.filetypes.lua").stylua,
 				},
-
 				c = {
 					require("formatter.filetypes.c").clangformat,
+				},
+				rust = {
+					require("formatter.filetypes.rust").rustfmt,
 				},
 			},
 		})

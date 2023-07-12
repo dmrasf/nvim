@@ -49,3 +49,8 @@ vim.keymap.set("n", "ti", ":-tabnext<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "tk", ":+tabnext<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "tmi", ":-tabmove<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "tmk", ":+tabmove<cr>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "[b", ":bprevious<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "]b", ":bnext<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "[B", ":bfirst<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "]B", ":blast<cr>", { noremap = true, silent = true })

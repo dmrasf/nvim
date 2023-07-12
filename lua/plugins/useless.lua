@@ -6,4 +6,7 @@ return {
 			vim.keymap.set("n", "<leader>rr", "<cmd>CellularAutomaton make_it_rain<CR>")
 		end,
 	},
+	{
+		"dstein64/vim-startuptime",
+	},
 }
