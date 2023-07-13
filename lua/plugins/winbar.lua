@@ -12,6 +12,8 @@ return {
 		config = function()
 			local api = require("dropbar.api")
 			vim.keymap.set("n", "<Leader>o", api.pick)
+			vim.api.nvim_set_hl(0, "DropBarMenuCurrentContext", { bold = true, fg = "#ebdbb2" })
+
 			require("dropbar").setup({
 				menu = {
 					quick_navigation = true,

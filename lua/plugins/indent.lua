@@ -5,7 +5,7 @@ return {
 		init = function()
 			require("hlchunk").setup({
 				chunk = {
-					enable = true,
+					enable = false,
 					use_treesitter = true,
 					chars = {
 						horizontal_line = "─",

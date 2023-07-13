@@ -35,6 +35,7 @@
   "statuscol.nvim": { "branch": "main", "commit": "9f1ff2dcf614544c5022e876d83b4894c1944e87" },
   "switch.vim": { "branch": "main", "commit": "6b6cfda7ba751617599fcf3a96c1694e7924255d" },
   "telescope.nvim": { "branch": "master", "commit": "276362a8020c6e94c7a76d49aa00d4923b0c02f3" },
+  "toggleterm.nvim": { "branch": "main", "commit": "95204ece0f2a54c89c4395295432f9aeedca7b5f" },
   "ultisnips": { "branch": "master", "commit": "0ad238b1910d447476b2d98f593322c1cdb71285" },
   "undotree": { "branch": "master", "commit": "0e11ba7325efbbb3f3bebe06213afa3e7ec75131" },
   "vim-cool": { "branch": "master", "commit": "04bb7f5dade175a81b47abf4e87aeb30b05b33d8" },
