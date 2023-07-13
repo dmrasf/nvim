@@ -10,6 +10,14 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
+local lazy_cmd = require("lazy.view.config").commands
+local lazy_keys = {
+	{ cmd = "install", key = "A", key_plugin = "a" },
+}
+for _, v in ipairs(lazy_keys) do
+	lazy_cmd[v.cmd].key = v.key
+	lazy_cmd[v.cmd].key_plugin = v.key_plugin
+end
 
 require("lazy").setup({
 	require("plugins.indent"),
@@ -31,4 +39,5 @@ require("lazy").setup({
 	require("plugins.useless"),
 	require("plugins.telescope"),
 	require("plugins.yank"),
+	require("plugins.fold"),
 })

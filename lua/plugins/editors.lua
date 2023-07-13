@@ -1,10 +1,6 @@
 return {
+	"gcmt/wildfire.vim",
 	{
-		-- 回车选取内容
-		"gcmt/wildfire.vim",
-	},
-	{
-		-- 整块移动
 		"matze/vim-move",
 		config = function()
 			vim.cmd([[
@@ -21,7 +17,6 @@ return {
 		end,
 	},
 	{
-		-- 多选编辑
 		"mg979/vim-visual-multi",
 		config = function()
 			vim.cmd([[
@@ -41,17 +36,14 @@ return {
             ]])
 		end,
 	},
+	"AndrewRadev/switch.vim",
 	{
 		"AndrewRadev/splitjoin.vim",
 		config = function()
 			vim.g.splitjoin_split_mapping = ""
 			vim.g.splitjoin_join_mapping = ""
-			vim.keymap.set("n", "si", ":SplitjoinJoin<cr>", { noremap = true, silent = true })
+			vim.keymap.set("n", "sj", ":SplitjoinJoin<cr>", { noremap = true, silent = true })
 			vim.keymap.set("n", "sk", ":SplitjoinSplit<cr>", { noremap = true, silent = true })
 		end,
-	},
-	{
-		"AndrewRadev/switch.vim",
-		config = function() end,
 	},
 }

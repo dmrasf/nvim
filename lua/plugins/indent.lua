@@ -12,9 +12,9 @@ return {
 						vertical_line = "│",
 						left_top = "┌",
 						left_bottom = "└",
-						right_arrow = "─",
+						right_arrow = "",
 					},
-					style = "#afafaf",
+					style = "#ffffff",
 				},
 				indent = {
 					chars = { "│" },

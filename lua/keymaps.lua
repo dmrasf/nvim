@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader><cr>", ":nohlsearch<cr>", { noremap = true })
+vim.keymap.set("n", "<leader><cr>", ":nohlsearch<cr>", { noremap = true, silent = true })
 
 vim.keymap.set({ "n", "v" }, "i", "k", { noremap = true })
 vim.keymap.set({ "n", "v" }, "h", "i", { noremap = true })

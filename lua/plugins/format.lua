@@ -1,10 +1,9 @@
 return {
 	"mhartington/formatter.nvim",
-	keys = { "<a-f>" },
 	config = function()
 		require("formatter").setup({
 			-- Enable or disable logging
-			logging = true,
+			logging = false,
 			-- Set the log level
 			log_level = vim.log.levels.WARN,
 			-- All formatter configurations are opt-in
@@ -20,7 +19,12 @@ return {
 				},
 			},
 		})
-
+		vim.cmd([[
+        augroup FormatAutogroup
+            autocmd!
+            autocmd BufWritePost *.lua FormatWrite
+        augroup END
+        ]])
 		vim.keymap.set("n", "<a-f>", ":Format<cr>", { noremap = true, silent = true })
 	end,
 }
