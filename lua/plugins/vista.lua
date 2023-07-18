@@ -1,5 +1,6 @@
 return {
 	"liuchengxu/vista.vim",
+	keys = { "T" },
 	config = function()
 		vim.cmd([[
         map <silent> T :Vista!!<CR>

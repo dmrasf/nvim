@@ -34,6 +34,7 @@ return {
 				},
 			},
 		})
+		require("telescope").load_extension("flutter")
 		require("telescope").load_extension("yank_history")
 	end,
 }

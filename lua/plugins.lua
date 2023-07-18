@@ -41,4 +41,5 @@ require("lazy").setup({
 	require("plugins.yank"),
 	require("plugins.fold"),
 	require("plugins.term"),
+	require("plugins.flutter"),
 })
