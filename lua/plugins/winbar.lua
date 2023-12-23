@@ -9,6 +9,7 @@ return {
 	},
 	{
 		"Bekaboo/dropbar.nvim",
+		enabled = false,
 		config = function()
 			local api = require("dropbar.api")
 			vim.keymap.set("n", "<Leader>o", api.pick)

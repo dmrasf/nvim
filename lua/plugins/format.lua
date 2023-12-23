@@ -17,6 +17,9 @@ return {
 				rust = {
 					require("formatter.filetypes.rust").rustfmt,
 				},
+				python = {
+					require("formatter.filetypes.python").black,
+				},
 			},
 		})
 		vim.cmd([[
