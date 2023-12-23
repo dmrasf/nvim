@@ -27,6 +27,7 @@ vim.opt.hidden = true
 vim.opt.cmdheight = 1
 vim.opt.conceallevel = 0
 vim.opt.termguicolors = true
+vim.opt.autoread = true
 vim.g.python3_host_prog = "/usr/bin/python3"
 
 vim.cmd([[

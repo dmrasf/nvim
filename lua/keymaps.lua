@@ -54,3 +54,6 @@ vim.keymap.set("n", "[b", ":bprevious<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "]b", ":bnext<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "[B", ":bfirst<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "]B", ":blast<cr>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<esc>", ":ccl<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>r", ":OverseerRun test<cr>", { noremap = true, silent = true })

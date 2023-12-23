@@ -1,5 +1,6 @@
 return {
 	"gcmt/wildfire.vim",
+	"tpope/vim-surround",
 	{
 		"matze/vim-move",
 		config = function()
